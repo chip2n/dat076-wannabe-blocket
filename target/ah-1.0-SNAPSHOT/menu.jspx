@@ -1,0 +1,7 @@
+<nav class="menu">
+    <ul>
+        <li><a href="index.jspx">Logga in</a></li>
+        <li><a href="products?view=this">Min sida</a></li>    
+        <li><a href="router.jspx?view=customers">Skapa annons</a></li>
+    </ul>
+</nav>
