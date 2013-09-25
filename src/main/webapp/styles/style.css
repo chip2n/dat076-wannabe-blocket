@@ -1,0 +1,104 @@
+/* 
+    Document   : style
+    Author     : Aram Timofeitchik
+    Description: base page style sheet.
+*/
+
+body {
+    background-image: url("");
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Segoe UI","Segoe", Tahoma, Arial, Helvetica, sans-serif;
+    font-size:13px;
+}
+
+header {
+    background-image:  url("");
+    background-repeat: repeat;
+    background-position: center;
+}
+
+header h1{  
+    font-size: 32px;
+}
+
+header h2{  
+    font-size: 20px;
+}
+
+nav {
+    
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    background-color: rgba(239, 239, 239, 0.78);
+}
+
+nav ul li a {
+    color: blueviolet;
+    text-decoration: none;
+}
+
+nav ul li a:visited{
+    color: blueviolet;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: blueviolet;
+    background-color: #ccffff;
+}
+
+aside {
+    background-color: #f0f0f0;
+}
+
+aside h1 {
+    font-size: 11pt;
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+aside ul li {
+    
+}
+
+aside ul li a {
+    color: blueviolet;
+    text-decoration: none;
+}
+
+aside ul li a.node {
+    color: blueviolet;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+aside ul li a.subnode {
+    color: blueviolet;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+
+aside ul li a:visited{
+    color: blueviolet;
+    text-decoration: none;
+}
+
+aside ul li a:hover {
+    color: blueviolet;
+    background-color: #ccffff;
+}
+
+footer {
+    background-color: #f0f0f0;
+    color: black;
+}
