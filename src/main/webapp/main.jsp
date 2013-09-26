@@ -20,5 +20,4 @@
     <jsp:attribute name="pagefooter">
         This is the footer.
     </jsp:attribute>
-    
 </t:master>
