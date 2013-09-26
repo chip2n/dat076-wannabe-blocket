@@ -35,7 +35,8 @@ public class NavigationNode {
         return _children;
     }
     
-    public String getHtml(){
+    @Override
+    public String toString(){
         String html = "";
         
         for(NavigationNode node : _children){

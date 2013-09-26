@@ -22,13 +22,14 @@ public class Navigation {
         return _children;
     }
     
-    public String getHtml(){
+    @Override
+    public String toString(){
         String html = "";
         
         for(NavigationNode node : _children){
             html += "<li>" + 
                         "<a class=\"node\" href=\"" + node.getUrl() + "\">" + node.getTitle() + "</a>" +
-                        node.getHtml() +
+                        node +
                     "</li>";
         }
         

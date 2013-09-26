@@ -27,12 +27,12 @@
         </hgroup>
     </header>
     <nav>
-        ${topMenu.html}
+        ${topMenu}
     </nav>
     <article>
         <aside>
             <h1><jsp:invoke fragment="sidemenuheader"/></h1>
-            ${sideMenu.html}
+            ${sideMenu}
         </aside>
         <section id="maincontent">
             <jsp:invoke fragment="maincontent"/>
