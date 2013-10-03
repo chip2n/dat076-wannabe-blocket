@@ -10,7 +10,14 @@
 <t:master>
     <jsp:attribute name="pagetitle">Main</jsp:attribute>
     <jsp:attribute name="additionalpageheaders">
-        <script>alert('This script is added in AdditionalPageHeaders');</script>
+        <script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
+        <script>
+            $(function() {
+                $(".node").click(function() {
+                    alert("Hej!");
+                });
+            });
+        </script>
     </jsp:attribute>
     <jsp:attribute name="sidemenuheader">Side Menu Header</jsp:attribute>
     <jsp:attribute name="maincontent">
