@@ -10,6 +10,8 @@
 <%@attribute name="sidemenuheader" fragment="true" %>
 <%@attribute name="maincontent" fragment="true" %>
 <%@attribute name="pagefooter" fragment="true" %>
+<%@attribute name="topmenu" fragment="true" %>
+<%@attribute name="sidemenu" fragment="true" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,12 +29,12 @@
         </hgroup>
     </header>
     <nav>
-        ${topMenu}
+        <jsp:invoke fragment="topmenu"/>
     </nav>
     <article>
         <aside>
             <h1><jsp:invoke fragment="sidemenuheader"/></h1>
-            ${sideMenu}
+            <jsp:invoke fragment="sidemenu"/>     
         </aside>
         <section id="maincontent">
             <jsp:invoke fragment="maincontent"/>
