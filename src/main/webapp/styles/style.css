@@ -102,3 +102,10 @@ footer {
     background-color: #f0f0f0;
     color: black;
 }
+
+
+.messagepop {
+    background-color:#FFFFFF;
+    border:1px solid #999999;
+    cursor:default;
+}

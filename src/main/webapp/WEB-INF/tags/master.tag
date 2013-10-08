@@ -31,7 +31,15 @@
     <nav>
         <jsp:invoke fragment="topmenu"/>
     </nav>
-    <article>
+    <!-- Login popup -->
+    <div class="messagepop pop">
+        <form method="post" id="new_message" action="/messages">
+            <p><label for="username">Användarnamn</label><input type="text" size="30" name="email" id="email" /></p>
+            <p><label for="password">Lösenord</label><input type="text" size="30" name="email" id="email" /></p>
+            <p><input type="submit" value="Logga in" name="commit" id="message_submit"/> eller <a class="close" href="/">Avbryt</a></p>
+        </form>
+    </div>
+    <article>       
         <aside>
             <h1><jsp:invoke fragment="sidemenuheader"/></h1>
             <jsp:invoke fragment="sidemenu"/>     
