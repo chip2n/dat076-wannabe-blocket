@@ -103,9 +103,12 @@ footer {
     color: black;
 }
 
-
 .messagepop {
     background-color:#FFFFFF;
     border:1px solid #999999;
     cursor:default;
+}
+
+.center {
+    text-align: center;
 }

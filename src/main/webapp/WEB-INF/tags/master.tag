@@ -31,14 +31,15 @@
     <nav>
         <jsp:invoke fragment="topmenu"/>
     </nav>
-    <!-- Login popup -->
+    <!-- Login popup - hidden by default -->
     <div class="messagepop pop">
-        <form method="post" id="new_message" action="/messages">
-            <p><label for="username">Användarnamn</label><input type="text" size="30" name="email" id="email" /></p>
-            <p><label for="password">Lösenord</label><input type="text" size="30" name="email" id="email" /></p>
-            <p><input type="submit" value="Logga in" name="commit" id="message_submit"/> eller <a class="close" href="/">Avbryt</a></p>
+        <form method="post" id="new_message" action="login">
+            <p><label for="username">Användarnamn</label><input type="text" size="30" name="username" id="username" /></p>
+            <p><label for="password">Lösenord</label><input type="password" size="30" name="password" id="password" /></p>
+            <p class="center"><input type="submit" value="Logga in" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a></p>
         </form>
     </div>
+    
     <article>       
         <aside>
             <h1><jsp:invoke fragment="sidemenuheader"/></h1>
