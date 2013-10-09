@@ -24,8 +24,7 @@
   <body>
     <header>
         <hgroup>
-            <h1>Title</h1>
-            <h2>Description</h2>
+            <img src="${pageContext.request.contextPath}/img/logo.png" />
         </hgroup>
     </header>
     <nav>
