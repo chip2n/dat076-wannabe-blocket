@@ -13,9 +13,10 @@ import javax.servlet.annotation.WebServlet;
 /**
  *
  * @author Aram Timofeitchik
+ * @author Andreas Arvidsson
  */
-@WebServlet(name = "MainServlet", urlPatterns = {""})
-public class MainServlet extends ServletBase {
+@WebServlet(name = "MyPageServlet", urlPatterns = {"/mypage"})
+public class MyPageServlet extends ServletBase {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -26,7 +27,7 @@ public class MainServlet extends ServletBase {
     protected void doGet() throws ServletException, IOException {
         this.setupSideMenu();
         this.setupTopMenu();
-        this.getRequest().getRequestDispatcher("/main.jsp").forward(this.getRequest(), this.getResponse());
+        this.getRequest().getRequestDispatcher("/my_page.jsp").forward(this.getRequest(), this.getResponse());
     }
 
     /**
@@ -46,7 +47,7 @@ public class MainServlet extends ServletBase {
      */
     @Override
     public String getServletInfo() {
-        return "Main servlet.";
+        return "My Page servlet.";
     }
     
     private void setupSideMenu(){
@@ -60,9 +61,12 @@ public class MainServlet extends ServletBase {
         }
     }
     
+    // TODO: This should maybe be moved into a separate place,
+    // like Navigation.getTopMenu(), since we will need this on
+    // many pages and they will all function the same
     private void setupTopMenu(){
         this.getTopMenu().getChildren().add(new NavigationNode("Logga in", null));
-        this.getTopMenu().getChildren().add(new NavigationNode("Min sida", "mypage"));
+        this.getTopMenu().getChildren().add(new NavigationNode("Min sida", null));
         this.getTopMenu().getChildren().add(new NavigationNode("Skapa annons", null));
     }    
 }
