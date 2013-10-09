@@ -61,9 +61,6 @@ public class MyPageServlet extends ServletBase {
         }
     }
     
-    // TODO: This should maybe be moved into a separate place,
-    // like Navigation.getTopMenu(), since we will need this on
-    // many pages and they will all function the same
     private void setupTopMenu(){
         this.getTopMenu().getChildren().add(new NavigationNode("Logga in", null));
         this.getTopMenu().getChildren().add(new NavigationNode("Min sida", null));
