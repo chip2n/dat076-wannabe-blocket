@@ -27,7 +27,7 @@
             <img src="${pageContext.request.contextPath}/img/logo.png" />
         </hgroup>
     </header>
-    <nav>
+    <nav id="top-menu">
         <jsp:invoke fragment="topmenu"/>
     </nav>
     <!-- Login popup - hidden by default -->

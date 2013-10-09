@@ -112,3 +112,9 @@ footer {
 .center {
     text-align: center;
 }
+
+#top-menu {
+    background: #ffd218 url("../img/top_menu_bg.png") no-repeat top right;
+    height: 56px;
+    width: 100%;
+}
