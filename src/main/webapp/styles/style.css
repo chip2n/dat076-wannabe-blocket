@@ -113,8 +113,23 @@ footer {
     text-align: center;
 }
 
-#top-menu {
+#searchbar {
     background: #ffd218 url("../img/top_menu_bg.png") no-repeat top right;
+    display: block;
     height: 56px;
-    width: 100%;
+    width: 1200px;
+}
+
+.searchbar-left {
+    background: #ffd218 url("../img/top_menu_bg_left.png") no-repeat top right;
+    display: block;
+    float: left;
+    height: 56px;
+    width: 163px;
+}
+
+.searchbar-right {
+    display: block;
+    float: left;
+    padding-top: 10px;
 }
