@@ -98,3 +98,23 @@ footer {
     margin: 8px 0;
     padding-bottom: 8px;
 }
+
+.searchbar {
+    display: block;
+    clear: both;
+    height: 56px;
+    width: 1200px;
+}
+
+.searchbar-left {
+    display: block;
+    float: left;
+    height: 56px;
+    width: 163px;
+}
+
+.searchbar-right {
+    display: block;
+    float: left;
+    padding-top: 10px;
+}

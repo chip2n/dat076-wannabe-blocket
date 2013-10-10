@@ -24,31 +24,30 @@
   <body>
     <header>
         <hgroup>
-            <img src="${pageContext.request.contextPath}/img/logo.png" />
+            <img style="float: left;" src="${pageContext.request.contextPath}/img/logo.png" />
+            <nav>
+                <jsp:invoke fragment="topmenu"/><br/>
+            </nav>
         </hgroup>
-    </header>
-    <nav>
-        <!--<p><jsp:invoke fragment="topmenu"/><br/></p>-->
-        <p>
-        <div id="searchbar">
-            <div class="searchbar-left"></div>
-            <div class="searchbar-right">
-                <form method="post" id="search_box" action="search">
-                    <input type="text" size="60" name="searchfield" id="searchfield" />
-                    <label for="categories">inom</label>
-                    <select name="categories">
-                        <option value="0">Alla kategorier</option>
-                        <option value="1">Gröna badrumstillbehör</option>
-                        <option value="2">Elektronik (halvtrasiga)</option>
-                        <option value="3">Bilar</option>
-                        <option value="4">Båtar (not literally)</option>
-                        
-                    </select>
-                </form>
-            </div>
+    </header> 
+    <div class="searchbar">
+        <div class="searchbar-left"></div>
+        <div class="searchbar-right">
+            <form method="post" id="search_box" action="search">
+                <input type="text" size="60" name="searchfield" id="searchfield" />
+                <label for="categories">inom</label>
+                <select name="categories">
+                    <option value="0">Alla kategorier</option>
+                    <option value="1">Gröna badrumstillbehör</option>
+                    <option value="2">Elektronik (halvtrasiga)</option>
+                    <option value="3">Bilar</option>
+                    <option value="4">Båtar (not literally)</option>
+                </select>
+                <input type="submit" value="Sök" name="commit" id="message_submit"/>
+            </form>
         </div>
-        </p>
-    </nav>
+    </div>
+            
     <!-- Login popup - hidden by default -->
     <div class="messagepop pop">
         <form method="post" id="new_message" action="login">
