@@ -60,6 +60,11 @@ public class MainServlet extends ServletBase {
         }
     }
     
+    // TODO: This should maybe be moved into a separate place,
+    // like Navigation.getTopMenu() or ServletBase.setupTopMenu(),
+    // since we will need this on many pages and they will all function
+    // roughly the same. We also need to consider if the user is logged out -
+    // a different top menu should then be visible.
     private void setupTopMenu(){
         this.getTopMenu().getChildren().add(new NavigationNode("Logga in", null));
         this.getTopMenu().getChildren().add(new NavigationNode("Min sida", "mypage"));
