@@ -3,32 +3,35 @@ package com.wannabeblocket.model;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 @Entity
 public class Comment extends AbstractEntity {
 
-    @ManyToOne( cascade={CascadeType.PERSIST})
-    private User poster;
-    @ManyToOne( cascade={CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Listing listing;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    private User poster;
     private String text;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date submissionTime;
 
-    public Comment(User poster, Listing listing, String text, Date submissionTime, Long id) {
-        super(id);
-        this.poster = poster;
+    public Comment(Listing listing, User poster, String text, Date submissionTime) {
         this.listing = listing;
+        this.poster = poster;
         this.text = text;
         this.submissionTime = submissionTime;
     }
-    
-    
-    
+
+    public Comment(Long id, Listing listing, User poster, String text, Date submissionTime) {
+        super(id);
+        this.listing = listing;
+        this.poster = poster;
+        this.text = text;
+        this.submissionTime = submissionTime;
+    }
+
     public Comment() {
     }
 
@@ -43,7 +46,7 @@ public class Comment extends AbstractEntity {
     public void setPoster(User poster) {
         this.poster = poster;
     }
-    
+
     public Listing getListing() {
         return listing;
     }

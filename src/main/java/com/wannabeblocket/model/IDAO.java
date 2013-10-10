@@ -28,5 +28,4 @@ public interface IDAO<T, K> {
      * Using out parameter
      */
     void update(T t);
-    
 }

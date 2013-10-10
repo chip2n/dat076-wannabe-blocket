@@ -2,11 +2,9 @@ package com.wannabeblocket.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Random;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
 
 /**
  * Base class for all entities (later to be stored in database), Product, Order,
@@ -17,8 +15,10 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 
-    @Id @GeneratedValue long id;
-    
+    @Id
+    @GeneratedValue
+    long id;
+
     protected AbstractEntity() {
     }
 

@@ -3,21 +3,25 @@ package com.wannabeblocket.model;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 @Entity
-public class Listing extends AbstractEntity{
+public class Listing extends AbstractEntity {
 
-    @ManyToOne( cascade={CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private User seller;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endingTime;
 
-    public Listing(String description, Date endingTime, Long id, User seller) {
+    public Listing(User seller, String description, Date endingTime) {
+        this.seller = seller;
+        this.description = description;
+        this.endingTime = endingTime;
+    }
+
+    public Listing(Long id, User seller, String description, Date endingTime) {
         super(id);
         this.seller = seller;
         this.description = description;

@@ -1,6 +1,5 @@
 package com.wannabeblocket.model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -8,30 +7,31 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
  * Base class any persisting collection
- * 
- * NOTE: This is ** Application Managed Persistence ** and RESOURCE_LOCAL transactions
- * because we will run JUnit test's i.e.  **** Java SE  ****
- * 
+ *
+ * NOTE: This is ** Application Managed Persistence ** and RESOURCE_LOCAL
+ * transactions because we will run JUnit test's i.e. **** Java SE ****
+ *
  * @author hajo
  */
-
 public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
 
-    private final EntityManagerFactory emf;
+    @PersistenceUnit
+    private EntityManagerFactory emf;
     private final Class<T> clazz;
 
-    protected AbstractDAO(Class<T> clazz, String puName) {
+    public AbstractDAO(Class<T> clazz, String puName) {
         this.clazz = clazz;
         emf = Persistence.createEntityManagerFactory(puName);
     }
- 
-    protected EntityManager getEntityManager() {
+
+    public EntityManager getEntityManager() {
         EntityManager em = emf.createEntityManager();
         Logger.getAnonymousLogger().log(Level.INFO, "Createing EM {0}", em);
         return em;
@@ -128,7 +128,7 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
     }
 
     // This uses the criteria API see queries...
-    private List<T> get(boolean all, int maxResults, int firstResult) {
+    public List<T> get(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         List<T> found = new ArrayList();
         try {

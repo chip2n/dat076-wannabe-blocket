@@ -1,20 +1,21 @@
 package com.wannabeblocket.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-public class User extends AbstractEntity{
+public class User extends AbstractEntity {
 
     private String userName;
 
-    public User(String userName, Long id) {
+    public User(Long id, String userName) {
         super(id);
         this.userName = userName;
     }
-    
+
+    public User(String userName) {
+        this.userName = userName;
+    }
+
     public User() {
     }
 
