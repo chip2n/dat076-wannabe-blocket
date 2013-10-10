@@ -28,6 +28,15 @@
             <nav>
                 <jsp:invoke fragment="topmenu"/><br/>
             </nav>
+                        
+            <!-- Login popup - hidden by default -->
+            <div class="messagepop pop">
+                <form method="post" id="new_message" action="login">
+                    <p><label for="username">Användarnamn</label><input type="text" size="30" name="username" id="username" /></p>
+                    <p><label for="password">Lösenord</label><input type="password" size="30" name="password" id="password" /></p>
+                    <p class="center"><input type="submit" value="Logga in" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a></p>
+                </form>
+            </div>
         </hgroup>
     </header> 
     <div class="searchbar">
@@ -43,18 +52,9 @@
                     <option value="3">Bilar</option>
                     <option value="4">Båtar (not literally)</option>
                 </select>
-                <input type="submit" value="Sök" name="commit" id="message_submit"/>
+                <input type="submit" value="Sök" name="commit" id="search_submit"/>
             </form>
         </div>
-    </div>
-            
-    <!-- Login popup - hidden by default -->
-    <div class="messagepop pop">
-        <form method="post" id="new_message" action="login">
-            <p><label for="username">Användarnamn</label><input type="text" size="30" name="username" id="username" /></p>
-            <p><label for="password">Lösenord</label><input type="password" size="30" name="password" id="password" /></p>
-            <p class="center"><input type="submit" value="Logga in" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a></p>
-        </form>
     </div>
     
     <article>       
