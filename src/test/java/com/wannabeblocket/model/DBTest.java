@@ -4,38 +4,32 @@
  */
 package com.wannabeblocket.model;
 
-import com.wannabeblocket.model.*;
 import java.util.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
  * @author Joppe
  */
 public class DBTest {
+    
+    Shop shop;
 
-    /**
-     * @param args the command line arguments
-     */
     @Test
     public void firstTest() {
-        
-        UserRegistry ur = new UserRegistry("wannabeblocket_pu");
-        AuctionHouse ah = new AuctionHouse("wannabeblocket_pu");
-        CommentSection cs = new CommentSection("wannabeblocket_pu");
-        BiddingHistory bh = new BiddingHistory("wannabeblocket_pu");
 
 
-        
+        shop = ShopFactory.getShop();
         User user0 = new User("user name 0");
-        ur.add(user0);
+        shop.getUserRegistry().add(user0);
         Listing listing0 = new Listing(user0, "listing text 0", new Date());
-        ah.add(listing0);
+        shop.getAuctionHouse().add(listing0);
         Comment comment0 = new Comment(listing0, user0, "comment text 0", new Date());
-        cs.add(comment0);
+        //shop.getCommentSection().add(comment0);
         Bid bid0 = new Bid(listing0, user0, 0, new Date());
-        bh.add(bid0);
+        //shop.getBiddingHistory().add(bid0);
         
         /*
         sertTrue(user0.equals(cs.find(comment0.getId()).getPoster()));

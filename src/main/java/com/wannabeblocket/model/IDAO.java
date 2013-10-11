@@ -12,20 +12,17 @@ import java.util.List;
  */
 public interface IDAO<T, K> {
 
-    void add(T t);
+    public void add(T t);
 
-    T find(K id);
+    public T find(K id);
 
-    List<T> getAll();
+    public List<T> getAll();
 
-    int getCount();
+    public int getCount();
 
-    List<T> getRange(int maxResults, int firstResult);
+    public List<T> getRange(int maxResults, int firstResult);
 
-    void remove(K id);
+    public void remove(K id);
 
-    /**
-     * Using out parameter
-     */
-    void update(T t);
+    public void update(T t);
 }
