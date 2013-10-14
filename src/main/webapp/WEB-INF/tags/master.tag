@@ -26,7 +26,9 @@
   <body>
     <header>
         <hgroup>
-            <img style="float: left;" src="${pageContext.request.contextPath}/img/logo.png" />
+            <a href="${pageContext.request.contextPath}">
+                <img style="float: left;" src="${pageContext.request.contextPath}/img/logo.png" />
+            </a>
             <nav>
                 <jsp:invoke fragment="topmenu"/><br/>
             </nav>
@@ -39,6 +41,7 @@
                     <p class="center"><input type="submit" value="Logga in" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a></p>
                 </form>
             </div>
+            
         </hgroup>
     </header> 
     <div class="searchbar">

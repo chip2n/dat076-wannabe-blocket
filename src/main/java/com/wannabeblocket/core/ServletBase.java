@@ -126,7 +126,6 @@ public abstract class ServletBase extends HttpServlet {
         }
     }
     
-    
     /**
      * Returns a short description of the servlet.
      *
