@@ -114,7 +114,7 @@ public abstract class ServletBase extends HttpServlet {
     // TODO: Consider if the user is logged in or logged out.
     protected void setupTopMenu(){
         if(_currentUser == null) {
-            this.getTopMenu().getChildren().add(new NavigationNode("Logga in", null));
+            this.getTopMenu().getChildren().add(new NavigationNode("Logga in", "javascript:login();"));
         }
         else {
             this.getTopMenu().getChildren().add(new NavigationNode("Logga out", null));
