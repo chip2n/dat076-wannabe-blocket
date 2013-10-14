@@ -4,6 +4,7 @@
  */
 package com.wannabeblocket.core;
 
+import com.wannabeblocket.ah.UserBean;
 import com.wannabeblocket.core.navigation.Navigation;
 import com.wannabeblocket.core.navigation.NavigationNode;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,6 +23,7 @@ public abstract class ServletBase extends HttpServlet {
     private HttpServletResponse _response;
     private Navigation _sideMenu;
     private Navigation _topMenu;
+    private UserBean _currentUser;
     
     /**
      * Returns the servlet request.
@@ -102,7 +105,7 @@ public abstract class ServletBase extends HttpServlet {
     private void init(HttpServletRequest request, HttpServletResponse response){
         this._request = request;
         this._response = response;
-        
+        this.resolveUser();
         this._request.setAttribute("sideMenu", _sideMenu = new Navigation());
         this._request.setAttribute("topMenu", _topMenu = new Navigation());
     }
@@ -110,9 +113,16 @@ public abstract class ServletBase extends HttpServlet {
         
     // TODO: Consider if the user is logged in or logged out.
     protected void setupTopMenu(){
-        this.getTopMenu().getChildren().add(new NavigationNode("Logga in", null));
+        if(_currentUser == null) {
+            this.getTopMenu().getChildren().add(new NavigationNode("Logga in", "javascript:login();"));
+        }
+        else {
+            this.getTopMenu().getChildren().add(new NavigationNode("Logga out", null));
+        }
         this.getTopMenu().getChildren().add(new NavigationNode("Min sida", "mypage"));
         this.getTopMenu().getChildren().add(new NavigationNode("Skapa annons", null));
+        
+        
     }
         
     protected void setupSideMenu(){
@@ -126,6 +136,16 @@ public abstract class ServletBase extends HttpServlet {
         }
     }
     
+<<<<<<< HEAD
+=======
+    private void resolveUser() {
+        HttpSession session = this._request.getSession();
+        if(session != null) {
+            _currentUser = (UserBean) session.getAttribute("USER");
+        }
+    }
+    
+>>>>>>> 4579eeabec29db61427403040f8aad2ae18b0151
     /**
      * Returns a short description of the servlet.
      *
