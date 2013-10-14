@@ -4,6 +4,11 @@ var ProductCatalogue = function(url) {
 
 ProductCatalogue.prototype = (function() {
     return {
-        
+        getCategories: function() {
+            
+        },
+        find: function(id) {
+    
+        }  
     };
 })();
