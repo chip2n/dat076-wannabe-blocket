@@ -10,8 +10,6 @@
 <t:master>
     <jsp:attribute name="pagetitle">Main</jsp:attribute>
     <jsp:attribute name="additionalpageheaders">
-        <script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
-        <script src="${pageContext.request.contextPath}/js/common.js"></script> <!-- TODO: Put this in master.tag? -->
     </jsp:attribute>
     <jsp:attribute name="topmenu">
         ${topMenu}

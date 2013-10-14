@@ -19,6 +19,8 @@
         <title><jsp:invoke fragment="pagetitle"/></title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/layout.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/style.css" />
+        <script src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
+        <script src="${pageContext.request.contextPath}/js/common.js"></script>
         <jsp:invoke fragment="additionalpageheaders"/>
     </head>
   <body>
