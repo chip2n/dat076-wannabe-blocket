@@ -75,13 +75,13 @@ aside ul li a {
     text-decoration: none;
 }
 
-aside ul li a.node {
+aside ul li a.node-level0 {
     color: blueviolet;
     text-decoration: none;
     font-size: 1.1em;
 }
 
-aside ul li a.subnode {
+aside ul li a.node-level1 {
     color: blueviolet;
     text-decoration: none;
     font-size: 0.9em;
