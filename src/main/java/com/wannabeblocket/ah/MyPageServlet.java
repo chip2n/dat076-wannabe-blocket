@@ -25,8 +25,6 @@ public class MyPageServlet extends ServletBase {
      */
     @Override
     protected void doGet() throws ServletException, IOException {
-        this.setupSideMenu();
-        this.setupTopMenu();
         this.getRequest().getRequestDispatcher("/my_page.jsp").forward(this.getRequest(), this.getResponse());
     }
 
@@ -48,22 +46,5 @@ public class MyPageServlet extends ServletBase {
     @Override
     public String getServletInfo() {
         return "My Page servlet.";
-    }
-    
-    private void setupSideMenu(){
-        //Detta ska egentligen kopplas mot produkt kategorier i databasen.
-        
-        for(int i = 1; i < 6; ++i){
-            NavigationNode node = new NavigationNode("Link " + i, null);
-                node.getChildren().add(new NavigationNode("Sublink " + i, null));
-                
-            this.getSideMenu().getChildren().add(node);
-        }
-    }
-    
-    private void setupTopMenu(){
-        this.getTopMenu().getChildren().add(new NavigationNode("Logga in", null));
-        this.getTopMenu().getChildren().add(new NavigationNode("Min sida", null));
-        this.getTopMenu().getChildren().add(new NavigationNode("Skapa annons", null));
-    }    
+    }  
 }

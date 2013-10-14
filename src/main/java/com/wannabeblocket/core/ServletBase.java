@@ -5,6 +5,7 @@
 package com.wannabeblocket.core;
 
 import com.wannabeblocket.core.navigation.Navigation;
+import com.wannabeblocket.core.navigation.NavigationNode;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -72,6 +73,8 @@ public class ServletBase extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.init(request, response);
+        this.setupSideMenu();
+        this.setupTopMenu();
         this.doGet();
     }
 
@@ -102,5 +105,24 @@ public class ServletBase extends HttpServlet {
         
         this._request.setAttribute("sideMenu", _sideMenu = new Navigation());
         this._request.setAttribute("topMenu", _topMenu = new Navigation());
+    }
+    
+        
+    // TODO: Consider if the user is logged in or logged out.
+    protected void setupTopMenu(){
+        this.getTopMenu().getChildren().add(new NavigationNode("Logga in", null));
+        this.getTopMenu().getChildren().add(new NavigationNode("Min sida", "mypage"));
+        this.getTopMenu().getChildren().add(new NavigationNode("Skapa annons", null));
+    }
+        
+    protected void setupSideMenu(){
+        //Detta ska egentligen kopplas mot produkt kategorier i databasen.
+        
+        for(int i = 1; i < 6; ++i){
+            NavigationNode node = new NavigationNode("Link " + i, null);
+                node.getChildren().add(new NavigationNode("Sublink " + i, null));
+                
+            this.getSideMenu().getChildren().add(node);
+        }
     }
 }
