@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aram Timofeitchik
  */
-public class ServletBase extends HttpServlet {
+public abstract class ServletBase extends HttpServlet {
     private HttpServletRequest _request;
     private HttpServletResponse _response;
     private Navigation _sideMenu;
@@ -125,4 +125,13 @@ public class ServletBase extends HttpServlet {
             this.getSideMenu().getChildren().add(node);
         }
     }
+    
+    
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public abstract String getServletInfo();  
 }
