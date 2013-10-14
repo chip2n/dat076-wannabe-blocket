@@ -136,8 +136,6 @@ public abstract class ServletBase extends HttpServlet {
         }
     }
     
-<<<<<<< HEAD
-=======
     private void resolveUser() {
         HttpSession session = this._request.getSession();
         if(session != null) {
@@ -145,7 +143,6 @@ public abstract class ServletBase extends HttpServlet {
         }
     }
     
->>>>>>> 4579eeabec29db61427403040f8aad2ae18b0151
     /**
      * Returns a short description of the servlet.
      *
