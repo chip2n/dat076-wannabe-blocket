@@ -9,7 +9,7 @@ public class BiddingHistory extends AbstractEntityContainer {
     public BiddingHistory() {
     }
 
-    public List<Bid> getBid() {
+    public List<Bid> getBids() {
         List<Bid> elems = new ArrayList();
         elems.add(
                 new Bid(
