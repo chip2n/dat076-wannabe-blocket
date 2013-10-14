@@ -27,10 +27,7 @@ public class Navigation {
         String html = "";
         
         for(NavigationNode node : _children){
-            html += "<li>" + 
-                        "<a class=\"node\" href=\"" + node.getUrl() + "\">" + node.getTitle() + "</a>" +
-                        node +
-                    "</li>";
+            html += "<li>" + node.toString() + "</li>";
         }
         
         return html.isEmpty() ? html : "<ul>" + html + "</ul>";
