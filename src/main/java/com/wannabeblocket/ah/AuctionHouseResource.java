@@ -4,7 +4,9 @@ import com.wannabeblocket.model.AuctionHouse;
 import com.wannabeblocket.model.Listing;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -39,5 +41,12 @@ public class AuctionHouseResource {
         GenericEntity<List<ListingProxy>> p = new GenericEntity<List<ListingProxy>>(proxyListings){};
         
         return Response.ok(p).build();
+    }
+    
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response add(@FormParam("seller") String seller, @FormParam("description") String description) {
+        // TODO: Add listing to auction house. How should we handle authentication here?
+        return Response.ok().build();
     }
 }
