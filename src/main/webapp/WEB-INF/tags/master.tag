@@ -65,7 +65,7 @@
     
     <article>       
         <aside>
-            <h1><jsp:invoke fragment="sidemenuheader"/></h1>
+            <jsp:invoke fragment="sidemenuheader"/>
             <jsp:invoke fragment="sidemenu"/>     
         </aside>
         <section id="maincontent">
