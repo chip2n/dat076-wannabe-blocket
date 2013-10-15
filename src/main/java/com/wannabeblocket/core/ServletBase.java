@@ -120,7 +120,7 @@ public abstract class ServletBase extends HttpServlet {
             this.getTopMenu().getChildren().add(new NavigationNode("Logga out", null));
         }
         this.getTopMenu().getChildren().add(new NavigationNode("Min sida", "mypage"));
-        this.getTopMenu().getChildren().add(new NavigationNode("Skapa annons", null));
+        this.getTopMenu().getChildren().add(new NavigationNode("Skapa annons", "createlisting"));
         
         
     }
