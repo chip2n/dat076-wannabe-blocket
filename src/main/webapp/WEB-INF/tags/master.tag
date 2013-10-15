@@ -39,6 +39,7 @@
                     <p><label for="username">Användarnamn</label><input type="text" size="30" name="username" id="username" /></p>
                     <p><label for="password">Lösenord</label><input type="password" size="30" name="password" id="password" /></p>
                     <p class="center"><input type="submit" value="Logga in" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a></p>
+                    <p class="right"><a href="${pageContext.request.contextPath}/createuser">Nytt konto</a></p>
                 </form>
             </div>
             

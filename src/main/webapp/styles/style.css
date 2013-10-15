@@ -113,6 +113,11 @@ footer {
     text-align: center;
 }
 
+.right {
+    text-align: right;
+    float: right;
+}
+
 .searchbar {
     background: #ffd218 url("../img/top_menu_bg.png") no-repeat top right;
 }
