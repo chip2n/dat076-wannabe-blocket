@@ -27,6 +27,14 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- For JAX-RS REST stuffs -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+        
     </dependencies>
 
     <build>
