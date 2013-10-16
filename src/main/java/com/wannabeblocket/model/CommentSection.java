@@ -2,8 +2,8 @@ package com.wannabeblocket.model;
 
 public class CommentSection extends AbstractDAO<Comment, Long> {
 
-    public CommentSection() {
-        super(Comment.class);
+    public CommentSection(String puName) {
+        super(Comment.class, puName);
     }
 
     /**

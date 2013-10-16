@@ -21,7 +21,7 @@ public class AuctionHouseTest {
     
     @Before
     public void setUp() {
-        _shop = Shop.getInstance();
+        _shop = Shop.getInstance("shop_test_embedded_pu");
     }
 
     @Test

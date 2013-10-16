@@ -9,18 +9,24 @@ package com.wannabeblocket.model;
  * @author Joppe
  */
 public class Shop {
-    private final UserRegistry userRegistry = new UserRegistry();
-    private final AuctionHouse auctionHouse = new AuctionHouse();
-    private final CommentSection commentSection = new CommentSection();
-    private final BiddingHistory biddingHistory = new BiddingHistory();
+    private final UserRegistry userRegistry;
+    private final AuctionHouse auctionHouse;
+    private final CommentSection commentSection;
+    private final BiddingHistory biddingHistory;
     
     private static Shop _shop;
 
-    private Shop() {}
+    private Shop(String puName) {
+        userRegistry = new UserRegistry(puName);
+        auctionHouse = new AuctionHouse(puName);
+        commentSection = new CommentSection(puName);
+        biddingHistory = new BiddingHistory(puName);
+    }
     
-    public static Shop getInstance() {
+    public static Shop getInstance(String persistanceUnitName) {
         if(_shop == null) {
-            _shop = new Shop();
+            // TODO: Ugly :(
+            _shop = new Shop(persistanceUnitName);
         }
         
         return _shop;
