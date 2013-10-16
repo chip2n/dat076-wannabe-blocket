@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
 public class SearchServlet extends ServletBase {
-
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -66,8 +66,10 @@ public class SearchServlet extends ServletBase {
     @Override
     protected void doPost() throws ServletException, IOException {
         String searchQuery = this.getRequest().getParameter("searchfield");
-        this.getRequest().getRequestDispatcher("/search.jsp").forward(this.getRequest(), this.getResponse());
-        //getResponse().sendRedirect("");
+        //String searchCatagory = this.getRequest().getParameter("catagories");
+        //nt searchCatagory = Integer.parseInt(this.getRequest().getParameter("catagories"));
+        //this.getRequest().getRequestDispatcher("/search.jsp").forward(this.getRequest(), this.getResponse());
+        getResponse().sendRedirect("/ah/search");
     }
 
     /**
