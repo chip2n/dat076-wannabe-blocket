@@ -24,13 +24,14 @@ public class AuctionHouseResource {
     public AuctionHouseResource() {
         //TODO: Dont generate a new auction house every time
         // use something similar to workshops "Shop.INSTANCE.getProductCatalogue();"
-        _auctionHouse = new AuctionHouse();
+        _auctionHouse = new AuctionHouse("");
     }
     
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() {
-        List<Listing> listings = _auctionHouse.getListings();
+        /*
+        List<Listing> listings = _auctionHouse.getListingByCategory(0);
         List<ListingProxy> proxyListings = new ArrayList<ListingProxy>(listings.size());
         
         for(Listing listing : listings) {
@@ -40,6 +41,8 @@ public class AuctionHouseResource {
         GenericEntity<List<ListingProxy>> p = new GenericEntity<List<ListingProxy>>(proxyListings){};
         
         return Response.ok(p).build();
+        */
+        return Response.ok().build();
     }
     
     @POST

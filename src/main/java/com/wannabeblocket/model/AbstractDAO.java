@@ -25,7 +25,8 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
     private final Class<T> clazz;
 
     public AbstractDAO(Class<T> clazz, String puName) {
-        emf = Persistence.createEntityManagerFactory("com.wannabeblocket_ah_war_1.0-SNAPSHOTPU");
+        //emf = Persistence.createEntityManagerFactory("com.wannabeblocket_ah_war_1.0-SNAPSHOTPU");
+        emf = Persistence.createEntityManagerFactory("shop_test_embedded_pu");
         this.clazz = clazz;
     }
 

@@ -43,7 +43,13 @@ public class DBTest {
         Account p1 = new Account("user1");
         Account p2 = new Account("user2");
         UserRegistry ur = new UserRegistry("shop_test_pu");
+        int count = ur.getAll().size();
         ur.add(p1);
         ur.add(p2);
+        
+        assertTrue(ur.find(p1.getId()).equals(p1));
+        assertFalse(ur.find(p1.getId()).equals(p2));
+        
+        assertTrue(ur.getAll().size() == count + 2);
     }
 }
