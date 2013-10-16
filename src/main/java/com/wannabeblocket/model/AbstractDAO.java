@@ -2,6 +2,8 @@ package com.wannabeblocket.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,13 +22,17 @@ import javax.persistence.criteria.Root;
  */
 public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
 
-    @PersistenceUnit
+    //@PersistenceUnit
     private EntityManagerFactory emf;
     private final Class<T> clazz;
 
     public AbstractDAO(Class<T> clazz, String puName) {
         //emf = Persistence.createEntityManagerFactory("com.wannabeblocket_ah_war_1.0-SNAPSHOTPU");
+        try {
         emf = Persistence.createEntityManagerFactory(puName);
+        } catch(Exception e) {
+            Logger.getAnonymousLogger().log(Level.INFO, "HEJGFB");
+        }
         this.clazz = clazz;
     }
 
@@ -109,15 +115,21 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
     }
     
     public List<T> getAll() {
+        try {
         EntityManager em = emf.createEntityManager();
+        
         List<T> found = new ArrayList();
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(clazz));
         Query q = em.createQuery(cq);
-        
-        found.addAll(q.getResultList());
 
-        return found;
+            found.addAll(q.getResultList());
+             return found;
+        } catch(Exception e) {
+            Logger.getAnonymousLogger().log(Level.INFO, "Hej");
+        }
+
+        return null;
     }
 
     @Override

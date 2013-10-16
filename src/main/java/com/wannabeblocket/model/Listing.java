@@ -16,6 +16,7 @@ public class Listing extends AbstractEntity {
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endingTime;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Category category;
     /*
     @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

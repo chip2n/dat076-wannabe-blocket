@@ -33,6 +33,7 @@ public class AuctionHouseTest {
         ah.add(listing);
         assertTrue(ah.find(listing.getId()) != null);
         assertTrue(ah.getAll().size() == count + 1);
+        assertTrue(ah.find(listing.getId()).equals(listing));
         
         ah.remove(listing.getId());
         assertTrue(ah.find(listing.getId()) == null);
