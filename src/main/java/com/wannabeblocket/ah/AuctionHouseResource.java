@@ -2,6 +2,7 @@ package com.wannabeblocket.ah;
 
 import com.wannabeblocket.model.AuctionHouse;
 import com.wannabeblocket.model.Listing;
+import com.wannabeblocket.model.Shop;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.FormParam;
@@ -9,7 +10,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -22,9 +22,7 @@ public class AuctionHouseResource {
     private AuctionHouse _auctionHouse;
     
     public AuctionHouseResource() {
-        //TODO: Dont generate a new auction house every time
-        // use something similar to workshops "Shop.INSTANCE.getProductCatalogue();"
-        _auctionHouse = new AuctionHouse("");
+        _auctionHouse = Shop.getInstance().getAuctionHouse();
     }
     
     @GET

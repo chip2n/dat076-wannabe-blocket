@@ -13,8 +13,17 @@ public class Shop {
     private final AuctionHouse auctionHouse = new AuctionHouse();
     private final CommentSection commentSection = new CommentSection();
     private final BiddingHistory biddingHistory = new BiddingHistory();
+    
+    private static Shop _shop;
 
-    public Shop() {
+    private Shop() {}
+    
+    public static Shop getInstance() {
+        if(_shop == null) {
+            _shop = new Shop();
+        }
+        
+        return _shop;
     }
 
     public UserRegistry getUserRegistry() {

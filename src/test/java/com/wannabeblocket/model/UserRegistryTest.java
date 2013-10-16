@@ -15,27 +15,12 @@ import static org.junit.Assert.*;
  *
  * @author joppe
  */
-public class DBTest {
+public class UserRegistryTest {
     private Shop _shop;
-    
-    public DBTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
     public void setUp() {
-        _shop = new Shop();
-    }
-    
-    @After
-    public void tearDown() {
+        _shop = Shop.getInstance();
     }
 
     @Test
