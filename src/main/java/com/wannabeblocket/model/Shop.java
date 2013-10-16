@@ -9,15 +9,21 @@ package com.wannabeblocket.model;
  * @author Joppe
  */
 public class Shop {
-
-    final static String PU_NAME = "com.wannabeblocket_ah_war_1.0-SNAPSHOTPU";
+    private final UserRegistry userRegistry = new UserRegistry();
+    private final AuctionHouse auctionHouse = new AuctionHouse();
+    private final CommentSection commentSection = new CommentSection();
+    private final BiddingHistory biddingHistory = new BiddingHistory();
     
-    private final UserRegistry userRegistry = new UserRegistry(PU_NAME);
-    private final AuctionHouse auctionHouse = new AuctionHouse(PU_NAME);
-    private final CommentSection commentSection = new CommentSection(PU_NAME);
-    private final BiddingHistory biddingHistory = new BiddingHistory(PU_NAME);
+    private static Shop _shop;
 
-    public Shop() {
+    private Shop() {}
+    
+    public static Shop getInstance() {
+        if(_shop == null) {
+            _shop = new Shop();
+        }
+        
+        return _shop;
     }
 
     public UserRegistry getUserRegistry() {

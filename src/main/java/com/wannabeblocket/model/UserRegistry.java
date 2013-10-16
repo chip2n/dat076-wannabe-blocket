@@ -2,8 +2,8 @@ package com.wannabeblocket.model;
 
 public class UserRegistry extends AbstractDAO<Account, Long> {
 
-    public UserRegistry(String puName) {
-        super(Account.class, puName);
+    public UserRegistry() {
+        super(Account.class);
     }
 
     /**

@@ -16,35 +16,19 @@ import org.junit.Ignore;
  *
  * @author joppe
  */
-public class DBTest {
-    
-    public DBTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+public class UserRegistryTest {
+    private Shop _shop;
     
     @Before
     public void setUp() {
+        _shop = Shop.getInstance();
     }
-    
-    @After
-    public void tearDown() {
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    @Ignore
+
     @Test
     public void hello() {
         Account p1 = new Account("user1");
         Account p2 = new Account("user2");
-        UserRegistry ur = new UserRegistry("shop_test_pu");
+        UserRegistry ur = _shop.getUserRegistry();
         int count = ur.getAll().size();
         ur.add(p1);
         ur.add(p2);

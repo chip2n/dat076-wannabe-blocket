@@ -2,8 +2,8 @@ package com.wannabeblocket.model;
 
 public class AuctionHouse extends AbstractDAO<Listing, Long> {
 
-    public AuctionHouse(String puName) {
-        super(Listing.class, puName);
+    public AuctionHouse() {
+        super(Listing.class);
     }
 
     /**

@@ -11,7 +11,7 @@ import javax.persistence.Temporal;
 @Entity
 public class Listing extends AbstractEntity {
 
-    //@ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Account seller;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
