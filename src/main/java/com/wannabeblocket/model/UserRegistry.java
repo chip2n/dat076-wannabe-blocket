@@ -1,18 +1,35 @@
 package com.wannabeblocket.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+public class UserRegistry extends AbstractDAO<Account, Long> {
 
-public class UserRegistry extends AbstractEntityContainer {
-
-    public UserRegistry() {
+    public UserRegistry(String puName) {
+        super(Account.class, puName);
     }
 
-    public List<User> getUsers() {
-        List<User> elems = new ArrayList();
-        elems.add(new User("Andreas"));
-        return elems;
+    /**
+     *
+     * @param user
+     */
+    public Account addUser(Account user) {
+        // TODO - implement UserRegistry.addUser
+        throw new UnsupportedOperationException();
     }
 
+    /**
+     *
+     * @param id
+     */
+    public Account getUserById(int id) {
+        // TODO - implement UserRegistry.getUserById
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public void deleteUser(int id) {
+        // TODO - implement UserRegistry.deleteUser
+        throw new UnsupportedOperationException();
+    }
 }
