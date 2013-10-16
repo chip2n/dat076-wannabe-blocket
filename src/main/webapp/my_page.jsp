@@ -14,7 +14,7 @@
     <jsp:attribute name="topmenu">
         ${topMenu}
     </jsp:attribute>
-    <jsp:attribute name="sidemenuheader">Side Menu Header</jsp:attribute>
+    <jsp:attribute name="sidemenuheader"><h1>Side Menu Header</h1></jsp:attribute>
     <jsp:attribute name="sidemenu">
         ${sideMenu}
     </jsp:attribute>
