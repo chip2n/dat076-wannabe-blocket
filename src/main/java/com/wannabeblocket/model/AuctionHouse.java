@@ -20,7 +20,13 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
        return em.createQuery("SELECT c FROM LISTING WHERE seller = " + seller.getId()).getResultList();
     }
     
+    public List<Listing> getListingsByCategory(Category category) {
+       EntityManager em = emf.createEntityManager();
+       return em.createQuery("SELECT c FROM LISTING WHERE category = " + category.getId()).getResultList();
+    }
+    
     public List<Listing> searchDescription(String query) {
+        //dummy
         List<Listing> all = new ArrayList();
         List<Listing> found = new ArrayList();
         Listing listing0 = new Listing(new Account("Joppe"), "test hej glad", new Date(), new Category("sexleksaker"));
