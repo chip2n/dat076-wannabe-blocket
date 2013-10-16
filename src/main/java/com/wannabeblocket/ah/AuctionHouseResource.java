@@ -2,6 +2,7 @@ package com.wannabeblocket.ah;
 
 import com.wannabeblocket.model.Account;
 import com.wannabeblocket.model.AuctionHouse;
+import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.model.Shop;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class AuctionHouseResource {
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() { 
         List<Listing> listings = _auctionHouse.getAll();
-        listings.add(new Listing(new Account("Kalle"), "desc", new Date()));
+        listings.add(new Listing(new Account("Kalle"), "desc", new Date(), new Category("kläder")));
         List<ListingProxy> proxyListings = new ArrayList<ListingProxy>(listings.size());
         
         for(Listing listing : listings) {
@@ -52,7 +53,7 @@ public class AuctionHouseResource {
     @Produces({MediaType.APPLICATION_JSON})
     public Response add(@FormParam("seller") String seller, @FormParam("description") String description) {
         // TODO: Add listing to auction house. How should we handle authentication here?
-        _auctionHouse.add(new Listing(new Account("HEJ"), "DESCRIPTION", new Date()));
+        _auctionHouse.add(new Listing(new Account("HEJ"), "DESCRIPTION", new Date(), new Category("kläder")));
         return Response.ok().build();
     }
 }
