@@ -32,7 +32,7 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
         try {
         emf = Persistence.createEntityManagerFactory(puName);
         } catch(Exception e) {
-            Logger.getAnonymousLogger().log(Level.INFO, "HEJGFB");
+            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
         }
         this.clazz = clazz;
     }
