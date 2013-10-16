@@ -35,7 +35,7 @@ public class AuctionHouseResource {
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAll() { 
         List<Listing> listings = _auctionHouse.getAll();
-        //listings.add(new Listing(new Account("Kalle"), "desc", new Date(), new Category("Hej")));
+
         List<ListingProxy> proxyListings = new ArrayList<ListingProxy>(listings.size());
         
         for(Listing listing : listings) {
