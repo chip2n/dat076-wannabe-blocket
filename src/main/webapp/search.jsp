@@ -8,7 +8,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:master>
-    <jsp:attribute name="pagetitle">Main</jsp:attribute>
+    <jsp:attribute name="pagetitle">Search Result</jsp:attribute>
     <jsp:attribute name="additionalpageheaders">
     </jsp:attribute>
     <jsp:attribute name="topmenu">

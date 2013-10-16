@@ -65,7 +65,9 @@ public class SearchServlet extends ServletBase {
      */
     @Override
     protected void doPost() throws ServletException, IOException {
-        
+        String searchQuery = this.getRequest().getParameter("searchfield");
+        this.getRequest().getRequestDispatcher("/search.jsp").forward(this.getRequest(), this.getResponse());
+        //getResponse().sendRedirect("");
     }
 
     /**
