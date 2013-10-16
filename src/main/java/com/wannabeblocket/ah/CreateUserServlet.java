@@ -6,6 +6,7 @@ package com.wannabeblocket.ah;
 
 import com.wannabeblocket.core.ServletBase;
 import com.wannabeblocket.core.navigation.NavigationNode;
+import com.wannabeblocket.model.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,10 @@ public class CreateUserServlet extends ServletBase {
      */
     @Override
     protected void doPost() throws ServletException, IOException {
+        String username = this.getRequest().getParameter("username");
+        String password = this.getRequest().getParameter("password");
+        // TODO: Create the user, and add it to the database
+        getResponse().sendRedirect("");
     }
 
     /**

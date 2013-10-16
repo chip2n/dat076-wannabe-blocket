@@ -20,8 +20,8 @@
         <form method="post" id="new_user" action="createuser">
             <section>
                 <div style="float:left;margin-right:20px;">
-                    <label style="display:block;" for="title">Användarnamn</label>
-                    <input style="display:block;" type="text" size="30" name="title" id="title" />
+                    <label style="display:block;" for="username">Användarnamn</label>
+                    <input style="display:block;" type="text" size="30" name="username" id="username" />
                     <label style="display:block;" for="password">Lösenord</label>
                     <input style="display:block;" type="password" size="30" name="password" id="password" />
                     <label style="display:block;" for="password2">Lösenord (igen)</label>
@@ -33,7 +33,7 @@
             <br style="clear:both;" />
             <section>
                 <br style="clear:both;" />
-                <input type="submit" value="Posta" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a>
+                <input type="submit" value="Skapa konto" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a>
             </section>
         </form>
     </jsp:attribute>
