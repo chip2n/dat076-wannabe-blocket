@@ -51,7 +51,7 @@
             <form method="post" id="search_box" action="search">
                 <input type="text" size="60" name="searchfield" id="searchfield" />
                 <label for="categories">inom</label>
-                <select name="categories">
+                <select name="categories" id="catagories">
                     <option value="0">Alla kategorier</option>
                     <option value="1">Gröna badrumstillbehör</option>
                     <option value="2">Elektronik (halvtrasiga)</option>
