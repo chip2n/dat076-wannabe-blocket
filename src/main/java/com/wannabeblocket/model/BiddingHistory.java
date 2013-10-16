@@ -2,8 +2,8 @@ package com.wannabeblocket.model;
 
 public class BiddingHistory extends AbstractDAO<Bid, Long> {
 
-    public BiddingHistory(String puName) {
-        super(Bid.class, puName);
+    public BiddingHistory() {
+        super(Bid.class);
     }
 
     /**
