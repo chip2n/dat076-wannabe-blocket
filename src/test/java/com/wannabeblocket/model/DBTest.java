@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -38,6 +39,7 @@ public class DBTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
+    @Ignore
     @Test
     public void hello() {
         Account p1 = new Account("user1");
