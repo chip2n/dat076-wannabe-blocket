@@ -6,25 +6,25 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
-//@Entity
+@Entity
 public class Comment extends AbstractEntity {
 
-    //@ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Listing listing;
-    //@ManyToOne(cascade = {CascadeType.PERSIST})
-    private User poster;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    private Account poster;
     private String text;
-    //@Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date submissionTime;
 
-    public Comment(Listing listing, User poster, String text, Date submissionTime) {
+    public Comment(Listing listing, Account poster, String text, Date submissionTime) {
         this.listing = listing;
         this.poster = poster;
         this.text = text;
         this.submissionTime = submissionTime;
     }
 
-    public Comment(Long id, Listing listing, User poster, String text, Date submissionTime) {
+    public Comment(Long id, Listing listing, Account poster, String text, Date submissionTime) {
         super(id);
         this.listing = listing;
         this.poster = poster;
@@ -35,7 +35,7 @@ public class Comment extends AbstractEntity {
     public Comment() {
     }
 
-    public User getPoster() {
+    public Account getPoster() {
         return this.poster;
     }
 
@@ -43,7 +43,7 @@ public class Comment extends AbstractEntity {
      *
      * @param poster
      */
-    public void setPoster(User poster) {
+    public void setPoster(Account poster) {
         this.poster = poster;
     }
 

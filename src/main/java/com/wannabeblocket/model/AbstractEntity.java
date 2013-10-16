@@ -2,7 +2,6 @@ package com.wannabeblocket.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Random;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -13,16 +12,14 @@ import javax.persistence.MappedSuperclass;
  *
  * @author hajo
  */
-//@MappedSuperclass
+@MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 
-//    @Id
-//    @GeneratedValue
+    @Id
+    @GeneratedValue
     long id;
 
     protected AbstractEntity() {
-        // This is for now, later database will generate
-        this.id = new Long(new Random().nextInt(1000));
     }
 
     protected AbstractEntity(Long id) {

@@ -1,21 +1,41 @@
 package com.wannabeblocket.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+public class AuctionHouse extends AbstractDAO<Listing, Long> {
 
-
-public class AuctionHouse {
-
-    
-    public AuctionHouse() {
+    public AuctionHouse(String puName) {
+        super(Listing.class, puName);
     }
-    
-    public List<Listing> getListings() {
-        List<Listing> elems = new ArrayList();
-        elems.add(new Listing(new User("Joppe"), "micket fint produkt. micket billig okså", new Date()));
-        return elems;
-    }
-    
 
+    /**
+     *
+     * @param listing
+     */
+    public void createListing(Listing listing) {
+        add(listing);
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public void deleteListing(long id) {
+        remove(id);
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public Listing getListingById(long id) {
+        return find(id);
+    }
+
+    /**
+     *
+     * @param seller
+     */
+    public Listing[] getListingsBySeller(Account seller) {
+        // TODO - implement AuctionHouse.getListingsBySeller
+        throw new UnsupportedOperationException();
+    }
 }

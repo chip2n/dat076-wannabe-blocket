@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-public class User extends AbstractEntity {
+public class Account extends AbstractEntity {
 
     private String userName;
     /*
@@ -16,16 +16,16 @@ public class User extends AbstractEntity {
     private List<Comment> comments;
     */
 
-    public User(Long id, String userName) {
+    public Account(Long id, String userName) {
         super(id);
         this.userName = userName;
     }
 
-    public User(String userName) {
+    public Account(String userName) {
         this.userName = userName;
     }
 
-    public User() {
+    public Account() {
     }
 
     public String getUserName() {

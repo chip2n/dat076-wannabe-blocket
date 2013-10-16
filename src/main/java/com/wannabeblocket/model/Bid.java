@@ -6,25 +6,25 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
-//@Entity
+@Entity
 public class Bid extends AbstractEntity {
 
-    //@ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Listing listing;
-    //@ManyToOne(cascade = {CascadeType.PERSIST})
-    private User bidder;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    private Account bidder;
     private int amount;
-    //@Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date timePlaced;
 
-    public Bid(Listing listing, User bidder, int amount, Date timePlaced) {
+    public Bid(Listing listing, Account bidder, int amount, Date timePlaced) {
         this.listing = listing;
         this.bidder = bidder;
         this.amount = amount;
         this.timePlaced = timePlaced;
     }
 
-    public Bid(Long id, Listing listing, User bidder, int amount, Date timePlaced) {
+    public Bid(Long id, Listing listing, Account bidder, int amount, Date timePlaced) {
         super(id);
         this.listing = listing;
         this.bidder = bidder;
@@ -35,7 +35,7 @@ public class Bid extends AbstractEntity {
     public Bid() {
     }
 
-    public User getBidder() {
+    public Account getBidder() {
         return this.bidder;
     }
 
@@ -43,7 +43,7 @@ public class Bid extends AbstractEntity {
      *
      * @param bidder
      */
-    public void setBidder(User bidder) {
+    public void setBidder(Account bidder) {
         this.bidder = bidder;
     }
 
