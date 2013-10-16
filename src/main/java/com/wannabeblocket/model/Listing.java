@@ -16,6 +16,7 @@ public class Listing extends AbstractEntity {
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endingTime;
+    private Category category;
     /*
     @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Bid> bids;
@@ -23,17 +24,19 @@ public class Listing extends AbstractEntity {
     private List<Comment> comments;
     */
 
-    public Listing(Account seller, String description, Date endingTime) {
+    public Listing(Account seller, String description, Date endingTime, Category category) {
         this.seller = seller;
         this.description = description;
         this.endingTime = endingTime;
+        this.category = category;
     }
 
-    public Listing(Long id, Account seller, String description, Date endingTime) {
+    public Listing(Long id, Account seller, String description, Date endingTime, Category category) {
         super(id);
         this.seller = seller;
         this.description = description;
         this.endingTime = endingTime;
+        this.category = category;
     }
 
     public Listing() {
@@ -74,4 +77,9 @@ public class Listing extends AbstractEntity {
     public void setEndingTime(Date endingTime) {
         this.endingTime = endingTime;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+    
 }

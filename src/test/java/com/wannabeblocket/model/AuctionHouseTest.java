@@ -29,7 +29,7 @@ public class AuctionHouseTest {
         AuctionHouse ah = _shop.getAuctionHouse();
         int count = ah.getAll().size();
         
-        Listing listing = new Listing(new Account("Svante"), "Beskrivning", new Date());
+        Listing listing = new Listing(new Account("Svante"), "Beskrivning", new Date(), new Category("test kategori"));
         ah.add(listing);
         assertTrue(ah.find(listing.getId()) != null);
         assertTrue(ah.getAll().size() == count + 1);
