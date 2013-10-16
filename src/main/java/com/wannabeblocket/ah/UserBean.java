@@ -6,7 +6,7 @@ package com.wannabeblocket.ah;
 
 /**
  *
- * @author Baraf_000
+ * @author Sebastian Lagerman
  */
 public class UserBean {
     
