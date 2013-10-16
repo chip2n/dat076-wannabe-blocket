@@ -10,8 +10,8 @@ package com.wannabeblocket.model;
  */
 public class CategoryList extends AbstractDAO<Category, Long> {
 
-    public CategoryList(Class<Category> clazz) {
-        super(clazz);
+    public CategoryList(String puName) {
+        super(Category.class, puName);
     }
     
 }
