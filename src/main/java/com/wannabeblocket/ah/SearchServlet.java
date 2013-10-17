@@ -5,6 +5,8 @@
 package com.wannabeblocket.ah;
 
 import com.wannabeblocket.core.ServletBase;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.model.AuctionHouse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -66,7 +68,8 @@ public class SearchServlet extends ServletBase {
     @Override
     protected void doPost() throws ServletException, IOException {
         String searchQuery = this.getRequest().getParameter("searchfield");
-        
+        AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
+        //AuctionHouse.searchDescription(searchQuery);
         // TODO : Limit the database output to the searchQuery.
         
         //String searchCatagory = this.getRequest().getParameter("catagories");
