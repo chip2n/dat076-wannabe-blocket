@@ -8,12 +8,10 @@ import com.wannabeblocket.model.Shop;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -28,7 +26,7 @@ public class AuctionHouseResource {
     private AuctionHouse _auctionHouse;
     
     public AuctionHouseResource() {
-        _auctionHouse = Shop.getInstance("ah_pu").getAuctionHouse();
+        _auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
     }
     
     @GET

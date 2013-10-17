@@ -4,13 +4,9 @@
  */
 package com.wannabeblocket.model;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -21,7 +17,7 @@ public class UserRegistryTest {
     
     @Before
     public void setUp() {
-        _shop = Shop.getInstance("shop_test_embedded_pu");
+        _shop = Shop.getInstance(Shop.Mode.Release);
     }
 
     @Test

@@ -5,10 +5,7 @@
 package com.wannabeblocket.model;
 
 import java.util.Date;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,7 +18,7 @@ public class AuctionHouseTest {
     
     @Before
     public void setUp() {
-        _shop = Shop.getInstance("shop_test_embedded_pu");
+        _shop = Shop.getInstance(Shop.Mode.Debug);
     }
 
     @Test
