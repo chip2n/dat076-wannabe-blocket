@@ -66,6 +66,7 @@ public class SearchServlet extends ServletBase {
     @Override
     protected void doPost() throws ServletException, IOException {
         String searchQuery = this.getRequest().getParameter("searchfield");
+        String searchCatagory = this.getRequest().getParameter("categories");
         AuctionHouse auctionHouse = Shop.getInstance().getAuctionHouse();
         
         List<Listing> found = auctionHouse.searchDescription(searchQuery);
@@ -74,7 +75,6 @@ public class SearchServlet extends ServletBase {
         //AuctionHouse.searchDescription(searchQuery);
         // TODO : Limit the database output to the searchQuery.
         
-        //String searchCatagory = this.getRequest().getParameter("catagories");
         //nt searchCatagory = Integer.parseInt(this.getRequest().getParameter("catagories"));
         //this.getRequest().getRequestDispatcher("/search.jsp").forward(this.getRequest(), this.getResponse());
         getResponse().sendRedirect("/ah/search");
