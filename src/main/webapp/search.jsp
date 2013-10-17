@@ -4,10 +4,11 @@
     Author     : Sebastian Lagerman
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:master>
+<t:master> 
     <jsp:attribute name="pagetitle">Search Result</jsp:attribute>
     <jsp:attribute name="additionalpageheaders">
     </jsp:attribute>
@@ -19,6 +20,9 @@
         ${sideMenu}
     </jsp:attribute>
     <jsp:attribute name="maincontent">
+        <table>
+            
+        </table>
         <h1>Search Page oh yeah!</h1>
         <p>Bla bla bla...</p>
     </jsp:attribute>
