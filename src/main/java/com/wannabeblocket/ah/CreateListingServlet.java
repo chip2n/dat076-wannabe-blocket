@@ -6,7 +6,13 @@ package com.wannabeblocket.ah;
 
 import com.wannabeblocket.core.ServletBase;
 import com.wannabeblocket.core.navigation.NavigationNode;
+import com.wannabeblocket.model.Account;
+import com.wannabeblocket.model.AuctionHouse;
+import com.wannabeblocket.model.Category;
+import com.wannabeblocket.model.Listing;
+import com.wannabeblocket.model.Shop;
 import java.io.IOException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
@@ -36,6 +42,26 @@ public class CreateListingServlet extends ServletBase {
      */
     @Override
     protected void doPost() throws ServletException, IOException {
+        String title = this.getRequest().getParameter("title");
+        Long categoryId = Long.parseLong(this.getRequest().getParameter("categories"));
+        String description = this.getRequest().getParameter("description");
+        
+        Category category = Shop.getInstance().getCategoryList().find(categoryId);
+        
+        if(category != null) {
+            AuctionHouse ah = Shop.getInstance().getAuctionHouse();
+            Listing listing = new Listing(
+                    new Account("TempUserName"),
+                    description,
+                    new Date(),
+                    new Category("TEMP_CATEGORY", categoryId)
+            );
+            ah.add(listing);
+
+            this.getResponse().sendRedirect("");
+        } else {
+            // TODO: Send user to error page
+        }
     }
 
     /**

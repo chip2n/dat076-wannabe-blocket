@@ -17,7 +17,7 @@
 
     <jsp:attribute name="maincontent">
         <h1>Skapa annons</h1>
-        <form method="post" id="new_listing" action="add">
+        <form method="post" id="new_listing" action="createlisting">
             <section>
                 <div style="float:left;margin-right:20px;">
                     <label style="display:block;" for="title">Titel</label>

@@ -9,18 +9,20 @@ package com.wannabeblocket.model;
  * @author Joppe
  */
 public class Shop {
-    private final UserRegistry userRegistry;
-    private final AuctionHouse auctionHouse;
-    private final CommentSection commentSection;
-    private final BiddingHistory biddingHistory;
+    private final UserRegistry _userRegistry;
+    private final AuctionHouse _auctionHouse;
+    private final CommentSection _commentSection;
+    private final BiddingHistory _biddingHistory;
+    private final CategoryList _categoryList;
     
     private static Shop _shop;
 
     private Shop(String puName) {
-        userRegistry = new UserRegistry(puName);
-        auctionHouse = new AuctionHouse(puName);
-        commentSection = new CommentSection(puName);
-        biddingHistory = new BiddingHistory(puName);
+        _userRegistry = new UserRegistry(puName);
+        _auctionHouse = new AuctionHouse(puName);
+        _commentSection = new CommentSection(puName);
+        _biddingHistory = new BiddingHistory(puName);
+        _categoryList = new CategoryList(puName);
     }
     
     public static enum Mode {Release, Debug}
@@ -38,20 +40,22 @@ public class Shop {
     }
 
     public UserRegistry getUserRegistry() {
-        return userRegistry;
+        return _userRegistry;
     }
 
     public AuctionHouse getAuctionHouse() {
-        return auctionHouse;
+        return _auctionHouse;
     }
 
     public CommentSection getCommentSection() {
-        return commentSection;
+        return _commentSection;
     }
 
     public BiddingHistory getBiddingHistory() {
-        return biddingHistory;
+        return _biddingHistory;
     }
 
-    
+    public CategoryList getCategoryList() {
+        return _categoryList;
+    }
 }
