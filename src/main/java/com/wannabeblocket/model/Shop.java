@@ -27,9 +27,6 @@ public class Shop {
     private static String s_puDebug = "shop_test_embedded_pu";
     private static String s_puRelease = "ah_pu";
     
-    public static Shop getInstance() {
-        return getInstance(Mode.Release);
-    }
     
     public static Shop getInstance(Mode mode) {
         if(_shop == null)

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="additionalpageheaders">
+    </ui:define>
+    <ui:define name="pagetitle">
+        Skapa konto
+    </ui:define>
+    <ui:define name="topmenu">
+        <h:outputText value="#{topMenu}" escape="false"/>
+    </ui:define>
+    <ui:define name="sidemenuheader">
+        Side Menu Header
+    </ui:define>
+    <ui:define name="sidemenu">
+        <h:outputText value="#{sideMenu}" escape="false"/>
+    </ui:define>
+    <ui:define name="maincontent">
+        <h1>Skapa konto</h1>
+        <form method="post" id="new_user" action="createuser">
+            <section>
+                <div style="float:left;margin-right:20px;">
+                    <label style="display:block;" for="username">Användarnamn</label>
+                    <input style="display:block;" type="text" size="30" name="username" id="username" />
+                    <label style="display:block;" for="password">Lösenord</label>
+                    <input style="display:block;" type="password" size="30" name="password" id="password" />
+                    <label style="display:block;" for="password2">Lösenord (igen)</label>
+                    <input style="display:block;" type="password" size="30" name="password2" id="password2" />
+                    <label style="display:block;" for="email">Email</label>
+                    <input style="display:block;" type="text" size="30" name="email" id="email" />
+                </div>
+            </section>
+            <br style="clear:both;" />
+            <section>
+                <br style="clear:both;" />
+                <input type="submit" value="Skapa konto" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a>
+            </section>
+        </form>
+    </ui:define>
+    <ui:define name="pagefooter">
+        This is the footer.
+    </ui:define>
+</ui:composition>
+

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><ui:insert name="pagetitle"/></title>
+        <h:outputStylesheet library="css" name="layout.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputScript library="js" name="jquery-1.10.2.js"/>
+        <h:outputScript library="js" name="common.js"/>
+        <ui:insert name="additionalpageheaders"/>
+    </h:head>   
+    <h:body>
+        <header>
+            <hgroup>
+                <h:graphicImage library="img" name="logo.png" style="float: left;"/>
+                <nav>
+                    <ui:insert name="topmenu"/><br/>
+                </nav>
+            </hgroup>
+        </header> 
+        <div class="searchbar">
+            <div class="searchbar-left"></div>
+            <div class="searchbar-right">
+                <form method="post" id="search_box" action="search">
+                    <input type="text" size="60" name="searchfield" id="searchfield" />
+                    <label for="categories">inom</label>
+                    <select name="categories">
+                        <option value="0">Alla kategorier</option>
+                        <option value="1">Gröna badrumstillbehör</option>
+                        <option value="2">Elektronik (halvtrasiga)</option>
+                        <option value="3">Bilar</option>
+                        <option value="4">Båtar (not literally)</option>
+                    </select>
+                    <input type="submit" value="Sök" name="commit" id="search_submit"/>
+                </form>
+            </div>
+        </div>
+        <article>       
+            <aside>
+                <ui:insert name="sidemenuheader"/>
+                <ui:insert name="sidemenu"/>     
+            </aside>
+            <section id="maincontent">
+                <ui:insert name="maincontent"/>
+            </section>
+        </article>
+        <footer>
+            <ui:insert name="pagefooter"/>
+        </footer>
+    </h:body>
+</html>

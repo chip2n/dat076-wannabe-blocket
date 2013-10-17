@@ -1,9 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wannabeblocket.core.navigation;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +6,11 @@ import java.util.List;
  *
  * @author Aram Timofeitchik
  */
-public class Navigation {
+public class Navigation{
     private List<NavigationNode> _children;
     
     public Navigation(){
-        _children = new ArrayList<NavigationNode>();
+        _children = new ArrayList<>();
     }
     
     public List<NavigationNode> getChildren(){

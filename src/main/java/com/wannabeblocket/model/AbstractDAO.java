@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -115,6 +114,7 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
         return ts;
     }
     
+    @Override
     public List<T> getAll() {
         try {
         EntityManager em = emf.createEntityManager();

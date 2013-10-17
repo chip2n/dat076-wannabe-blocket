@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="additionalpageheaders">
+    </ui:define>
+    <ui:define name="pagetitle">
+        Min sida
+    </ui:define>
+    <ui:define name="topmenu">
+        <h:outputText value="#{topMenu}" escape="false"/>
+    </ui:define>
+    <ui:define name="sidemenuheader">
+        Side Menu Header
+    </ui:define>
+    <ui:define name="sidemenu">
+        <h:outputText value="#{sideMenu}" escape="false"/>
+    </ui:define>
+    <ui:define name="maincontent">
+        <h1>Min sida<b>yo!</b></h1>
+        <p>Bla bla bla...</p>
+    </ui:define>
+    <ui:define name="pagefooter">
+        This is the footer.
+    </ui:define>
+</ui:composition>
+

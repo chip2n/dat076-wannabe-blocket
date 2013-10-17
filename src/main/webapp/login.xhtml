@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="additionalpageheaders">
+    </ui:define>
+    <ui:define name="pagetitle">
+        Main
+    </ui:define>
+    <ui:define name="topmenu">
+        <h:outputText value="#{topMenu}" escape="false"/>
+    </ui:define>
+    <ui:define name="sidemenuheader">
+        Side Menu Header
+    </ui:define>
+    <ui:define name="sidemenu">
+        <h:outputText value="#{sideMenu}" escape="false"/>
+    </ui:define>
+    <ui:define name="maincontent">
+        <h:form id="new_message">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="username" value="Användarnamn" />
+                <h:inputText id="username" size="30" value="#{user.name}"/>
+                <h:message for="username" />
+                <h:outputLabel for="password" value="Lösenord" />
+                <h:inputSecret id="password" size="30" value="#{user.password}"/>
+                <h:message for="password" />
+            </h:panelGrid>
+            <p>
+                <h:commandButton id="message_submit" action="#{user.login}" value="Logga in"/>
+                <h:outputText value=" eller "/> 
+                <a class="close" href="#">Avbryt</a>
+            </p>
+            <a href="createUser.xhtml" style="display: block;">Nytt konto</a>
+        </h:form>                        
+    </ui:define>
+    <ui:define name="pagefooter">
+        This is the footer.
+    </ui:define>
+</ui:composition>
+

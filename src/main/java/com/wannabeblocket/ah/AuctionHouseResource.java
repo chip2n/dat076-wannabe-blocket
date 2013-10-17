@@ -34,7 +34,7 @@ public class AuctionHouseResource {
     public Response getAll() { 
         List<Listing> listings = _auctionHouse.getAll();
 
-        List<ListingProxy> proxyListings = new ArrayList<ListingProxy>(listings.size());
+        List<ListingProxy> proxyListings = new ArrayList<>(listings.size());
         
         for(Listing listing : listings) {
             proxyListings.add(new ListingProxy(listing));

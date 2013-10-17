@@ -1,9 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wannabeblocket.core.navigation;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +21,7 @@ public class NavigationNode {
         this._title = title == null ? "" : title;
         this._url = url == null ? "javascript:void(0);" : url;
         this._id = id == null ? "" : id;
-        this._children = new ArrayList<NavigationNode>();
+        this._children = new ArrayList<>();
     }
     
     public String getTitle(){

@@ -1,7 +1,0 @@
-target/
-pictures/Thumbs.db
-*.un~
-*.swp
-*.swo
-derby.log
-tmp/

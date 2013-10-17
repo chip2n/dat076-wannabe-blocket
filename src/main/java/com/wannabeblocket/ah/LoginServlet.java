@@ -5,7 +5,6 @@
 package com.wannabeblocket.ah;
 
 import com.wannabeblocket.core.ServletBase;
-import com.wannabeblocket.core.navigation.NavigationNode;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +14,8 @@ import javax.servlet.annotation.WebServlet;
  * @author Aram Timofeitchik
  * @author Andreas Arvidsson
  */
-@WebServlet(name = "MyPageServlet", urlPatterns = {"/mypage"})
-public class MyPageServlet extends ServletBase {
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+public class LoginServlet extends ServletBase {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -25,7 +24,7 @@ public class MyPageServlet extends ServletBase {
      */
     @Override
     protected void doGet() throws ServletException, IOException {
-        this.getRequest().getRequestDispatcher("/my_page.jsp").forward(this.getRequest(), this.getResponse());
+        this.getRequest().getRequestDispatcher("/login.xhtml").forward(this.getRequest(), this.getResponse());
     }
 
     /**
@@ -36,6 +35,10 @@ public class MyPageServlet extends ServletBase {
      */
     @Override
     protected void doPost() throws ServletException, IOException {
+        String username = this.getRequest().getParameter("username");
+        String password = this.getRequest().getParameter("password");
+        
+        this.forward("login.xhtml");
     }
 
     /**
@@ -45,6 +48,6 @@ public class MyPageServlet extends ServletBase {
      */
     @Override
     public String getServletInfo() {
-        return "My Page servlet.";
+        return "Login servlet.";
     }  
 }

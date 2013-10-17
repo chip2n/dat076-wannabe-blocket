@@ -5,7 +5,6 @@
 package com.wannabeblocket.ah;
 
 import com.wannabeblocket.core.ServletBase;
-import com.wannabeblocket.core.navigation.NavigationNode;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
