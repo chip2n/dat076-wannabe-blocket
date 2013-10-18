@@ -113,14 +113,19 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
     @Override
     public List<T> getAll() {
         EntityManager em = emf.createEntityManager();
-        
-        List<T> found = new ArrayList();
-        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(clazz));
-        Query q = em.createQuery(cq);
+        try {
+            List<T> found = new ArrayList();
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(clazz));
+            Query q = em.createQuery(cq);
 
-        found.addAll(q.getResultList());
-        return found;
+            found.addAll(q.getResultList());
+            return found;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 
     @Override
