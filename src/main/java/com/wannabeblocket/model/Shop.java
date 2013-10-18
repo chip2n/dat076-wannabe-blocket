@@ -35,6 +35,10 @@ public class Shop {
             _shop = new Shop(mode == Mode.Debug ? s_puDebug : s_puRelease);
         return _shop;
     }
+    
+    public static Shop getInstance() {
+            return getInstance(Mode.Release);
+    }
 
     public UserRegistry getUserRegistry() {
         return userRegistry;
