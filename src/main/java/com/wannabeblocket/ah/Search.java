@@ -42,7 +42,7 @@ public class Search {
         AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
         
         _found = auctionHouse.searchDescription(_searchQuery, Long.parseLong(_categoryValue));
-        return "failure";
+        return "succuess";
     }
     
     
