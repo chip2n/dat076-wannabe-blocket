@@ -4,6 +4,7 @@
  */
 package com.wannabeblocket.test;
 
+import com.wannabeblocket.model.Shop;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,6 +16,8 @@ import org.junit.Test;
  * @author stoffe
  */
 public class ModelTests {
+    
+    private static Shop shop;
     
     public ModelTests() {
     }
@@ -29,6 +32,7 @@ public class ModelTests {
     
     @Before
     public void setUp() {
+        shop = Shop.getInstance(Shop.Mode.Debug);
     }
     
     @After
