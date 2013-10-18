@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 public class Account extends AbstractEntity {
 
     private String userName;
+    private String password;
     /*
     @OneToMany(mappedBy = "bidder", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Bid> bids;
@@ -16,13 +17,15 @@ public class Account extends AbstractEntity {
     private List<Comment> comments;
     */
 
-    public Account(Long id, String userName) {
+    public Account(Long id, String userName, String password) {
         super(id);
         this.userName = userName;
+        this.password = password;
     }
 
-    public Account(String userName) {
+    public Account(String userName, String password) {
         this.userName = userName;
+        this.password = password;
     }
 
     public Account() {

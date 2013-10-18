@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -17,12 +18,11 @@ public class Listing extends AbstractEntity {
     private Date endingTime;
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Category category;
-    /*
-    @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "LISTING_ID")
     private List<Bid> bids;
     @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Comment> comments;
-    */
 
     public Listing(Account seller, String description, Date endingTime, Category category) {
         this.seller = seller;
