@@ -1,0 +1,7 @@
+derby.log
+pictures/
+target/
+tmp/
+*.un~
+*.swp
+*.swo
