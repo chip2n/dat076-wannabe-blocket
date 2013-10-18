@@ -68,18 +68,18 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
 
     @Override
     public void update(T t) {
-        EntityManager em = null;
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
         try {
-            em = emf.createEntityManager();
-            em.getTransaction().begin();
+            tx.begin();
             em.merge(t);
-            em.getTransaction().commit();
+            tx.commit();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            if(tx.isActive())
+                tx.rollback();
         } finally {
-            if (em != null) {
                 em.close();
-            }
         }
     }
 
