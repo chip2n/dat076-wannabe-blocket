@@ -46,12 +46,4 @@ public class AuctionHouseResource {
         
         //return Response.ok().build();
     }
-    
-    @POST
-    @Produces({MediaType.APPLICATION_JSON})
-    public Response add(@FormParam("seller") String seller, @FormParam("description") String description) {
-        // TODO: Add listing to auction house. How should we handle authentication here?
-        _auctionHouse.add(new Listing(new Account("HEJ"), "DESCRIPTION", new Date(), new Category("Yolo")));
-        return Response.ok().build();
-    }
 }
