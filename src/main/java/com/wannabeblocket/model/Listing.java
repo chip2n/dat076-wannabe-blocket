@@ -20,7 +20,7 @@ public class Listing extends AbstractEntity {
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Category category;
     @OneToMany(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "LISTING_ID")
+    @JoinColumn(name = "LISTING")
     private List<Bid> bids;
     @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Comment> comments;

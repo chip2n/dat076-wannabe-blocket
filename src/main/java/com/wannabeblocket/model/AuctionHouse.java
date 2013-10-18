@@ -17,12 +17,12 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
      */
     public List<Listing> getListingsBySeller(Account seller) {
        EntityManager em = emf.createEntityManager();
-       return em.createQuery("SELECT * FROM LISTING WHERE seller = " + seller.getId()).getResultList();
+       return em.createQuery("SELECT * FROM LISTING WHERE CATEGORY_ID = " + seller.getId()).getResultList();
     }
     
     public List<Listing> getListingsByCategory(Category category) {
        EntityManager em = emf.createEntityManager();
-       return em.createQuery("SELECT * FROM LISTING WHERE category = " + category.getId()).getResultList();
+       return em.createQuery("SELECT * FROM LISTING WHERE CATEGORY_ID = " + category.getId()).getResultList();
     }
     
     public List<Listing> searchDescription(String query, long categoryId) {
@@ -53,7 +53,7 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
         if (categoryId == -1) {
             all = em.createQuery("SELECT * FROM LISTING").getResultList();
         } else {
-            all = em.createQuery("SELECT * FROM LISTING WHERE category = " + categoryId).getResultList();
+            all = em.createQuery("SELECT * FROM LISTING WHERE CATEGORY_ID = " + categoryId).getResultList();
         }
         for(Listing l : all) {
             if (l.getDescription().contains(query)) {

@@ -5,3 +5,5 @@ tmp/
 *.un~
 *.swp
 *.swo
+ah_db/
+derby.properties
