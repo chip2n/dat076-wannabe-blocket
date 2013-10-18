@@ -4,6 +4,8 @@
  */
 package com.wannabeblocket.ah;
 
+import com.wannabeblocket.model.AuctionHouse;
+import com.wannabeblocket.model.Shop;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -28,10 +30,12 @@ public class Search {
     }
     
     public String search() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        //FacesContext context = FacesContext.getCurrentInstance();
+        //HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
         
-        return null;
+        auctionHouse.searchDescription(_searchQuery);
+        return "failure";
     }
     
     
