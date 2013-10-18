@@ -28,11 +28,8 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
 
     public AbstractDAO(Class<T> clazz, String puName) {
         //emf = Persistence.createEntityManagerFactory("com.wannabeblocket_ah_war_1.0-SNAPSHOTPU");
-        try {
         emf = Persistence.createEntityManagerFactory(puName);
-        } catch(Exception e) {
-            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
-        }
+
         this.clazz = clazz;
     }
 
@@ -116,7 +113,6 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
     
     @Override
     public List<T> getAll() {
-        try {
         EntityManager em = emf.createEntityManager();
         
         List<T> found = new ArrayList();
@@ -126,11 +122,6 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
 
             found.addAll(q.getResultList());
              return found;
-        } catch(Exception e) {
-            Logger.getAnonymousLogger().log(Level.INFO, "Hej");
-        }
-
-        return null;
     }
 
     @Override

@@ -7,7 +7,7 @@
     <class>com.wannabeblocket.model.Category</class>
     <class>com.wannabeblocket.model.Comment</class>
     <class>com.wannabeblocket.model.Listing</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/ah_db"/>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
