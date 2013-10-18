@@ -61,4 +61,8 @@ public class Search {
     public void setCategoryValue(String categoryValue) {
         this._categoryValue = categoryValue;
     }
+    
+    public List<Listing> getFound() {
+        return _found;
+    }
 }
