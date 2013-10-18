@@ -5,8 +5,10 @@
 package com.wannabeblocket.ah;
 
 import com.wannabeblocket.model.AuctionHouse;
+import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.model.Shop;
 import java.io.Serializable;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -27,6 +29,7 @@ public class Search {
     private String _searchQuery;
     
     private String _categoryValue;
+    private List<Listing> _found;
     
     public Search() {
     }
@@ -38,7 +41,7 @@ public class Search {
         
         AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
         
-        auctionHouse.searchDescription(_searchQuery, Long.parseLong(_categoryValue));
+        _found = auctionHouse.searchDescription(_searchQuery, Long.parseLong(_categoryValue));
         return "failure";
     }
     
