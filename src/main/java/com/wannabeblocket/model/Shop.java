@@ -26,7 +26,7 @@ public class Shop {
     }
     
     public static enum Mode {Release, Debug}
-    private static String s_puDebug = "shop_test_embedded_pu";
+    private static String s_puDebug = "ah_pu_test";
     private static String s_puRelease = "ah_pu";
     
     
