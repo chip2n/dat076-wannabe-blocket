@@ -20,11 +20,13 @@ public class SideMenu extends Navigation{
     public SideMenu() {
         List<Category> categories = Shop.getInstance(Shop.Mode.Release).getCategoryList().getAll();
         
-        for(Category category : categories){
-            NavigationNode node = new NavigationNode(category.getName(), null);
-                //node.getChildren().add(new NavigationNode("Sublink " + i, null));
-                
-            this.getChildren().add(node);
+        if(categories != null) {
+            for(Category category : categories){
+                NavigationNode node = new NavigationNode(category.getName(), null);
+                    //node.getChildren().add(new NavigationNode("Sublink " + i, null));
+
+                this.getChildren().add(node);
+            }
         }
     }
 }
