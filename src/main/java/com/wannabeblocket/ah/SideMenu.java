@@ -2,6 +2,10 @@ package com.wannabeblocket.ah;
 
 import com.wannabeblocket.core.navigation.Navigation;
 import com.wannabeblocket.core.navigation.NavigationNode;
+import com.wannabeblocket.model.Category;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.model.Shop;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -14,9 +18,11 @@ import javax.inject.Named;
 public class SideMenu extends Navigation{
 
     public SideMenu() {
-        for(int i = 1; i < 6; ++i){
-            NavigationNode node = new NavigationNode("Link " + i, null);
-                node.getChildren().add(new NavigationNode("Sublink " + i, null));
+        List<Category> categories = Shop.getInstance(Shop.Mode.Release).getCategoryList().getAll();
+        
+        for(Category category : categories){
+            NavigationNode node = new NavigationNode(category.getName(), null);
+                //node.getChildren().add(new NavigationNode("Sublink " + i, null));
                 
             this.getChildren().add(node);
         }

@@ -29,10 +29,10 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
         //dummy
         List<Listing> all = new ArrayList();
         List<Listing> found = new ArrayList();
-        Listing listing0 = new Listing(new Account("Joppe"), "test hej glad", new Date(), new Category("sexleksaker"));
-        Listing listing1 = new Listing(new Account("Andreas"), "test hej lad", new Date(), new Category("actionfigurer"));
-        Listing listing2 = new Listing(new Account("Sebastian"), "matta hej gla", new Date(), new Category("planeter"));
-        Listing listing3 = new Listing(new Account("Aram"), "studsmatta hej glada", new Date(), new Category("mytologiska djur"));
+        Listing listing0 = new Listing(new Account("Joppe"), "titel", "test hej glad", new Date(), new Category("sexleksaker"));
+        Listing listing1 = new Listing(new Account("Andreas"), "titel", "test hej lad", new Date(), new Category("actionfigurer"));
+        Listing listing2 = new Listing(new Account("Sebastian"), "titel", "matta hej gla", new Date(), new Category("planeter"));
+        Listing listing3 = new Listing(new Account("Aram"), "titel", "studsmatta hej glada", new Date(), new Category("mytologiska djur"));
         all.add(listing0);
         all.add(listing1);
         all.add(listing2);
