@@ -35,14 +35,14 @@ public class Search {
     }
     
     public String search() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        //FacesContext context = FacesContext.getCurrentInstance();
+        //HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
         
         AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
         
         _found = auctionHouse.searchDescription(_searchQuery, Long.parseLong(_categoryValue));
-        return "succuess";
+        return "success";
     }
     
     
@@ -50,7 +50,7 @@ public class Search {
         return this._searchQuery;
     }
     
-    public void setName(String searchQuery) {
+    public void setSearchQuery(String searchQuery) {
         this._searchQuery = searchQuery;
     }
     
