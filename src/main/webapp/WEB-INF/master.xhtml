@@ -33,11 +33,9 @@
                     <input type="text" size="60" name="searchfield" id="searchfield" />
                     <label for="categories">inom</label>
                     <select name="categories">
-                        <option value="0">Alla kategorier</option>
-                        <option value="1">Gröna badrumstillbehör</option>
-                        <option value="2">Elektronik (halvtrasiga)</option>
-                        <option value="3">Bilar</option>
-                        <option value="4">Båtar (not literally)</option>
+                        <ui:repeat value="#{categoryBean.categories}" var="category">
+                            <option value="#{category.id}">#{category.name}</option>
+                        </ui:repeat>
                     </select>
                     <input type="submit" value="Sök" name="commit" id="search_submit"/>
                 </form>

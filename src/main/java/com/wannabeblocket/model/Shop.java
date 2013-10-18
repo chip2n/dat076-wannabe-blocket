@@ -13,6 +13,7 @@ public class Shop {
     private final AuctionHouse auctionHouse;
     private final CommentSection commentSection;
     private final BiddingHistory biddingHistory;
+    private final CategoryList categoryList;
     
     private static Shop _shop;
 
@@ -21,6 +22,7 @@ public class Shop {
         auctionHouse = new AuctionHouse(puName);
         commentSection = new CommentSection(puName);
         biddingHistory = new BiddingHistory(puName);
+        categoryList = new CategoryList(puName);
     }
     
     public static enum Mode {Release, Debug}
@@ -50,5 +52,7 @@ public class Shop {
         return biddingHistory;
     }
 
-    
+    public CategoryList getCategoryList() {
+        return categoryList;
+    }
 }
