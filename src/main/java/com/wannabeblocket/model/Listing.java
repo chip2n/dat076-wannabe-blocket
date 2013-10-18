@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 public class Listing extends AbstractEntity {
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Account seller;
+    private String name;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endingTime;
@@ -24,16 +25,18 @@ public class Listing extends AbstractEntity {
     @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Comment> comments;
 
-    public Listing(Account seller, String description, Date endingTime, Category category) {
+    public Listing(Account seller, String name, String description, Date endingTime, Category category) {
         this.seller = seller;
+        this.name = name;
         this.description = description;
         this.endingTime = endingTime;
         this.category = category;
     }
 
-    public Listing(Long id, Account seller, String description, Date endingTime, Category category) {
+    public Listing(Long id, Account seller, String name, String description, Date endingTime, Category category) {
         super(id);
         this.seller = seller;
+        this.name = name;
         this.description = description;
         this.endingTime = endingTime;
         this.category = category;
@@ -52,6 +55,14 @@ public class Listing extends AbstractEntity {
      */
     public void setSeller(Account seller) {
         this.seller = seller;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
