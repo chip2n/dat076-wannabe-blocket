@@ -33,6 +33,7 @@ public class ModelTests {
     @Before
     public void setUp() {
         shop = Shop.getInstance(Shop.Mode.Debug);
+        shop.getUserRegistry();
     }
     
     @After

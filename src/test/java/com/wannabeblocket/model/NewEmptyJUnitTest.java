@@ -57,6 +57,8 @@ public class NewEmptyJUnitTest {
         
         Comment comment0 = new Comment(listing0, account0, "du är värre än hitler", new Date());
         
+        Bid bid0 = new Bid(listing0, account0, 999, new Date());
+        
         
     }
 }
