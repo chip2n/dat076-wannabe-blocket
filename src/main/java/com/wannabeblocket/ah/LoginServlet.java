@@ -24,7 +24,7 @@ public class LoginServlet extends ServletBase {
      */
     @Override
     protected void doGet() throws ServletException, IOException {
-        this.getRequest().getRequestDispatcher("/login.xhtml").forward(this.getRequest(), this.getResponse());
+        this.forward("login.xhtml");
     }
 
     /**
@@ -38,7 +38,13 @@ public class LoginServlet extends ServletBase {
         String username = this.getRequest().getParameter("username");
         String password = this.getRequest().getParameter("password");
         
-        this.forward("login.xhtml");
+        if(username.equals("User") && password.equals("1234")){  
+            this.forward("main.xhtml");
+        }
+        else{
+            this.getRequest().setAttribute("error", "Felaktigt användarnamn eller lösenord.");
+            this.forward("login.xhtml");
+        }
     }
 
     /**
