@@ -28,7 +28,7 @@
             <div class="searchbar-left"></div>
             <div class="searchbar-right">
                 <h:form id="search_box" >
-                    <h:inputText size="60" id="searchfield"/>
+                    <h:inputText size="60" id="searchfield" value="#{search.searchQuery}"/>
                     <label for="categories">inom</label>
                     <h:selectOneMenu id="categoryMenu">
                         <c:forEach items="#{categoryBean.categories}" var="category">

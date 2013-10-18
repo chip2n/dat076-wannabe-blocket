@@ -21,40 +21,26 @@ import javax.validation.constraints.NotNull;
 @RequestScoped
 public class Search {
 
-    @NotNull(message = "Ange ett användarnamn.")
-    private String _name;
-    
-    @NotNull(message = "Ange ett lösenord.")
-    private String _password;
+    @NotNull(message = "Vad söker du?")
+    private String _searchQuery;
     
     public Search() {
     }
     
-    public String login(){
+    public String search() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
-        if(this._name.equals("User") && this._password.equals("1234")){
-            return "success";
-        } else {
-            context.addMessage(null, new FacesMessage("Login failed."));
-            return "failure";
-        }
+        return null;
     }
     
-    public String getName() {
-        return this._name;
-    }      
-
-    public void setName(String name) {
-        this._name = name;
-    }  
     
-    public String getPassword() {
-        return this._password;
-    }   
+    public String getSearchQuery() {
+        return this._searchQuery;
+    }
     
-    public void setPassword(String password) {
-        this._password = password;
-    }  
+    public void setName(String searchQuery) {
+        this._searchQuery = searchQuery;
+    }
+    
 }
