@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -25,16 +27,16 @@
         <div class="searchbar">
             <div class="searchbar-left"></div>
             <div class="searchbar-right">
-                <form method="post" id="search_box" action="search">
-                    <input type="text" size="60" name="searchfield" id="searchfield" />
+                <h:form id="search_box" >
+                    <h:inputText size="60" id="searchfield" value="#{search.searchQuery}"/>
                     <label for="categories">inom</label>
-                    <select name="categories">
-                        <ui:repeat value="#{categoryBean.categories}" var="category">
-                            <option value="#{category.id}">#{category.name}</option>
-                        </ui:repeat>
-                    </select>
-                    <input type="submit" value="Sök" name="commit" id="search_submit"/>
-                </form>
+                    <h:selectOneMenu id="categoryMenu" value="#{search.categoryValue}">
+                        <c:forEach items="#{categoryBean.categories}" var="category">
+                            <f:selectItem itemValue="#{category.id}" itemLabel="#{category.name}"/>
+                        </c:forEach>
+                    </h:selectOneMenu>
+                    <h:commandButton id="message_submit" action="#{search.search}" value="Sök"/>
+                </h:form>
             </div>
         </div>
         <article>       
