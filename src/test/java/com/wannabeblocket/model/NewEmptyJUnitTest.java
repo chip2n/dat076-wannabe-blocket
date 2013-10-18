@@ -51,7 +51,7 @@ public class NewEmptyJUnitTest {
         
         ur.add(account0);
         
-        Listing listing0 = new Listing(account0, "micketfint produkt. micket billig okså", new Date(), new Category("actionfigurer"));
+        Listing listing0 = new Listing(account0, "SNABB DEAL FIN TELEFON", "micketfint produkt. micket billig okså", new Date(), new Category("actionfigurer"));
         
         ah.add(listing0);
         
