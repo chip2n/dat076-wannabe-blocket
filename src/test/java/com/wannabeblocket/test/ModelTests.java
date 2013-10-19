@@ -52,7 +52,7 @@ public class ModelTests {
     }
     
     @Test
-    public void testSequence2()
+    public void accountTests()
     {
         UserRegistry usrreg = shop.getUserRegistry();
         AuctionHouse ah = shop.getAuctionHouse();
@@ -67,13 +67,25 @@ public class ModelTests {
             new Account("Greger", "ange lösenord")
         };
         
-        int acc_count = usrreg.getCount();
-        
         for(Account a : accs)
-            usrreg.add(a);
+            usrreg.add(a);        
         
+        // check that all accounts got added
+        assert(usrreg.getCount() == accs.length);
         
-        assert(usrreg.getCount() == acc_count + accs.length);
+        // test so no users can have the same username
+        int dindex = 2; // index to user
+        
+        Account dublicate_acc = 
+                new Account(accs[dindex].getUserName(), "hejhopp");        
+        usrreg.add(dublicate_acc);
+        
+        // check that no account got added
+        assert(usrreg.getCount() == accs.length);
+        
+        // check that the old account still exists and that the dublicate don't
+        assert(usrreg.find(accs[dindex].getId()) != null);
+        assert(usrreg.find(dublicate_acc.getId()) == null);
     }
     
 }
