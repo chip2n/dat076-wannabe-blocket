@@ -23,6 +23,10 @@ import org.junit.Test;
 public class ModelTests {
     
     private static Shop shop;
+    private static UserRegistry usrreg;
+    private static AuctionHouse ah;
+    private static CommentSection csec;
+    private static BiddingHistory bhist;
     
     public ModelTests() {
     }
@@ -38,6 +42,10 @@ public class ModelTests {
     @Before
     public void setUp() {
         shop = Shop.getInstance(Shop.Mode.Debug);
+        usrreg = shop.getUserRegistry();
+        ah = shop.getAuctionHouse();
+        csec = shop.getCommentSection();
+        bhist = shop.getBiddingHistory();
     }
     
     @After
@@ -46,12 +54,7 @@ public class ModelTests {
     
     @Test
     public void accountTests()
-    {
-        UserRegistry usrreg = shop.getUserRegistry();
-        AuctionHouse ah = shop.getAuctionHouse();
-        CommentSection csec = shop.getCommentSection();
-        BiddingHistory bhist = shop.getBiddingHistory();
-        
+    {   
         // add users
         Account[] accs = {
             new Account("Olle", "12345"),
@@ -61,7 +64,7 @@ public class ModelTests {
         };
         
         for(Account a : accs)
-            usrreg.add(a);        
+            usrreg.add(a);      
         
         // check that all accounts got added
         assert(usrreg.getCount() == accs.length);
@@ -75,10 +78,12 @@ public class ModelTests {
         
         // check that no account got added
         assert(usrreg.getCount() == accs.length);
+    }
+    
+    @Test
+    public void test()
+    {
         
-        // check that the old account still exists and that the dublicate don't
-        assert(usrreg.find(accs[dindex].getId()) != null);
-        assert(usrreg.find(dublicate_acc.getId()) == null);
     }
     
 }
