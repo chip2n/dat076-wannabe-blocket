@@ -15,9 +15,9 @@ Navigator.prototype = (function() {
             var me = this;
             me.container.getCount().then(function(result) {
                 // Move fst pointer
-                me.fst = (me.fst + me.max < result.value) ? me.fst + me.max : me.fst;
+                me.fst = (me.fst + me.max < result) ? me.fst + me.max : me.fst;
                 // How many items for last listing?
-                var m = (me.fst + me.max > result.value) ? result.value - me.fst : me.max;
+                var m = (me.fst + me.max > result) ? result - me.fst : me.max;
                 return m;
             }, fail).then(function(m) {
                 me.container.getRange(me.fst, m).then(success, fail);
@@ -27,7 +27,7 @@ Navigator.prototype = (function() {
             var me = this;
             me.fst = (me.fst - me.max > 0) ? me.fst - me.max : 0;
             me.container.getCount().then(function(result) {
-                var m = (me.fst + me.max > result.value) ? result.value - me.fst : me.max;
+                var m = (me.fst + me.max > result) ? result - me.fst : me.max;
                 return m;
             }, fail).then(function(m) {
                 me.container.getRange(me.fst, m).then(success, fail);
