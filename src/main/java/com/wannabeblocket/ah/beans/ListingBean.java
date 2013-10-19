@@ -1,5 +1,6 @@
 package com.wannabeblocket.ah.beans;
 
+import com.wannabeblocket.exception.ListingNotFoundException;
 import javax.inject.Named;
 import javax.annotation.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -23,6 +24,9 @@ public class ListingBean {
         if(sId !=  null) {
             Long id = Long.parseLong(request.getParameter("id"));
             _listing = Shop.getInstance(Shop.Mode.Release).getAuctionHouse().find(id);
+            if(_listing == null) {
+                throw new ListingNotFoundException("There is no listing with id " + sId);
+            }
         }
         
     }
@@ -37,10 +41,6 @@ public class ListingBean {
     
     public int getBid() {
         return _bid; 
-    }
-    
-    public String placeBid() {
-        return "success";
     }
     
 }
