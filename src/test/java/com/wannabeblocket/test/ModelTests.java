@@ -41,9 +41,10 @@ public class ModelTests {
     }
     
     @Test
-    public void testSequence1()
+    public void testSequence1() throws ClassNotFoundException
     {
-        
+        System.out.println(getClass().getResource("META-INF/persistence.xml"));
+        System.out.println(Class.forName("org.eclipse.persistence.jpa.PersistenceProvider"));
     }
     
 }
