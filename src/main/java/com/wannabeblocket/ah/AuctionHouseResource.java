@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -45,5 +46,21 @@ public class AuctionHouseResource {
         return Response.ok(p).build();
         
         //return Response.ok().build();
+    }
+    
+    @GET
+    @Path("/range")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getRange(@QueryParam("fst") int first, @QueryParam("max") int nItems) {
+        List<Listing> listings = _auctionHouse.getRange(first, nItems);
+        
+        
+        List<ListingProxy> proxyListings = new ArrayList<>(listings.size());
+        
+        for(Listing listing : listings) {
+            proxyListings.add(new ListingProxy(listing));
+        }
+        
+        return Response.ok(proxyListings).build();
     }
 }
