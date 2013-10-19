@@ -31,16 +31,21 @@
         <div class="searchbar">
             <div class="searchbar-left"></div>
             <div class="searchbar-right">
-                <h:form id="search_box" >
-                    <h:inputText size="60" id="searchfield" value="#{search.searchQuery}"/>
+
+                
+                
+                <form id="search_box" method="get" action="search.xhtml">
+                    <input type="text" size="60" id="searchfield" name="query"/>
                     <label for="categories">inom</label>
-                    <h:selectOneMenu id="categoryMenu" value="#{search.categoryValue}">
-                        <c:forEach items="#{category.categories}" var="category">
-                            <f:selectItem itemValue="#{category.id}" itemLabel="#{category.name}"/>
+                    <select id="categoryMenu" name="category">
+                        <c:forEach items="#{category.categories}" var="cat">
+                            <option value="#{cat.id}">#{cat.name}</option>
                         </c:forEach>
-                    </h:selectOneMenu>
-                    <h:commandButton id="message_submit" action="#{search.search}" value="Sök"/>
-                </h:form>
+                    </select>
+                    <input type="submit" id="message_submit" value="Sök" />
+                </form>
+                
+                
             </div>
         </div>
         <article>
