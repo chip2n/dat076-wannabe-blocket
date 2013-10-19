@@ -38,7 +38,7 @@ public class LoginServlet extends ServletBase {
             }
             else{
                 this.getRequest().setAttribute("error", "Felaktigt användarnamn eller lösenord.");
-                this.forward("login.xhtml");
+                this.forward("WEB-INF/login.xhtml");
             }
         }
     } 
