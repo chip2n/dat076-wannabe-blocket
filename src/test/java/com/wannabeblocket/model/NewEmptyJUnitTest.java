@@ -41,7 +41,7 @@ public class NewEmptyJUnitTest {
     //
     @Test
     public void hello() {
-        Shop shop = Shop.getInstance();
+        Shop shop = Shop.getInstance(Shop.Mode.Debug);
         UserRegistry ur = shop.getUserRegistry();
         AuctionHouse ah = shop.getAuctionHouse();
         CommentSection cs = shop.getCommentSection();
