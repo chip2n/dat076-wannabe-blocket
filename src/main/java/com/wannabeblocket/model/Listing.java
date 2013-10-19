@@ -11,6 +11,7 @@ import javax.persistence.Temporal;
 
 @Entity
 public class Listing extends AbstractEntity {
+
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Account seller;
     private String name;
@@ -49,18 +50,14 @@ public class Listing extends AbstractEntity {
         return this.seller;
     }
 
-    /**
-     *
-     * @param seller
-     */
     public void setSeller(Account seller) {
         this.seller = seller;
     }
-    
+
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
@@ -69,10 +66,6 @@ public class Listing extends AbstractEntity {
         return this.description;
     }
 
-    /**
-     *
-     * @param description
-     */
     public void setDescription(String description) {
         this.description = description;
     }
@@ -81,10 +74,6 @@ public class Listing extends AbstractEntity {
         return this.endingTime;
     }
 
-    /**
-     *
-     * @param endingTime
-     */
     public void setEndingTime(Date endingTime) {
         this.endingTime = endingTime;
     }
@@ -92,5 +81,20 @@ public class Listing extends AbstractEntity {
     public Category getCategory() {
         return category;
     }
-    
+
+    public List<Bid> getBids() {
+        return bids;
+    }
+
+    public void setBids(List<Bid> bids) {
+        this.bids = bids;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }
