@@ -53,7 +53,7 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
         if (category.getId() == -1) {
             all = em.createQuery("SELECT * FROM LISTING").getResultList();
         } else {
-            all = em.createQuery("SELECT c FROM Listing c WHERE c.category = '" + category + "'").getResultList();
+            all = em.createQuery("SELECT c FROM Listing c WHERE c.category = :id").setParameter("id", category).getResultList();
         }
         for(Listing l : all) {
             if (l.getDescription().contains(query)) {
