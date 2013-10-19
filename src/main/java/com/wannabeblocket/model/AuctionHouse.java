@@ -69,7 +69,7 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
     public List<Listing> searchDescription(String query, Category category, int first, int nItems) {
         List<Listing> found = searchDescription(query, category);
 
-        if (found.size() < first + nItems) {
+        if (found.size() > first + nItems) {
             found = found.subList(first, first + nItems);
         } else {
             found = found.subList(first, found.size());

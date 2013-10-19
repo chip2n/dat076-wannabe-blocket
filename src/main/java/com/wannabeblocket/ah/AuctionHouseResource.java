@@ -57,7 +57,7 @@ public class AuctionHouseResource {
         if(query == null) {
             listings = _auctionHouse.getRange(first, nItems);
         } else {
-            listings = _auctionHouse.searchDescription(query, new Category("none", -1L), first, nItems);
+            listings = _auctionHouse.searchDescription(query, first, nItems);
         }
         
         List<ListingProxy> proxyListings = new ArrayList<>(listings.size());
