@@ -4,7 +4,6 @@
     <Scope Scope="Project">
         <Node id="createListing.xhtml" x="150" y="300" zoom="true"/>
         <Node id="createUser.xhtml" x="400" y="150" zoom="true"/>
-        <Node id="myPage.xhtml" x="650" y="150" zoom="true"/>
         <Node id="main.xhtml" x="150" y="149" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
