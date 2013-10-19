@@ -30,8 +30,10 @@ public class CreateListingServlet extends ServletBase {
             String title = this.getRequest().getParameter("title");
             Long categoryId = Long.parseLong(this.getRequest().getParameter("category"));
             String description = this.getRequest().getParameter("description");
+            
+            Category category = Shop.getInstance().getCategoryList().find(categoryId);
 
-            Listing listing = new Listing(new Account("TEMP_ACCOUNT", "TEMP_PASSWORD"), title, description, new Date(), new Category("TEMP_CATEGORY"));
+            Listing listing = new Listing(this.getUser(), title, description, new Date(), category);
             Shop.getInstance(Shop.Mode.Release).getAuctionHouse().add(listing);
 
             this.getResponse().sendRedirect(Pages.MAIN);
