@@ -11,6 +11,6 @@ public class BiddingHistory extends AbstractDAO<Bid, Long> {
 
     public List<Listing> getBidsByListing(Listing listing) {
        EntityManager em = emf.createEntityManager();
-       return em.createQuery("SELECT c FROM BID WHERE listing = " + listing.getId()).getResultList();
+       return em.createQuery("SELECT c FROM Bid c WHERE c.listing = :id").setParameter("id", listing).getResultList();
     }
 }
