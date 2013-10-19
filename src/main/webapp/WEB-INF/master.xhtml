@@ -20,7 +20,9 @@
             <hgroup>
                 <h:graphicImage library="img" name="logo.png" style="float: left;"/>
                 <nav>
-                    <ui:insert name="topmenu"/><br/>
+                    <ui:insert name="topmenu">
+                        <h:outputText value="#{topMenu}" escape="false"/>
+                    </ui:insert><br/>
                 </nav>
             </hgroup>
         </header> 
@@ -41,8 +43,12 @@
         </div>
         <article>
             <aside>
-                <ui:insert name="sidemenuheader"/>
-                <ui:insert name="sidemenu"/>     
+                <ui:insert name="sidemenuheader">
+                    Side Menu Header
+                </ui:insert>
+                <ui:insert name="sidemenu">
+                    <h:outputText value="#{sideMenu}" escape="false"/>
+                </ui:insert>    
             </aside>
             <section id="maincontent" style="display: inline-block;">
                 <ui:insert name="maincontent"/>
