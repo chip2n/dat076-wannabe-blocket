@@ -25,10 +25,11 @@ public class SearchBean {
         //FacesContext context = FacesContext.getCurrentInstance();
         //HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
-        
+        /*
         AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
         
         _found = auctionHouse.searchDescription(_searchQuery, Shop.getInstance().getCategoryList().find(Long.parseLong(_categoryValue)));
+        */
         return "success";
     }
     

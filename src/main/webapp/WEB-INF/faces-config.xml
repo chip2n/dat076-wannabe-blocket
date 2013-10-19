@@ -17,11 +17,5 @@
             <to-view-id>/main.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-        <navigation-case>
-            <from-action>#{search.search}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/search.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
     </navigation-rule>
 </faces-config>

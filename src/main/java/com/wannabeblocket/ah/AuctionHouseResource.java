@@ -51,9 +51,14 @@ public class AuctionHouseResource {
     @GET
     @Path("/range")
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getRange(@QueryParam("fst") int first, @QueryParam("max") int nItems) {
-        List<Listing> listings = _auctionHouse.getRange(first, nItems);
+    public Response getRange(@QueryParam("fst") int first, @QueryParam("max") int nItems, @QueryParam("query") String query) {
+        List<Listing> listings = null;
         
+        if(query.equals("undefined")) {
+            listings = _auctionHouse.getRange(first, nItems);
+        } else {
+            listings = _auctionHouse.searchDescription(query, first, nItems);
+        }
         
         List<ListingProxy> proxyListings = new ArrayList<>(listings.size());
         

@@ -4,41 +4,45 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
+import com.wannabeblocket.core.constants.Pages;
+import com.wannabeblocket.core.constants.RequestAttributes;
+import com.wannabeblocket.core.constants.Servlets;
+import com.wannabeblocket.core.constants.SessionAttributes;
 import com.wannabeblocket.model.Account;
 
-@WebServlet(urlPatterns = {"/login"})
+@WebServlet(urlPatterns = {"/" + Servlets.LOGIN})
 public class LoginServlet extends ServletBase {
     
-    private boolean isUserLoggedIn() throws ServletException, IOException{
-        return getSession().getAttribute("User") != null;    
+    private void setUser(Account account) throws ServletException, IOException{
+        this.getSession().setAttribute(SessionAttributes.USER, account);
     }
     
     @Override
     protected void doGet() throws ServletException, IOException {
         if(isUserLoggedIn()){
-            this.forward("main.xhtml");
+            this.forward(Pages.MAIN);
         }
         else{
-            this.forward("WEB-INF/login.xhtml");
+            this.forward(Pages.LOGIN);
         }
     }
 
     @Override
     protected void doPost() throws ServletException, IOException {
         if(isUserLoggedIn()){
-            this.forward("main.xhtml");
+            this.forward(Pages.MAIN);
         }
         else{    
             String username = this.getRequest().getParameter("username");
             String password = this.getRequest().getParameter("password");
 
             if(username.equals("User") && password.equals("1234")){        
-                this.getRequest().getSession().setAttribute("User", new Account(username, password));
-                this.getResponse().sendRedirect("main.xhtml");
+                this.setUser(new Account(username, password));
+                this.getResponse().sendRedirect(Pages.MAIN);
             }
             else{
-                this.getRequest().setAttribute("error", "Felaktigt användarnamn eller lösenord.");
-                this.forward("WEB-INF/login.xhtml");
+                this.getRequest().setAttribute(RequestAttributes.ERROR, "Felaktigt användarnamn eller lösenord.");
+                this.forward(Pages.LOGIN);
             }
         }
     } 

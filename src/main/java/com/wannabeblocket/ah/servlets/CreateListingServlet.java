@@ -5,27 +5,39 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
+import com.wannabeblocket.core.constants.Pages;
+import com.wannabeblocket.core.constants.Servlets;
 import com.wannabeblocket.model.Account;
 import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.model.Shop;
 
-@WebServlet(urlPatterns = {"/createlisting"})
+@WebServlet(urlPatterns = {"/" + Servlets.CREATE_LISTING})
 public class CreateListingServlet extends ServletBase {
     @Override
     protected void doGet() throws ServletException, IOException {
-        this.getRequest().getRequestDispatcher("/create_listing.jsp").forward(this.getRequest(), this.getResponse());
+        if(this.isUserLoggedIn()){
+            this.forward(Pages.CREATE_LISTING);
+        }   
+        else {
+            this.forward(Pages.MAIN);
+        }
     }
 
     @Override
     protected void doPost() throws ServletException, IOException {
-        String title = this.getRequest().getParameter("title");
-        Long categoryId = Long.parseLong(this.getRequest().getParameter("category"));
-        String description = this.getRequest().getParameter("description");
-        
-        Listing listing = new Listing(new Account("TEMP_ACCOUNT", "TEMP_PASSWORD"), title, description, new Date(), new Category("TEMP_CATEGORY"));
-        Shop.getInstance(Shop.Mode.Release).getAuctionHouse().add(listing);
-        
-        this.getResponse().sendRedirect("");
+        if(this.isUserLoggedIn()){
+            String title = this.getRequest().getParameter("title");
+            Long categoryId = Long.parseLong(this.getRequest().getParameter("category"));
+            String description = this.getRequest().getParameter("description");
+
+            Listing listing = new Listing(new Account("TEMP_ACCOUNT", "TEMP_PASSWORD"), title, description, new Date(), new Category("TEMP_CATEGORY"));
+            Shop.getInstance(Shop.Mode.Release).getAuctionHouse().add(listing);
+
+            this.getResponse().sendRedirect(Pages.MAIN);
+        }   
+        else {
+            this.forward(Pages.MAIN);
+        }        
     }
 }
