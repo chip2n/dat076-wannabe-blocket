@@ -9,13 +9,11 @@
     <class>com.wannabeblocket.model.Listing</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-      <property name="eclipselink.target-database" value="derby"/>
-      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby:tmp;create=true"/>
-      <property name="javax.persistence.jdbc.user" value=""/>
-      <property name="javax.persistence.jdbc.password" value=""/>
-      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
-      <property name="eclipselink.logging.level" value="info"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/ah_db_test"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.user" value="app"/>
+      <property name="javax.persistence.jdbc.password" value="app"/>
     </properties>
   </persistence-unit>
 </persistence>
