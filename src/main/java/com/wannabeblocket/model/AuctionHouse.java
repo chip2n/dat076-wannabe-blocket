@@ -25,7 +25,7 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
        return em.createQuery("SELECT * FROM LISTING WHERE CATEGORY_ID = " + category.getId()).getResultList();
     }
     
-    public List<Listing> searchDescription(String query, long categoryId) {
+    public List<Listing> searchDescription(String query, Category category) {
         EntityManager em = emf.createEntityManager();
         List<Listing> all = new ArrayList();
         List<Listing> found = new ArrayList();
@@ -50,10 +50,10 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
         //real
         
         
-        if (categoryId == -1) {
+        if (category.getId() == -1) {
             all = em.createQuery("SELECT * FROM LISTING").getResultList();
         } else {
-            all = em.createQuery("SELECT * FROM LISTING c WHERE c.CATEGORY_ID = :id").setParameter("id", categoryId).getResultList();
+            all = em.createQuery("SELECT c FROM Listing c WHERE c.category = '" + category + "'").getResultList();
         }
         for(Listing l : all) {
             if (l.getDescription().contains(query)) {
