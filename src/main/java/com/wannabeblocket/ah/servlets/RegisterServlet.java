@@ -6,22 +6,27 @@ import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
 import com.wannabeblocket.core.constants.Pages;
 import com.wannabeblocket.core.constants.Servlets;
-import com.wannabeblocket.core.constants.SessionAttributes;
 
-@WebServlet(urlPatterns = {"/" + Servlets.LOGOUT})
-public class LogoutServlet extends ServletBase { 
+@WebServlet(urlPatterns = {"/" + Servlets.REGISTER})
+public class RegisterServlet extends ServletBase {
+    
     @Override
     protected void doGet() throws ServletException, IOException {
-        logoutAndForward();
+        if(isUserLoggedIn()){
+            this.forward(Pages.MAIN);
+        }
+        else{
+            this.forward(Pages.REGISTER);
+        }
     }
 
     @Override
     protected void doPost() throws ServletException, IOException {
-        logoutAndForward();
+        if(isUserLoggedIn()){
+            this.forward(Pages.MAIN);
+        }
+        else{
+            this.forward(Pages.REGISTER);
+        }
     } 
-    
-    private void logoutAndForward() throws ServletException, IOException{
-        getSession().removeAttribute(SessionAttributes.USER);
-        this.forward(Pages.MAIN);
-    }
 }

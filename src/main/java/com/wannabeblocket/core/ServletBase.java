@@ -1,5 +1,7 @@
 package com.wannabeblocket.core;
 
+import com.wannabeblocket.core.constants.SessionAttributes;
+import com.wannabeblocket.model.Account;
 import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
@@ -107,5 +109,27 @@ public abstract class ServletBase extends HttpServlet {
     @Override
     public String getServletInfo(){
         return "";
+    }
+    
+    /**
+     * Gets the currently logged on user.
+     * 
+     * @return the currently logged on user.
+     * @throws ServletException
+     * @throws IOException 
+     */
+    protected Account getUser() throws ServletException, IOException{
+        return (Account) getSession().getAttribute(SessionAttributes.USER);    
+    }
+    
+    /**
+     * Checks whether a user is logged in.
+     * 
+     * @return true if a user is logged in; otherwise, false.
+     * @throws ServletException
+     * @throws IOException 
+     */
+    protected boolean isUserLoggedIn() throws ServletException, IOException{
+        return getUser() != null;    
     }
 }

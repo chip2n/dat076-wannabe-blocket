@@ -5,12 +5,12 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import com.wannabeblocket.model.Shop;
 import com.wannabeblocket.model.Category;
-import com.wannabeblocket.core.navigation.Navigation;
+import com.wannabeblocket.core.navigation.NavigationBeanBase;
 import com.wannabeblocket.core.navigation.NavigationNode;
 
 @Named("sidemenu")
 @RequestScoped
-public class SideMenuBean extends Navigation{
+public class SideMenuBean extends NavigationBeanBase {
 
     public SideMenuBean() {
         List<Category> categories = Shop.getInstance(Shop.Mode.Release).getCategoryList().getAll();
