@@ -7,14 +7,9 @@ package com.wannabeblocket.ah;
 import com.wannabeblocket.model.AuctionHouse;
 import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.model.Shop;
-import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -38,7 +33,8 @@ public class Search {
         //FacesContext context = FacesContext.getCurrentInstance();
         //HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
-        
+        //System.out.println("Searching HEEEJ!\n_searchQuery: " +_searchQuery+"\ncategoryValue: "+_categoryValue);
+        //System.err.print("Searching HEEEJ!\n_searchQuery: " +_searchQuery+"\ncategoryValue: "+_categoryValue);
         AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
         
         _found = auctionHouse.searchDescription(_searchQuery, Long.parseLong(_categoryValue));
