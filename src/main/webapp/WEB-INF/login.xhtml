@@ -23,7 +23,7 @@
                     <td><input id="password" name="password" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>          
                 </tr>
             </table>
-            <inline>#{error}</inline>
+            <div style="color: red">#{error}</div>
             <input type="submit" value="Logga in"/>
         </form>
     </ui:define>

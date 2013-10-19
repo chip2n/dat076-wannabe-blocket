@@ -19,10 +19,9 @@ public class TopMenuBean extends Navigation{
             this.getChildren().add(new NavigationNode("Logga in", "login"));
         }
         else{
-            this.getChildren().add(new NavigationNode("Logga out", null));
+            this.getChildren().add(new NavigationNode("Skapa annons", "createListing.xhtml"));  
+            this.getChildren().add(new NavigationNode("Min sida", "myPage.xhtml"));                
+            this.getChildren().add(new NavigationNode("Logga out", "logout"));
         }
-        
-        this.getChildren().add(new NavigationNode("Min sida", "myPage.xhtml"));
-        this.getChildren().add(new NavigationNode("Skapa annons", "createListing.xhtml"));
     }
 }
