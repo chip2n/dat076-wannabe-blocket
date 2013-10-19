@@ -1,29 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package com.wannabeblocket.ah.beans;
 
-package com.wannabeblocket.ah;
-
-import com.wannabeblocket.model.Category;
-import com.wannabeblocket.model.Listing;
-import com.wannabeblocket.model.Shop;
-import com.wannabeblocket.model.Shop;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.ManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.enterprise.context.RequestScoped;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.model.Listing;
 
-/**
- *
- * @author chip
- */
-@Named
+@Named("listing")
 @ManagedBean
 @RequestScoped
 public class ListingBean {

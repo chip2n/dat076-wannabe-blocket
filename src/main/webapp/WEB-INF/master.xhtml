@@ -21,7 +21,7 @@
                 <h:graphicImage library="img" name="logo.png" style="float: left;"/>
                 <nav>
                     <ui:insert name="topmenu">
-                        <h:outputText value="#{topMenu}" escape="false"/>
+                        <h:outputText value="#{topmenu}" escape="false"/>
                     </ui:insert><br/>
                 </nav>
             </hgroup>
@@ -33,7 +33,7 @@
                     <h:inputText size="60" id="searchfield" value="#{search.searchQuery}"/>
                     <label for="categories">inom</label>
                     <h:selectOneMenu id="categoryMenu" value="#{search.categoryValue}">
-                        <c:forEach items="#{categoryBean.categories}" var="category">
+                        <c:forEach items="#{category.categories}" var="category">
                             <f:selectItem itemValue="#{category.id}" itemLabel="#{category.name}"/>
                         </c:forEach>
                     </h:selectOneMenu>
@@ -47,7 +47,7 @@
                     Side Menu Header
                 </ui:insert>
                 <ui:insert name="sidemenu">
-                    <h:outputText value="#{sideMenu}" escape="false"/>
+                    <h:outputText value="#{sidemenu}" escape="false"/>
                 </ui:insert>    
             </aside>
             <section id="maincontent" style="display: inline-block;">

@@ -13,18 +13,18 @@
     </ui:define>
     
     <ui:define name="maincontent">
-        <h1>#{listingBean.listing.name}</h1>
+        <h1>#{listing.listing.name}</h1>
         <h:form>
-                <h:inputText id="bid" size="30" value="#{listingBean.bid}"/>
+                <h:inputText id="bid" size="30" value="#{listing.bid}"/>
             <p>
-                <h:commandButton id="bid_submit" action="#{listingBean.placeBid}" value="Lägg bud"/>
+                <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
             </p>
         </h:form> 
         Sluttid: #{listingBean.listing.endingTime.toString()}
         Beskrivning av objektet:
         <hr />
-        #{listingBean.listing.description}
-        <b>Säljaren #{listingBean.listing.seller.userName} ansvarar för att beskrivningen av objektet är korrekt.</b>
+        #{listing.listing.description}
+        <b>Säljaren #{listing.listing.seller.userName} ansvarar för att beskrivningen av objektet är korrekt.</b>
     </ui:define>
     <ui:define name="pagefooter">
         This is the footer.

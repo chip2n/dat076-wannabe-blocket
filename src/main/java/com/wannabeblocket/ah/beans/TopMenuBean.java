@@ -1,21 +1,17 @@
-package com.wannabeblocket.ah;
+package com.wannabeblocket.ah.beans;
 
+import javax.inject.Named;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.enterprise.context.RequestScoped;
 import com.wannabeblocket.core.navigation.Navigation;
 import com.wannabeblocket.core.navigation.NavigationNode;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 
-/**
- *
- * @author Administrator
- */
-@Named
+@Named("topmenu")
 @RequestScoped
-public class TopMenu extends Navigation{
+public class TopMenuBean extends Navigation{
 
-    public TopMenu() {
+    public TopMenuBean() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest(); 
         
