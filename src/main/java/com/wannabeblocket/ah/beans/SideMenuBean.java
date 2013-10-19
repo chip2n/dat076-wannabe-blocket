@@ -1,23 +1,18 @@
-package com.wannabeblocket.ah;
+package com.wannabeblocket.ah.beans;
 
+import java.util.List;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.model.Category;
 import com.wannabeblocket.core.navigation.Navigation;
 import com.wannabeblocket.core.navigation.NavigationNode;
-import com.wannabeblocket.model.Category;
-import com.wannabeblocket.model.Shop;
-import com.wannabeblocket.model.Shop;
-import java.util.List;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 
-/**
- *
- * @author Administrator
- */
-@Named
+@Named("sidemenu")
 @RequestScoped
-public class SideMenu extends Navigation{
+public class SideMenuBean extends Navigation{
 
-    public SideMenu() {
+    public SideMenuBean() {
         List<Category> categories = Shop.getInstance(Shop.Mode.Release).getCategoryList().getAll();
         
         if(categories != null) {

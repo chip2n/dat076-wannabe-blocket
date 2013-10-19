@@ -1,29 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.wannabeblocket.ah;
+package com.wannabeblocket.ah.beans;
 
-import com.wannabeblocket.model.AuctionHouse;
-import com.wannabeblocket.model.Listing;
-import com.wannabeblocket.model.Shop;
-import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
+import javax.enterprise.context.RequestScoped;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.model.Listing;
+import com.wannabeblocket.model.AuctionHouse;
 
-/**
- *
- * @author Administrator
- */
-@Named
+@Named("search")
 @RequestScoped
-public class Search {
+public class SearchBean {
 
     @NotNull(message = "Vad söker du?")
     private String _searchQuery;
@@ -31,7 +18,7 @@ public class Search {
     private String _categoryValue;
     private List<Listing> _found;
     
-    public Search() {
+    public SearchBean() {
     }
     
     public String search() {

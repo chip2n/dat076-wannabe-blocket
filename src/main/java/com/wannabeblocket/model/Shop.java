@@ -25,14 +25,28 @@ public class Shop {
         categoryList = new CategoryList(puName);
     }
     
-    public static enum Mode {Release, Debug}
-    private static String s_puDebug = "ah_pu_test";
-    private static String s_puRelease = "ah_pu";
-    
+    public static enum Mode 
+    {
+        Release("ah_pu"), 
+        Debug("ah_pu_test");
+        
+        private String puName;
+        
+        private Mode(String puName)
+        {
+            this.puName = puName;
+        }
+        
+        @Override
+        public String toString()
+        {
+            return puName;
+        }
+    }
     
     public static Shop getInstance(Mode mode) {
         if(_shop == null)
-            _shop = new Shop(mode == Mode.Debug ? s_puDebug : s_puRelease);
+            _shop = new Shop(mode.toString());
         return _shop;
     }
     

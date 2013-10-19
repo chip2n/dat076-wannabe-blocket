@@ -1,33 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.wannabeblocket.ah;
+package com.wannabeblocket.ah.servlets;
 
-import com.wannabeblocket.core.ServletBase;
-import com.wannabeblocket.model.Account;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import com.wannabeblocket.core.ServletBase;
+import com.wannabeblocket.model.Account;
 
-/**
- *
- * @author Aram Timofeitchik
- * @author Andreas Arvidsson
- */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+@WebServlet(urlPatterns = {"/login"})
 public class LoginServlet extends ServletBase {
     
     private boolean isUserLoggedIn() throws ServletException, IOException{
         return getSession().getAttribute("User") != null;    
     }
     
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet() throws ServletException, IOException {
         if(isUserLoggedIn()){
@@ -38,12 +23,6 @@ public class LoginServlet extends ServletBase {
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost() throws ServletException, IOException {
         if(isUserLoggedIn()){
@@ -62,15 +41,5 @@ public class LoginServlet extends ServletBase {
                 this.forward("login.xhtml");
             }
         }
-    }
-    
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Login servlet.";
-    }  
+    } 
 }

@@ -1,20 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wannabeblocket.core;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Aram Timofeitchik
- */
 public abstract class ServletBase extends HttpServlet {
     private HttpServletRequest _request;
     private HttpServletResponse _response;
@@ -113,5 +105,7 @@ public abstract class ServletBase extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public abstract String getServletInfo();  
+    public String getServletInfo(){
+        return "";
+    }
 }

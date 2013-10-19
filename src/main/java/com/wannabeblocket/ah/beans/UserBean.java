@@ -1,25 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.wannabeblocket.ah;
+package com.wannabeblocket.ah.beans;
 
-import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import javax.faces.application.FacesMessage;
 import javax.validation.constraints.NotNull;
+import javax.servlet.http.HttpServletRequest;
+import javax.enterprise.context.RequestScoped;
 
-/**
- *
- * @author Administrator
- */
-@Named
+@Named("user")
 @RequestScoped
-public class User {
+public class UserBean {
 
     @NotNull(message = "Ange ett användarnamn.")
     private String _name;
@@ -27,7 +17,7 @@ public class User {
     @NotNull(message = "Ange ett lösenord.")
     private String _password;
     
-    public User() {
+    public UserBean() {
     }
     
     public String login(){
