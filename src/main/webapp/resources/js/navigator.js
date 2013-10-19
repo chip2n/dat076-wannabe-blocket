@@ -20,7 +20,7 @@ Navigator.prototype = (function() {
                 var m = (me.fst + me.max > result) ? result - me.fst : me.max;
                 return m;
             }, fail).then(function(m) {
-                me.container.getRange(me.fst, m).then(success, fail);
+                me.container.search(getUrlVars()["query"], me.fst, m).then(success, fail);
             });
         },
         prev: function(success, fail) {
@@ -30,7 +30,7 @@ Navigator.prototype = (function() {
                 var m = (me.fst + me.max > result) ? result - me.fst : me.max;
                 return m;
             }, fail).then(function(m) {
-                me.container.getRange(me.fst, m).then(success, fail);
+                me.container.search(getUrlVars()["query"], me.fst, m).then(success, fail);
             });
         }
     };

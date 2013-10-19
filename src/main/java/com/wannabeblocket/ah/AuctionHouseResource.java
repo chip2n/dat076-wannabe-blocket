@@ -54,7 +54,7 @@ public class AuctionHouseResource {
     public Response getRange(@QueryParam("fst") int first, @QueryParam("max") int nItems, @QueryParam("query") String query) {
         List<Listing> listings = null;
         
-        if(query == null) {
+        if(query.equals("undefined")) {
             listings = _auctionHouse.getRange(first, nItems);
         } else {
             listings = _auctionHouse.searchDescription(query, first, nItems);
