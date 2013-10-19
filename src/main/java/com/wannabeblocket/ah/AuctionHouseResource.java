@@ -63,4 +63,11 @@ public class AuctionHouseResource {
         
         return Response.ok(proxyListings).build();
     }
+    
+    @GET
+    @Path("/count")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getCount() {
+        return Response.ok(_auctionHouse.getCount()).build();
+    }
 }
