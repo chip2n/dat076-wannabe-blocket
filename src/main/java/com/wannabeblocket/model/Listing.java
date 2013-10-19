@@ -89,6 +89,10 @@ public class Listing extends AbstractEntity {
     public void setBids(List<Bid> bids) {
         this.bids = bids;
     }
+    
+    public void placeBid(Account account, int amount) {
+        this.bids.add(new Bid(this, account, amount, new Date()));
+    }
 
     public List<Comment> getComments() {
         return comments;
