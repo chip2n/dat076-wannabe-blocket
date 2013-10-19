@@ -19,6 +19,7 @@ public class TopMenuBean extends NavigationBeanBase {
         }
         else{
             this.getChildren().add(new NavigationNode("Logga in", Servlets.LOGIN));
+            this.getChildren().add(new NavigationNode("Registrera", Servlets.REGISTER));
         }
     }
 }
