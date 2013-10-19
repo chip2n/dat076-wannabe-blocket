@@ -28,7 +28,7 @@ public class SearchBean {
         
         AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
         
-        _found = auctionHouse.searchDescription(_searchQuery, Long.parseLong(_categoryValue));
+        _found = auctionHouse.searchDescription(_searchQuery, Shop.getInstance().getCategoryList().find(Long.parseLong(_categoryValue)));
         return "success";
     }
     

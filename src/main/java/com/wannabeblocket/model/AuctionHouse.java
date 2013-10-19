@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class AuctionHouse extends AbstractDAO<Listing, Long> {
 
@@ -11,54 +12,67 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
         super(Listing.class, puName);
     }
 
-    /**
-     *
-     * @param seller
-     */
     public List<Listing> getListingsBySeller(Account seller) {
-       EntityManager em = emf.createEntityManager();
-       return em.createQuery("SELECT * FROM LISTING WHERE CATEGORY_ID = " + seller.getId()).getResultList();
+        return getListingsBySeller(seller, -1, -1);
     }
-    
-    public List<Listing> getListingsByCategory(Category category) {
-       EntityManager em = emf.createEntityManager();
-       return em.createQuery("SELECT * FROM LISTING WHERE CATEGORY_ID = " + category.getId()).getResultList();
-    }
-    
-    public List<Listing> searchDescription(String query, long categoryId) {
+
+    public List<Listing> getListingsBySeller(Account seller, int first, int nItems) {
         EntityManager em = emf.createEntityManager();
-        List<Listing> all = new ArrayList();
+        Query q = em.createQuery("SELECT c FROM Listing c WHERE c.seller = :id").setParameter("id", seller);
+        if (first != -1 && nItems != -1) {
+            q.setMaxResults(nItems);
+            q.setFirstResult(first);
+        }
+        return q.getResultList();
+    }
+
+    public List<Listing> getListingsByCategory(Category category) {
+        return getListingsByCategory(category, -1, -1);
+    }
+
+    public List<Listing> getListingsByCategory(Category category, int first, int nItems) {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT c FROM Listing c WHERE c.category = :id").setParameter("id", category);
+        if (first != -1 && nItems != -1) {
+            q.setMaxResults(nItems);
+            q.setFirstResult(first);
+        }
+        return q.getResultList();
+    }
+
+    public List<Listing> searchDescription(String query) {
+        return searchDescription(query, null);
+    }
+
+    public List<Listing> searchDescription(String query, int first, int nItems) {
+        return searchDescription(query, null, first, nItems);
+    }
+
+    public List<Listing> searchDescription(String query, Category category) {
+        EntityManager em = emf.createEntityManager();
+        List<Listing> all;
         List<Listing> found = new ArrayList();
-        /*
-        //dummy
-        Listing listing0 = new Listing(new Account("Joppe"), "test hej glad", new Date(), new Category("sexleksaker"));
-        Listing listing1 = new Listing(new Account("Andreas"), "test hej lad", new Date(), new Category("actionfigurer"));
-        Listing listing2 = new Listing(new Account("Sebastian"), "matta hej gla", new Date(), new Category("planeter"));
-        Listing listing3 = new Listing(new Account("Aram"), "studsmatta hej glada", new Date(), new Category("mytologiska djur"));
-        all.add(listing0);
-        all.add(listing1);
-        all.add(listing2);
-        all.add(listing3);
-        for(Listing l : all) {
-            if (l.getDescription().contains(query)) {
+
+        if (category == null) {
+            all = getAll();
+        } else {
+            all = em.createQuery("SELECT c FROM Listing c WHERE c.category = :id").setParameter("id", category).getResultList();
+        }
+        for (Listing l : all) {
+            if (l.getDescription().contains(query) || l.getName().contains(query)) {
                 found.add(l);
             }
         }
         return found;
-        */
-        
-        //real
-        
-        
-        if (categoryId == -1) {
-            all = em.createQuery("SELECT * FROM LISTING").getResultList();
+    }
+
+    public List<Listing> searchDescription(String query, Category category, int first, int nItems) {
+        List<Listing> found = searchDescription(query, category);
+
+        if (found.size() < first + nItems) {
+            found = found.subList(first, first + nItems);
         } else {
-            all = em.createQuery("SELECT * FROM LISTING c WHERE c.CATEGORY_ID = :id").setParameter("id", categoryId).getResultList();
-        }
-        for(Listing l : all) {
-            if (l.getDescription().contains(query)) {
-                found.add(l);
-            }
+            found = found.subList(first, found.size());
         }
         return found;
     }

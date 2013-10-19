@@ -89,6 +89,13 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
         T t = em.find(clazz, id);
         return t;
     }
+    
+    @Override
+    public boolean exists(K id) {
+        T t = find(id);
+        
+        return t != null;
+    }
 
     @Override
     public List<T> getRange(int first, int nItems) {
