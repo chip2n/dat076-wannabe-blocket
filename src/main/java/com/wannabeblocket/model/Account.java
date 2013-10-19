@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Account implements Serializable /*extends AbstractEntity */ {
 
     @Id
-    private String userName;
+    String userName;
     private String password;
     /*
      @OneToMany(mappedBy = "bidder", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
