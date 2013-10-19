@@ -11,18 +11,16 @@ $(function() {
             var description = entry.description;
             $("#products").find("tbody").first().append("<tr><td>" + "hej" + "</td><td>" + description + "</td><td>" + "price" + "</td></tr>");
         });
-         /*
-        // Set on click listeners for all rows, yo
-        $("#products").find("tr").click(function() {
-            var id = $(this).find("td").first().text();
-            var deferred = shop.getProductCatalogue().find(id);
-            deferred.done(function(product) {
-                createEditDeleteDialog(product);
-            });
-            deferred.fail(function() {
-                alert("Failed to retrieve data :(");
-            });
+
+        $("#prev-button").click(function() {
+            nav.prev(createTable, fail);
         });
-         */
+        $("#next-button").click(function() {
+            nav.next(createTable, fail);
+        });
+    }
+    
+    function fail() {
+        alert("Failed");
     }
 });
