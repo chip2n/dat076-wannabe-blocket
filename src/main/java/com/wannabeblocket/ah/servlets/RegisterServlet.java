@@ -32,19 +32,32 @@ public class RegisterServlet extends ServletBase {
         else
         {
             String username = this.getParameter(Parameter.USERNAME);
-            
+            String password = this.getParameter(Parameter.PASSWORD);
+            String repeat = this.getParameter(Parameter.REPEAT);
+            String email = this.getParameter(Parameter.EMAIL);
+                    
             if(this.getShop().getUserRegistry().exists(username)){
+                this.getRequest().setAttribute(RequestAttribute.USERNAME, username);
+                this.getRequest().setAttribute(RequestAttribute.PASSWORD, password);
+                this.getRequest().setAttribute(RequestAttribute.REPEAT, repeat);
+                this.getRequest().setAttribute(RequestAttribute.EMAIL, email);          
                 this.getRequest().setAttribute(RequestAttribute.ERROR, "En användare med det angivna användarnamnet finns redan.");
                 this.forward(Page.REGISTER);
             }
+//            else if(this.getShop().getUserRegistry().findEmail(email)){
+//                this.getRequest().setAttribute(RequestAttribute.USERNAME, username);
+//                this.getRequest().setAttribute(RequestAttribute.PASSWORD, password);
+//                this.getRequest().setAttribute(RequestAttribute.REPEAT, repeat);
+//                this.getRequest().setAttribute(RequestAttribute.EMAIL, email);          
+//                this.getRequest().setAttribute(RequestAttribute.ERROR, "En användare med den angivna epost adressen finns redan.");
+//                this.forward(Page.REGISTER);                
+//            }
             else {
-                String password = this.getParameter(Parameter.PASSWORD);
-                String email = this.getParameter(Parameter.EMAIL);
                 Account user = new Account(username, password);
                 
                 this.getShop().getUserRegistry().add(user);
                 this.getSession().setAttribute(SessionAttribute.USER, user);
-                this.getRequest().setAttribute(RequestAttribute.ERROR, "Användaren registrerad.");
+                this.getRequest().setAttribute(RequestAttribute.MESSAGE, "Användaren registrerad.");
                 this.forward(Page.REGISTER);
             }
         }

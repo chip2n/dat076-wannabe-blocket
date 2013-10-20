@@ -40,9 +40,9 @@ function validateEmail(input){
     }
     else{
         input.setCustomValidity("");
-    }  
+    }
 }
 
-function clear(input){
-    input.setCustomValidity('');
+function clearValidation(input){
+    input.setCustomValidity("");
 }

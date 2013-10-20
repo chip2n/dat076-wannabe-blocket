@@ -36,7 +36,7 @@ public class LoginServlet extends ServletBase {
         else{    
             String username = this.getParameter(Parameter.USERNAME);
             String password = this.getParameter(Parameter.PASSWORD);
-            Account account = this.getShop().getUserRegistry().find(username);
+            Account account = this.getShop().getUserRegistry().login(username, password);
 
             if(account != null){        
                 this.setUser(account);
