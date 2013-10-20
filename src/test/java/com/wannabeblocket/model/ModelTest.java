@@ -2,17 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wannabeblocket.test;
+package com.wannabeblocket.model;
 
-import com.wannabeblocket.model.Account;
-import com.wannabeblocket.model.AuctionHouse;
-import com.wannabeblocket.model.BiddingHistory;
-import com.wannabeblocket.model.Category;
-import com.wannabeblocket.model.CategoryList;
-import com.wannabeblocket.model.CommentSection;
-import com.wannabeblocket.model.Listing;
-import com.wannabeblocket.model.Shop;
-import com.wannabeblocket.model.UserRegistry;
 import java.util.Date;
 import java.util.HashMap;
 import org.junit.After;
@@ -25,7 +16,7 @@ import org.junit.Test;
  *
  * @author stoffe
  */
-public class ModelTests {
+public class ModelTest {
     
     private static Shop shop;
     private static UserRegistry usrreg;
@@ -51,7 +42,7 @@ public class ModelTests {
     private final static HashMap<String, Account> accs = new HashMap<>();
     private final static HashMap<String, Category> cats = new HashMap<>();
             
-    public ModelTests() {
+    public ModelTest() {
     }
     
     @BeforeClass
@@ -154,7 +145,7 @@ public class ModelTests {
         // check that no account got added
         assert(usrreg.getCount() == accs.size());
     }
-    
+    /*
     @Test
     public void test()
     {   
@@ -171,5 +162,6 @@ public class ModelTests {
             new Listing(tmpAcc, "Volvo", "Modell okänd.", new Date(), c)
         };
     }
+    */
     
 }
