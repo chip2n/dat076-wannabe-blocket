@@ -18,7 +18,7 @@ import com.wannabeblocket.model.Shop;
 public class BeanBase implements Serializable{
     private HttpServletRequest _request = null;
     private HttpServletResponse _response = null; 
-    private Shop _shop;  
+    private final Shop _shop;  
        
     /**
      * Initializes a new instance of the BeanBase class.
@@ -59,15 +59,44 @@ public class BeanBase implements Serializable{
      * Returns the context path of the servlet.
      * @return the context path of the servlet.
      */
-    protected String getContextPath(){ return this.getRequest().getServletContext().getContextPath(); }  
+    protected String getContextPath(){ return _request.getServletContext().getContextPath(); }  
     
     /**
      * Forwards the request to the specified path.
      * @param path the path to forward the request too.
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
     protected void forward(String path) throws ServletException, IOException{ 
-        this.getRequest().getRequestDispatcher(path).forward(this.getRequest(), this.getResponse()); 
+        this._request.getRequestDispatcher(path).forward(this.getRequest(), this.getResponse()); 
     } 
+    
+        /**
+     * Redirects to the specified path.
+     * @param path the path to redirect too.
+     * @throws java.io.IOException
+     */
+    protected void redirect(String path) throws IOException{ 
+        this._response.sendRedirect(path); 
+    }     
+    
+    /**
+     * Gets the value of the parameter with the specified name as a Long.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name as a Long.
+     */
+    protected String getParameter(String name){ 
+        return this._request.getParameter(name); 
+    }
+    
+    /**
+     * Gets the parameter with the specified name.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name.
+     */
+    protected Long getParameterAsLong(String name){ 
+        return Long.getLong(this._request.getParameter(name)); 
+    }    
     
     /**
      * Gets the currently logged on user.
@@ -79,7 +108,6 @@ public class BeanBase implements Serializable{
     protected Account getUser() throws ServletException, IOException{
         return (Account) this.getSession().getAttribute(SessionAttribute.USER);    
     }
-    
     
     /**
      * Checks whether a user is logged in.

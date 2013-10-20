@@ -57,7 +57,7 @@ public abstract class ServletBase extends HttpServlet {
     
     /**
      * Redirects to the specified path.
-     * @param path the path to redisrenct the request too.
+     * @param path the path to redirect too.
      * @throws java.io.IOException
      */
     protected void redirect(String path) throws IOException{ 
@@ -65,13 +65,22 @@ public abstract class ServletBase extends HttpServlet {
     }     
     
     /**
-     * Redirects to the specified path.
+     * Gets the value of the parameter with the specified name as a Long.
      * @param name the name of the parameter.
-     * @return the value of the parameter with the specified name.
+     * @return the value of the parameter with the specified name as a Long.
      */
     protected String getParameter(String name){ 
         return this._request.getParameter(name); 
     }
+    
+    /**
+     * Gets the parameter with the specified name.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name.
+     */
+    protected Long getParameterAsLong(String name){ 
+        return Long.getLong(this._request.getParameter(name)); 
+    } 
     
     /**
      * Handles the HTTP <code>GET</code> method.

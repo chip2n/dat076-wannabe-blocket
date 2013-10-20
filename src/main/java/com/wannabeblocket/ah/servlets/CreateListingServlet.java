@@ -7,10 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
 import com.wannabeblocket.core.constants.Page;
 import com.wannabeblocket.core.constants.Servlet;
-import com.wannabeblocket.model.Account;
 import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.Listing;
-import com.wannabeblocket.model.Shop;
 
 @WebServlet(urlPatterns = {"/" + Servlet.CREATE_LISTING})
 public class CreateListingServlet extends ServletBase {
@@ -27,16 +25,14 @@ public class CreateListingServlet extends ServletBase {
     @Override
     protected void doPost() throws ServletException, IOException {
         if(this.isUserLoggedIn()){
-            String title = this.getRequest().getParameter("title");
-            Long categoryId = Long.parseLong(this.getRequest().getParameter("category"));
-            String description = this.getRequest().getParameter("description");
-            
-            Category category = Shop.getInstance().getCategoryList().find(categoryId);
-
+            String title = this.getParameter("title");
+            Long categoryId = this.getParameterAsLong("category");
+            String description = this.getParameter("description");       
+            Category category = this.getShop().getCategoryList().find(categoryId);
             Listing listing = new Listing(this.getUser(), title, description, new Date(), category);
-            Shop.getInstance(Shop.Mode.Release).getAuctionHouse().add(listing);
-
-            this.getResponse().sendRedirect(Page.MAIN);
+            
+            this.getShop().getAuctionHouse().add(listing);
+            this.redirect(Page.MAIN);
         }   
         else {
             this.forward(Page.MAIN);

@@ -1,34 +1,29 @@
 package com.wannabeblocket.ah.beans;
 
-import com.wannabeblocket.exception.ListingNotFoundException;
 import javax.inject.Named;
-import javax.annotation.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.ManagedBean;;
 import javax.enterprise.context.RequestScoped;
-import com.wannabeblocket.model.Shop;
 import com.wannabeblocket.model.Listing;
+import com.wannabeblocket.core.BeanBase;
+import com.wannabeblocket.exception.ListingNotFoundException;
 
 @Named("listing")
 @ManagedBean
 @RequestScoped
-public class ListingBean {
+public class ListingBean extends BeanBase {
     private Listing _listing;
     private int _bid;
     
     public ListingBean() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        String sId = request.getParameter("id");
+        Long id = this.getParameterAsLong("id");
         
-        if(sId !=  null) {
-            Long id = Long.parseLong(request.getParameter("id"));
-            _listing = Shop.getInstance(Shop.Mode.Release).getAuctionHouse().find(id);
+        if(id !=  null) {
+            _listing = this.getShop().getAuctionHouse().find(id);
+            
             if(_listing == null) {
-                throw new ListingNotFoundException("There is no listing with id " + sId);
+                throw new ListingNotFoundException("There is no listing with id " + id);
             }
         }
-        
     }
     
     public Listing getListing() {
@@ -42,5 +37,4 @@ public class ListingBean {
     public int getBid() {
         return _bid; 
     }
-    
 }
