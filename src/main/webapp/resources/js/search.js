@@ -34,7 +34,11 @@ $(function() {
             html += 
                 "<tr>" +
                     "<td>" + entry.id + "</td>" +
-                    "<td>" + entry.title + "</td>" + 
+                    "<td>" + 
+                        "<a href=\"showListing.xhtml?id=" + entry.id + "\">" +
+                            entry.title + 
+                        "</a>" +
+                    "</td>" + 
                     "<td>" + entry.seller + "</td>" + 
                     "<td>" + entry.description + "</td>" + 
                     "<td>" + entry["end-time"] + "</td>" + 
