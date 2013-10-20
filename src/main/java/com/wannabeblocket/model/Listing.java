@@ -12,13 +12,13 @@ import javax.persistence.Temporal;
 @Entity
 public class Listing extends AbstractEntity {
 
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     private Account seller;
     private String name;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endingTime;
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.REFRESH})
     private Category category;
     @OneToMany(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "LISTING")

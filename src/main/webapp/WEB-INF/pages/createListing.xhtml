@@ -4,7 +4,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="additionalpageheaders">
     </ui:define>
@@ -22,11 +23,9 @@
                 <div style="float:left;margin-right:20px;">
                     <label style="display:block;" for="category">Kategori</label>
                     <select style="display:block;" name="category">
-                        <option value="0">Alla kategorier</option>
-                        <option value="1">Gröna badrumstillbehör</option>
-                        <option value="2">Elektronik (halvtrasiga)</option>
-                        <option value="3">Bilar</option>
-                        <option value="4">Båtar (not literally)</option>
+                        <c:forEach items="#{category.categories}" var="cat">
+                            <option value="#{cat.id}">#{cat.name}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </section>
