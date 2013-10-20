@@ -8,7 +8,6 @@ import com.wannabeblocket.core.constants.Page;
 import com.wannabeblocket.core.constants.Parameter;
 import com.wannabeblocket.core.constants.RequestAttribute;
 import com.wannabeblocket.core.constants.Servlet;
-import com.wannabeblocket.core.constants.SessionAttribute;
 import com.wannabeblocket.model.Account;
 
 @WebServlet(urlPatterns = {"/" + Servlet.REGISTER})
