@@ -53,10 +53,7 @@ public class RegisterServlet extends ServletBase {
                 this.forward(Page.REGISTER);                
             }
             else {
-                Account user = new Account(username, password, email);
-                
-                this.getShop().getUserRegistry().add(user);
-                this.getSession().setAttribute(SessionAttribute.USER, user);
+                this.getShop().getUserRegistry().add(new Account(username, password, email));
                 this.getRequest().setAttribute(RequestAttribute.MESSAGE, "Användaren registrerad.");
                 this.forward(Page.REGISTER);
             }
