@@ -81,21 +81,27 @@ public class BeanBase implements Serializable{
     }     
     
     /**
-     * Gets the value of the parameter with the specified name as a Long.
+     * Gets the value of the parameter with the specified name.
      * @param name the name of the parameter.
-     * @return the value of the parameter with the specified name as a Long.
+     * @return the value of the parameter with the specified name.
      */
     protected String getParameter(String name){ 
         return this._request.getParameter(name); 
     }
     
     /**
-     * Gets the parameter with the specified name.
+     * Gets the parameter with the specified name as a Long.
      * @param name the name of the parameter.
-     * @return the value of the parameter with the specified name.
+     * @return the value of the parameter with the specified name as a Long.
      */
     protected Long getParameterAsLong(String name){ 
-        return Long.getLong(this._request.getParameter(name)); 
+        try
+        {
+            return Long.parseLong(this._request.getParameter(name)); 
+        }
+        catch(NumberFormatException e){
+            return null;
+        }
     }    
     
     /**
