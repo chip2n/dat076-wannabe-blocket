@@ -2,6 +2,7 @@ package com.wannabeblocket.model;
 
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -13,6 +14,7 @@ public class Comment extends AbstractEntity {
     private Listing listing;
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Account poster;
+    @Column
     private String text;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date submissionTime;

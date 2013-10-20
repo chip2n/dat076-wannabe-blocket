@@ -3,6 +3,7 @@ package com.wannabeblocket.model;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +15,9 @@ public class Listing extends AbstractEntity {
 
     @ManyToOne(cascade = {CascadeType.REFRESH})
     private Account seller;
+    @Column
     private String name;
+    @Column
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endingTime;

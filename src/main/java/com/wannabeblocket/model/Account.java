@@ -2,6 +2,7 @@ package com.wannabeblocket.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,24 +11,22 @@ public class Account implements Serializable /*extends AbstractEntity */ {
 
     @Id
     String userName;
+    
+    @Column
     private String password;
-    /*
-     @OneToMany(mappedBy = "bidder", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-     private List<Bid> bids;
-     @OneToMany(mappedBy = "poster", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-     private List<Comment> comments;
-     */
-
-    /*
-     public Account(Long id, String userName, String password) {
-     super(id);
-     this.userName = userName;
-     this.password = password;
-     }
-     */
+    
+    @Column
+    private String email;
+    
     public Account(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+    
+    public Account(String userName, String password, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
     }
 
     public Account() {
@@ -47,6 +46,14 @@ public class Account implements Serializable /*extends AbstractEntity */ {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
