@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
 import com.wannabeblocket.core.constants.Page;
+import com.wannabeblocket.core.constants.Parameter;
 import com.wannabeblocket.core.constants.Servlet;
 import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.Listing;
@@ -25,9 +26,9 @@ public class CreateListingServlet extends ServletBase {
     @Override
     protected void doPost() throws ServletException, IOException {
         if(this.isUserLoggedIn()){
-            String title = this.getParameter("title");
-            Long categoryId = this.getParameterAsLong("category");
-            String description = this.getParameter("description");       
+            String title = this.getParameter(Parameter.TITLE);
+            Long categoryId = this.getParameterAsLong(Parameter.CATEGORY);
+            String description = this.getParameter(Parameter.DESCRIPTION);       
             Category category = this.getShop().getCategoryList().find(categoryId);
             Listing listing = new Listing(this.getUser(), title, description, new Date(), category);
             

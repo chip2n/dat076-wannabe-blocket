@@ -5,6 +5,7 @@ import javax.annotation.ManagedBean;;
 import javax.enterprise.context.RequestScoped;
 import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.core.BeanBase;
+import com.wannabeblocket.core.constants.Parameter;
 import com.wannabeblocket.exception.ListingNotFoundException;
 
 @Named("listing")
@@ -15,7 +16,7 @@ public class ListingBean extends BeanBase {
     private int _bid;
     
     public ListingBean() {
-        Long id = this.getParameterAsLong("id");
+        Long id = this.getParameterAsLong(Parameter.ID);
         
         if(id !=  null) {
             _listing = this.getShop().getAuctionHouse().find(id);
