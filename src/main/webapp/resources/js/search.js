@@ -28,13 +28,20 @@ $(function() {
     });
  
     function createTable(listings) {
-        // Use JQuery and HTML
-        // First, clear tbody
-        $("tbody").empty();
+        var html = "";
+        
         listings.forEach(function(entry) {
-            var description = entry.description;
-            $("#products").find("tbody").first().append("<tr><td>" + "hej" + "</td><td>" + description + "</td><td>" + "price" + "</td></tr>");
+            html += 
+                "<tr>" +
+                    "<td>" + entry.id + "</td>" +
+                    "<td>" + "" + "</td>" + 
+                    "<td>" + entry.seller + "</td>" + 
+                    "<td>" + entry.description + "</td>" + 
+                    "<td>" + entry["end-time"] + "</td>" + 
+                "</tr>";
         });
+        
+        $("table#products tbody").html(html);
     }
     
     function fail() {

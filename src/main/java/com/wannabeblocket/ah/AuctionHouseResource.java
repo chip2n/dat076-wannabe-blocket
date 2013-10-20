@@ -1,16 +1,11 @@
 package com.wannabeblocket.ah;
 
-import com.wannabeblocket.model.Account;
 import com.wannabeblocket.model.AuctionHouse;
-import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.model.Shop;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -44,15 +39,13 @@ public class AuctionHouseResource {
         GenericEntity<List<ListingProxy>> p = new GenericEntity<List<ListingProxy>>(proxyListings){};
         
         return Response.ok(p).build();
-        
-        //return Response.ok().build();
     }
     
     @GET
     @Path("/range")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getRange(@QueryParam("fst") int first, @QueryParam("max") int nItems, @QueryParam("query") String query) {
-        List<Listing> listings = null;
+        List<Listing> listings;
         
         if(query.equals("undefined")) {
             listings = _auctionHouse.getRange(first, nItems);
