@@ -14,7 +14,7 @@ function getUrlVars()
 }
 
 $(function() {
-    ah.getAuctionHouse().search(getUrlVars()["query"], 0, 3).done(function(listings) {
+    ah.getAuctionHouse().search(getUrlVars()["query"], getUrlVars()["category"], 0, 3).done(function(listings) {
         createTable(listings);
     });
     
