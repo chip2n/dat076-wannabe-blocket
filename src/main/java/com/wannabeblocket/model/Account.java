@@ -15,7 +15,7 @@ public class Account implements Serializable /*extends AbstractEntity */ {
     @Column
     private String password;
     
-    @Column
+    @Column(unique = true)
     private String email;
     
     public Account(String userName, String password) {
