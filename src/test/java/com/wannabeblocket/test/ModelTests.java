@@ -8,11 +8,13 @@ import com.wannabeblocket.model.Account;
 import com.wannabeblocket.model.AuctionHouse;
 import com.wannabeblocket.model.BiddingHistory;
 import com.wannabeblocket.model.Category;
+import com.wannabeblocket.model.CategoryList;
 import com.wannabeblocket.model.CommentSection;
 import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.model.Shop;
 import com.wannabeblocket.model.UserRegistry;
 import java.util.Date;
+import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,14 +32,24 @@ public class ModelTests {
     private static AuctionHouse ah;
     private static CommentSection csec;
     private static BiddingHistory bhist;
+    private static CategoryList clist;
     
-    
-    static final Account[] accs = {
+    private static final Account[] accs_arr = {
             new Account("Olle", "12345"),
             new Account("Bengt", "54321"),
             new Account("Lisa", "hemligt"),
             new Account("Greger", "ange lösenord")
     };
+    
+    private static final Category[] cats_arr = {
+            new Category("Gammal skit"),
+            new Category("Stulet"),
+            new Category("Barn"),
+            new Category("Övrigt")
+    };
+    
+    private final static HashMap<String, Account> accs = new HashMap<>();
+    private final static HashMap<String, Category> cats = new HashMap<>();
             
     public ModelTests() {
     }
@@ -49,15 +61,25 @@ public class ModelTests {
         ah = shop.getAuctionHouse();
         csec = shop.getCommentSection();
         bhist = shop.getBiddingHistory();
+        clist = shop.getCategoryList();
         
-        // add users
+        // add some users
         assert(usrreg.getCount() == 0);
-        
-        for(int i = 0; i < accs.length; ++i)
+        for(Account a : accs_arr)
         {
-            usrreg.add(accs[i]);
-            assert(usrreg.getCount() == i+1);
+            accs.put(a.getUserName(), a);
+            usrreg.add(a);
         }
+        assert(usrreg.getCount() == accs.size());
+        
+        // add some categories
+        assert(clist.getCount() == 0);
+        for(Category c : cats_arr)
+        {
+            cats.put(c.getName(), c);
+            clist.add(c);
+        }
+        assert(clist.getCount() == cats.size());
     }
     
     @AfterClass
@@ -75,36 +97,50 @@ public class ModelTests {
     @Test
     public void accountTests()
     {   
-        // test login method
-        assert(usrreg.login(accs[0].getUserName(), accs[0].getPassword())
-                .getUserName().equals(accs[0].getUserName()));
+        // get temp account
+        Account tmpAcc = accs.get("Olle");
+        assert(tmpAcc != null);
         
+        // check test data
+        String wrongPass = "wrong password!";
+        assert(!tmpAcc.getPassword().equals(wrongPass));
+        
+        // test login method
+        assert(usrreg.login(tmpAcc.getUserName(), tmpAcc.getPassword())
+                .getUserName().equals(tmpAcc.getUserName()));
+        
+        // test that a wrong password can't be used to login
         assert(null == usrreg.login(
-                accs[0].getUserName(), "wrong password"));
+                tmpAcc.getUserName(), "wrong password"));
        
         // test so no users can have the same username
-        int dindex = 2; // index to user
+        tmpAcc = accs.get("Lisa");
+        assert(tmpAcc != null);
         
-        Account dublicate_acc = 
-                new Account(accs[dindex].getUserName(), "hejhopp");        
+        assert(tmpAcc.getUserName().equals( 
+                usrreg.find(tmpAcc.getUserName()).getUserName()));
+        
+        Account dublicate_acc =
+                new Account(tmpAcc.getUserName(), "hejhopp");        
         usrreg.add(dublicate_acc);
         
         // check that no account got added
-        assert(usrreg.getCount() == accs.length);
+        assert(usrreg.getCount() == accs.size());
     }
     
     @Test
     public void test()
     {   
-        Category[] cats = {
-            new Category("Gammal skit"),
-            new Category("Stulet"),
-            new Category("Barn"),
-            new Category("Övrigt")
-        };
+        // get account
+        Account tmpAcc = accs.get("Bengt");
+        assert(tmpAcc != null);
+        
+        // get category
+        Category c = cats.get("Gammal skit");
+        assert(c != null);
         
         Listing[] lList = {
-            new Listing(accs[1], "Trasig stol", "Kommer i bitar.", new Date(), cats[0])
+            new Listing(tmpAcc, "Trasig stol", "Kommer i bitar.", new Date(), c)
         };
     }
     
