@@ -103,12 +103,6 @@ footer {
     color: black;
 }
 
-.messagepop {
-    background-color:#FFFFFF;
-    border:1px solid #999999;
-    cursor:default;
-}
-
 .center {
     text-align: center;
 }
@@ -119,4 +113,7 @@ footer {
 
 .searchbar-left {
     background: #ffd218 url("top_menu_bg_left.png.xhtml?ln=img") no-repeat top right;
+}
+
+a.close {
 }

@@ -8,15 +8,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.wannabeblocket.core.constants.SessionAttributes;
+import com.wannabeblocket.core.constants.SessionAttribute;
 import com.wannabeblocket.model.Account;
+import com.wannabeblocket.model.Shop;
 
 /**
  * Bean base class.
  */
 public class BeanBase implements Serializable{
     private HttpServletRequest _request = null;
-    private HttpServletResponse _response = null;
+    private HttpServletResponse _response = null; 
+    private Shop _shop;  
        
     /**
      * Initializes a new instance of the BeanBase class.
@@ -26,7 +28,14 @@ public class BeanBase implements Serializable{
         
         _request = (HttpServletRequest) context.getRequest();
         _response = (HttpServletResponse) context.getResponse();
+        _shop = Shop.getInstance();
     }
+    
+    /**
+     * Returns the shop.
+     * @return the shop.
+     */
+    protected Shop getShop(){ return this._shop; }       
     
     /**
      * Returns the servlet request.
@@ -68,7 +77,7 @@ public class BeanBase implements Serializable{
      * @throws IOException 
      */
     protected Account getUser() throws ServletException, IOException{
-        return (Account) this.getSession().getAttribute(SessionAttributes.USER);    
+        return (Account) this.getSession().getAttribute(SessionAttribute.USER);    
     }
     
     

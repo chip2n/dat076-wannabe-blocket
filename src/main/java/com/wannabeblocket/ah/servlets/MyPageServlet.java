@@ -4,10 +4,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
-import com.wannabeblocket.core.constants.Pages;
-import com.wannabeblocket.core.constants.Servlets;
+import com.wannabeblocket.core.constants.Page;
+import com.wannabeblocket.core.constants.Servlet;
 
-@WebServlet(urlPatterns = {"/" + Servlets.MY_PAGE})
+@WebServlet(urlPatterns = {"/" + Servlet.MY_PAGE})
 public class MyPageServlet extends ServletBase { 
     
     @Override
@@ -22,10 +22,10 @@ public class MyPageServlet extends ServletBase {
     
     private void forward() throws ServletException, IOException{
         if(this.isUserLoggedIn()){
-            this.forward(Pages.MY_PAGE);
+            this.forward(Page.MY_PAGE);
         }   
         else {
-            this.forward(Pages.MAIN);
+            this.forward(Page.MAIN);
         }
     }
 }

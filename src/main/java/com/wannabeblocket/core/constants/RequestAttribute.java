@@ -1,5 +1,5 @@
 package com.wannabeblocket.core.constants;
 
-public final class RequestAttributes {
+public final class RequestAttribute {
     public static final String ERROR = "error";
 }

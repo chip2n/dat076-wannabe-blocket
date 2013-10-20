@@ -1,17 +1,25 @@
 package com.wannabeblocket.core;
 
-import com.wannabeblocket.core.constants.SessionAttributes;
-import com.wannabeblocket.model.Account;
 import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.wannabeblocket.model.Account;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.core.constants.SessionAttribute;
 
 public abstract class ServletBase extends HttpServlet {
     private HttpServletRequest _request;
     private HttpServletResponse _response;
+    private Shop _shop;
+    
+    /**
+     * Returns the shop.
+     * @return the shop.
+     */
+    protected Shop getShop(){ return this._shop; } 
     
     /**
      * Returns the servlet request.
@@ -29,21 +37,41 @@ public abstract class ServletBase extends HttpServlet {
      * Returns the current session.
      * @return the current session.
      */
-    protected HttpSession getSession() { return this.getRequest().getSession(); }
+    protected HttpSession getSession() { return this._request.getSession(); }
     
     /**
      * Returns the context path of the servlet.
      * @return the context path of the servlet.
      */
-    protected String getContextPath(){ return this.getRequest().getServletContext().getContextPath(); }  
+    protected String getContextPath(){ return this._request.getServletContext().getContextPath(); }  
     
     /**
      * Forwards the request to the specified path.
      * @param path the path to forward the request too.
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
     protected void forward(String path) throws ServletException, IOException{ 
-        this.getRequest().getRequestDispatcher(path).forward(this.getRequest(), this.getResponse()); 
+        this._request.getRequestDispatcher(path).forward(this.getRequest(), this.getResponse()); 
     } 
+    
+    /**
+     * Redirects to the specified path.
+     * @param path the path to redisrenct the request too.
+     * @throws java.io.IOException
+     */
+    protected void redirect(String path) throws IOException{ 
+        this._response.sendRedirect(path); 
+    }     
+    
+    /**
+     * Redirects to the specified path.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name.
+     */
+    protected String getParameter(String name){ 
+        return this._request.getParameter(name); 
+    }
     
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -99,6 +127,7 @@ public abstract class ServletBase extends HttpServlet {
     private void init(HttpServletRequest request, HttpServletResponse response){
         this._request = request;
         this._response = response;
+        this._shop = Shop.getInstance();
     }
     
     /**
@@ -119,7 +148,7 @@ public abstract class ServletBase extends HttpServlet {
      * @throws IOException 
      */
     protected Account getUser() throws ServletException, IOException{
-        return (Account) getSession().getAttribute(SessionAttributes.USER);    
+        return (Account) this.getSession().getAttribute(SessionAttribute.USER);    
     }
     
     /**
@@ -130,6 +159,6 @@ public abstract class ServletBase extends HttpServlet {
      * @throws IOException 
      */
     protected boolean isUserLoggedIn() throws ServletException, IOException{
-        return getUser() != null;    
+        return this.getUser() != null;    
     }
 }

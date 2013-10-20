@@ -4,11 +4,11 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
-import com.wannabeblocket.core.constants.Pages;
-import com.wannabeblocket.core.constants.Servlets;
-import com.wannabeblocket.core.constants.SessionAttributes;
+import com.wannabeblocket.core.constants.Page;
+import com.wannabeblocket.core.constants.Servlet;
+import com.wannabeblocket.core.constants.SessionAttribute;
 
-@WebServlet(urlPatterns = {"/" + Servlets.LOGOUT})
+@WebServlet(urlPatterns = {"/" + Servlet.LOGOUT})
 public class LogoutServlet extends ServletBase { 
     @Override
     protected void doGet() throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class LogoutServlet extends ServletBase {
     } 
     
     private void logoutAndForward() throws ServletException, IOException{
-        getSession().removeAttribute(SessionAttributes.USER);
-        this.forward(Pages.MAIN);
+        getSession().removeAttribute(SessionAttribute.USER);
+        this.forward(Page.MAIN);
     }
 }

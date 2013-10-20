@@ -7,30 +7,38 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="additionalpageheaders">
+        <h:outputScript library="js" name="register.js"/>
     </ui:define>
     <ui:define name="pagetitle">
-        Skapa konto
+        Registrera
     </ui:define>
     <ui:define name="maincontent">
-        <h1>Skapa konto</h1>
-        <form method="post" id="new_user" action="createuser">
+        <h1>Registrera</h1>
+        <form name="register" method="post" id="register" action="register" onsubmit="return validate();">
             <section>
-                <div style="float:left;margin-right:20px;">
-                    <label style="display:block;" for="username">Användarnamn</label>
-                    <input style="display:block;" type="text" size="30" name="username" id="username" />
-                    <label style="display:block;" for="password">Lösenord</label>
-                    <input style="display:block;" type="password" size="30" name="password" id="password" />
-                    <label style="display:block;" for="password2">Lösenord (igen)</label>
-                    <input style="display:block;" type="password" size="30" name="password2" id="password2" />
-                    <label style="display:block;" for="email">Email</label>
-                    <input style="display:block;" type="text" size="30" name="email" id="email" />
-                </div>
+                <table>
+                    <tr>
+                        <td><label for="username">Användarnamn: </label></td>
+                        <td><input type="text" size="30" name="username" id="username" required="required" onchange="validateUsername(this);" oninvalid="validateUsername(this);" onfocus="clear(this);"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Lösenord: </label></td>
+                        <td><input type="password" size="30" name="password" id="password" required="required" onchange="validatePassword(this);" oninvalid="validatePassword(this);" onfocus="clear(this);"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="repeat">Repetera: </label></td>
+                        <td><input type="password" size="30" name="repeat" id="repeat" required="required" onchange="validateRepeat(this);" oninvalid="validateRepeat(this);" onfocus="clear(this);"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email: </label></td>
+                        <td><input type="email" size="30" name="email" id="email" required="required" onchange="validateEmail(this);" oninvalid="validateEmail(this);" onfocus="clear(this);"/></td>
+                    </tr>
+                </table>
             </section>
-            <br style="clear:both;" />
-            <section>
-                <br style="clear:both;" />
-                <input type="submit" value="Skapa konto" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a>
-            </section>
+            <div style="color: red">#{error}</div>
+            <div style="margin-top: 10px;">
+                <input type="submit" value="Skapa konto"/> eller <a class="close" href="main.xhtml">Avbryt</a>
+            </div>
         </form>
     </ui:define>
     <ui:define name="pagefooter">

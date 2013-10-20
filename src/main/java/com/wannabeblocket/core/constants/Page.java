@@ -1,6 +1,6 @@
 package com.wannabeblocket.core.constants;
 
-public final class Pages {
+public final class Page {
     public static final String MAIN = "main.xhtml";
     public static final String LOGIN = "WEB-INF/pages/login.xhtml";
     public static final String MY_PAGE = "WEB-INF/pages/myPage.xhtml";

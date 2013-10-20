@@ -86,19 +86,6 @@ footer {
     overflow:hidden;
 }
 
-.messagepop {
-    display:none;
-    position: absolute;
-    width:220px;
-    z-index:50;
-    padding: 10px 25px 00px 25px;
-}
-
-.messagepop p, .messagepop.div {
-    margin: 8px 0;
-    padding-bottom: 8px;
-}
-
 .searchbar {
     display: block;
     clear: both;
