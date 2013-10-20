@@ -1,8 +1,6 @@
 package com.wannabeblocket.model;
 
-import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 public class UserRegistry extends AbstractDAO<Account, String> {
 
