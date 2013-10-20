@@ -4,9 +4,7 @@ import java.util.List;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import javax.enterprise.context.RequestScoped;
-import com.wannabeblocket.model.Shop;
 import com.wannabeblocket.model.Listing;
-import com.wannabeblocket.model.AuctionHouse;
 
 @Named("search")
 @RequestScoped
