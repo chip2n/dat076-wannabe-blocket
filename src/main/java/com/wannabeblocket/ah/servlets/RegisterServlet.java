@@ -44,7 +44,7 @@ public class RegisterServlet extends ServletBase {
                 this.getRequest().setAttribute(RequestAttribute.ERROR, "En användare med det angivna användarnamnet finns redan.");
                 this.forward(Page.REGISTER);
             }
-//            else if(this.getShop().getUserRegistry().findEmail(email)){
+//            else if(this.getShop().getUserRegistry().findByEmail(email) != null){
 //                this.getRequest().setAttribute(RequestAttribute.USERNAME, username);
 //                this.getRequest().setAttribute(RequestAttribute.PASSWORD, password);
 //                this.getRequest().setAttribute(RequestAttribute.REPEAT, repeat);
