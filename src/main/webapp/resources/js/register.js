@@ -11,7 +11,7 @@ function validatePassword(input){
     if(input.value === ""){
         input.setCustomValidity('Ange ett lösenord.');
     }
-    else if(input.value.length < 4 && input.value.length > 16){
+    else if(input.value.length < 4 || input.value.length > 16){
         input.setCustomValidity('Lösenordet måste vara mellan 4 och 16 tecken långt.');
     }
     else{
