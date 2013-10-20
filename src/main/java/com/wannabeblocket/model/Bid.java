@@ -2,6 +2,7 @@ package com.wannabeblocket.model;
 
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -13,6 +14,7 @@ public class Bid extends AbstractEntity {
     private Listing listing;
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Account bidder;
+    @Column
     private int amount;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date timePlaced;
