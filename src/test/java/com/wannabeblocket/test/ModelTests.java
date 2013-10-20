@@ -35,10 +35,10 @@ public class ModelTests {
     private static CategoryList clist;
     
     private static final Account[] accs_arr = {
-            new Account("Olle", "12345"),
-            new Account("Bengt", "54321"),
-            new Account("Lisa", "hemligt"),
-            new Account("Greger", "ange lösenord")
+            new Account("Olle", "12345", "olle@somecompany.com"),
+            new Account("Bengt", "54321", "bengt69@somecompany.com"),
+            new Account("Lisa", "hemligt", "lisa@somecompany.com"),
+            new Account("Greger", "ange lösenord", "ggr@somecompany.com")
     };
     
     private static final Category[] cats_arr = {
@@ -95,6 +95,17 @@ public class ModelTests {
     }
     
     @Test
+    public void findEmailTest()
+    {
+        Account a = usrreg.find("Olle");
+        Account b = usrreg.findEmail(a.getEmail());
+      
+        assert(a.getUserName().equals(b.getUserName()));
+        Account acc_null = usrreg.findEmail("hejhopp@akafoeof233.se");
+        assert(null == acc_null);
+    }
+    
+    @Test
     public void accountTests()
     {   
         // get temp account
@@ -140,7 +151,8 @@ public class ModelTests {
         assert(c != null);
         
         Listing[] lList = {
-            new Listing(tmpAcc, "Trasig stol", "Kommer i bitar.", new Date(), c)
+            new Listing(tmpAcc, "Trasig stol", "Kommer i bitar.", new Date(), c),
+            new Listing(tmpAcc, "Volvo", "Modell okänd.", new Date(), c)
         };
     }
     
