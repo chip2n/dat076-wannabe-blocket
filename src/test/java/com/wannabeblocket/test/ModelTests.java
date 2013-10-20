@@ -35,10 +35,10 @@ public class ModelTests {
     private static CategoryList clist;
     
     private static final Account[] accs_arr = {
-            new Account("Olle", "12345", "olle@somecompany.com"),
-            new Account("Bengt", "54321", "bengt69@somecompany.com"),
-            new Account("Lisa", "hemligt", "lisa@somecompany.com"),
-            new Account("Greger", "ange lösenord", "ggr@somecompany.com")
+            new Account("olle", "12345", "olle@somecompany.com"),
+            new Account("bengt", "54321", "bengt69@somecompany.com"),
+            new Account("lisa", "hemligt", "lisa@somecompany.com"),
+            new Account("greger", "ange lösenord", "ggr@somecompany.com")
     };
     
     private static final Category[] cats_arr = {
@@ -97,7 +97,7 @@ public class ModelTests {
     @Test
     public void findEmailTest()
     {
-        Account a = usrreg.find("Olle");
+        Account a = usrreg.find("olle");
         Account b = usrreg.findEmail(a.getEmail());
       
         assert(a.getUserName().equals(b.getUserName()));
@@ -108,7 +108,7 @@ public class ModelTests {
     @Test
     public void uniqueEmailTest()
     {
-        Account a = usrreg.find("Olle");
+        Account a = usrreg.find("olle");
         Account b = new Account("trollUser", "passw", a.getEmail());
         usrreg.add(b);
         
@@ -119,7 +119,7 @@ public class ModelTests {
     public void passwordTest()
     {   
         // get temp account
-        Account tmpAcc = accs.get("Olle");
+        Account tmpAcc = accs.get("olle");
         assert(tmpAcc != null);
         
         // check test data
@@ -139,7 +139,7 @@ public class ModelTests {
     public void dublicateAccountTest()
     {
         // get temp account
-        Account tmpAcc = accs.get("Lisa");
+        Account tmpAcc = accs.get("lisa");
         assert(tmpAcc != null);
         
         // check that user already exist
@@ -159,7 +159,7 @@ public class ModelTests {
     public void test()
     {   
         // get account
-        Account tmpAcc = accs.get("Bengt");
+        Account tmpAcc = accs.get("bengt");
         assert(tmpAcc != null);
         
         // get category
