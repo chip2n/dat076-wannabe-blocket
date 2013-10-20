@@ -116,7 +116,7 @@ public class ModelTests {
     }
     
     @Test
-    public void accountTests()
+    public void passwordTest()
     {   
         // get temp account
         Account tmpAcc = accs.get("Olle");
@@ -133,14 +133,20 @@ public class ModelTests {
         // test that a wrong password can't be used to login
         assert(null == usrreg.login(
                 tmpAcc.getUserName(), "wrong password"));
-       
-        // test so no users can have the same username
-        tmpAcc = accs.get("Lisa");
+    }
+    
+    @Test
+    public void dublicateAccountTest()
+    {
+        // get temp account
+        Account tmpAcc = accs.get("Lisa");
         assert(tmpAcc != null);
         
+        // check that user already exist
         assert(tmpAcc.getUserName().equals( 
                 usrreg.find(tmpAcc.getUserName()).getUserName()));
         
+        // try to add an account with the same username
         Account dublicate_acc =
                 new Account(tmpAcc.getUserName(), "hejhopp", "a@b.c");        
         usrreg.add(dublicate_acc);
