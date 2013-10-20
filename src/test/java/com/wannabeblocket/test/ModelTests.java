@@ -106,6 +106,16 @@ public class ModelTests {
     }
     
     @Test
+    public void uniqueEmailTest()
+    {
+        Account a = usrreg.find("Olle");
+        Account b = new Account("trollUser", "passw", a.getEmail());
+        usrreg.add(b);
+        
+        assert(usrreg.find(b.getUserName()) == null);
+    }
+    
+    @Test
     public void accountTests()
     {   
         // get temp account
