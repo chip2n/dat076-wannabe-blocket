@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+    <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition template="/WEB-INF/master.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
@@ -20,10 +20,11 @@
                 <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
             </p>
         </h:form> 
-        Sluttid: #{listingBean.listing.endingTime.toString()}
+        Sluttid: #{listing.listing.endingTime.toString()}
         Beskrivning av objektet:
         <hr />
         #{listing.listing.description}
+        <br />
         <b>Säljaren #{listing.listing.seller.userName} ansvarar för att beskrivningen av objektet är korrekt.</b>
     </ui:define>
     <ui:define name="pagefooter">
