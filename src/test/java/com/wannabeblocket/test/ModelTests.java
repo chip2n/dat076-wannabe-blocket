@@ -132,7 +132,7 @@ public class ModelTests {
                 usrreg.find(tmpAcc.getUserName()).getUserName()));
         
         Account dublicate_acc =
-                new Account(tmpAcc.getUserName(), "hejhopp");        
+                new Account(tmpAcc.getUserName(), "hejhopp", "a@b.c");        
         usrreg.add(dublicate_acc);
         
         // check that no account got added

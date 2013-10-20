@@ -18,11 +18,6 @@ public class Account implements Serializable /*extends AbstractEntity */ {
     @Column(unique = true)
     private String email;
     
-    public Account(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-    
     public Account(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;

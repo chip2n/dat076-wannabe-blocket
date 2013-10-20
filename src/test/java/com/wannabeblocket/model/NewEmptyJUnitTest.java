@@ -10,7 +10,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -47,7 +46,7 @@ public class NewEmptyJUnitTest {
         CommentSection cs = shop.getCommentSection();
         BiddingHistory bh = shop.getBiddingHistory();
         
-        Account account0 = new Account("Joppe", "qwerty");
+        Account account0 = new Account("Joppe", "qwerty", "a@b.c");
         
         ur.add(account0);
         
