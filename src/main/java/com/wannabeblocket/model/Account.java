@@ -60,16 +60,8 @@ public class Account implements Serializable /*extends AbstractEntity */ {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AbstractEntity other = (AbstractEntity) obj;
-        if (!Objects.equals(this.userName, other.id)) {
-            return false;
-        }
-        return true;
+        if (obj == null) return false;
+        if(!(obj instanceof Account)) return false;
+        return userName.equals(((Account)obj).userName);
     }
 }

@@ -2,17 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wannabeblocket.test;
+package com.wannabeblocket.model;
 
-import com.wannabeblocket.model.Account;
-import com.wannabeblocket.model.AuctionHouse;
-import com.wannabeblocket.model.BiddingHistory;
-import com.wannabeblocket.model.Category;
-import com.wannabeblocket.model.CategoryList;
-import com.wannabeblocket.model.CommentSection;
-import com.wannabeblocket.model.Listing;
-import com.wannabeblocket.model.Shop;
-import com.wannabeblocket.model.UserRegistry;
 import java.util.Date;
 import java.util.HashMap;
 import org.junit.After;
@@ -25,7 +16,7 @@ import org.junit.Test;
  *
  * @author stoffe
  */
-public class ModelTests {
+public class ModelTest {
     
     private static Shop shop;
     private static UserRegistry usrreg;
@@ -35,10 +26,10 @@ public class ModelTests {
     private static CategoryList clist;
     
     private static final Account[] accs_arr = {
-            new Account("Olle", "12345", "olle@somecompany.com"),
-            new Account("Bengt", "54321", "bengt69@somecompany.com"),
-            new Account("Lisa", "hemligt", "lisa@somecompany.com"),
-            new Account("Greger", "ange lösenord", "ggr@somecompany.com")
+            new Account("olle", "12345", "olle@somecompany.com"),
+            new Account("bengt", "54321", "bengt69@somecompany.com"),
+            new Account("lisa", "hemligt", "lisa@somecompany.com"),
+            new Account("greger", "ange lösenord", "ggr@somecompany.com")
     };
     
     private static final Category[] cats_arr = {
@@ -51,7 +42,7 @@ public class ModelTests {
     private final static HashMap<String, Account> accs = new HashMap<>();
     private final static HashMap<String, Category> cats = new HashMap<>();
             
-    public ModelTests() {
+    public ModelTest() {
     }
     
     @BeforeClass
@@ -97,7 +88,7 @@ public class ModelTests {
     @Test
     public void findEmailTest()
     {
-        Account a = usrreg.find("Olle");
+        Account a = usrreg.find("olle");
         Account b = usrreg.findEmail(a.getEmail());
       
         assert(a.getUserName().equals(b.getUserName()));
@@ -106,10 +97,20 @@ public class ModelTests {
     }
     
     @Test
-    public void accountTests()
+    public void uniqueEmailTest()
+    {
+        Account a = usrreg.find("olle");
+        Account b = new Account("trollUser", "passw", a.getEmail());
+        usrreg.add(b);
+        
+        assert(usrreg.find(b.getUserName()) == null);
+    }
+    
+    @Test
+    public void passwordTest()
     {   
         // get temp account
-        Account tmpAcc = accs.get("Olle");
+        Account tmpAcc = accs.get("olle");
         assert(tmpAcc != null);
         
         // check test data
@@ -123,14 +124,20 @@ public class ModelTests {
         // test that a wrong password can't be used to login
         assert(null == usrreg.login(
                 tmpAcc.getUserName(), "wrong password"));
-       
-        // test so no users can have the same username
-        tmpAcc = accs.get("Lisa");
+    }
+    
+    @Test
+    public void dublicateAccountTest()
+    {
+        // get temp account
+        Account tmpAcc = accs.get("lisa");
         assert(tmpAcc != null);
         
+        // check that user already exist
         assert(tmpAcc.getUserName().equals( 
                 usrreg.find(tmpAcc.getUserName()).getUserName()));
         
+        // try to add an account with the same username
         Account dublicate_acc =
                 new Account(tmpAcc.getUserName(), "hejhopp", "a@b.c");        
         usrreg.add(dublicate_acc);
@@ -138,12 +145,12 @@ public class ModelTests {
         // check that no account got added
         assert(usrreg.getCount() == accs.size());
     }
-    
+    /*
     @Test
     public void test()
     {   
         // get account
-        Account tmpAcc = accs.get("Bengt");
+        Account tmpAcc = accs.get("bengt");
         assert(tmpAcc != null);
         
         // get category
@@ -155,5 +162,6 @@ public class ModelTests {
             new Listing(tmpAcc, "Volvo", "Modell okänd.", new Date(), c)
         };
     }
+    */
     
 }
