@@ -54,8 +54,11 @@ public class AuctionHouseResource {
             listings = _auctionHouse.searchDescription(query, first, nItems);
         } else {
             Long categoryId = Long.parseLong(category);
-            Category cat = Shop.getInstance().getCategoryList().find(categoryId);
-            listings = _auctionHouse.searchDescription(query, cat, first, nItems);
+            if(categoryId == -1) listings = _auctionHouse.searchDescription(query, first, nItems);
+            else {
+                Category cat = Shop.getInstance().getCategoryList().find(categoryId);
+                listings = _auctionHouse.searchDescription(query, cat, first, nItems);
+            }
         }
         
         List<ListingProxy> proxyListings = new ArrayList<>(listings.size());
