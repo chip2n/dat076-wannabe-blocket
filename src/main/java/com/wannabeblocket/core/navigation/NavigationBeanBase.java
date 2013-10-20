@@ -8,7 +8,7 @@ import com.wannabeblocket.core.BeanBase;
  * Navigation bean base class.
  */
 public class NavigationBeanBase extends BeanBase {
-    private List<NavigationNode> _children;
+    private final List<NavigationNode> _children;
     
     /**
      * Initializes a new instance of the NavigationBeanBase class.

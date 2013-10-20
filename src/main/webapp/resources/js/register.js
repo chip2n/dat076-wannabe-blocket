@@ -16,7 +16,8 @@ function validatePassword(input){
     }
     else{
         input.setCustomValidity("");
-    }     
+        validateRepeat(document.forms['register'].repeat);
+    }
 }
 
 function validateRepeat(input){
