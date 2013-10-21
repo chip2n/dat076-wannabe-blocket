@@ -7,6 +7,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="additionalpageheaders">
+        <h:outputScript library="js" name="changepassword.js"/>
     </ui:define>
     <ui:define name="pagetitle">
         Min sida
@@ -14,28 +15,27 @@
     
     <ui:define name="maincontent">
         <p>Välkommen till din sida!</p>
-        <p>TODO: Get username and write it here.</p>
+        <p>#{user.userName}</p>
         <p>Byta lösenord?</p>
-        <form>
-            <table id="mypage" action="mypage" method="post">
+        <form id="changepassword" action="changepassword" method="post" accept-charset="ISO-8859-1">
+            <table>
                 <tr>
                     <td><label for="username">Gammalt Lösenord: </label></td>
-                    <td><input id="password" name="oldPwd" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>
+                    <td><input id="oldpassword" name="oldpassword" type="password" required="required" onchange="clearValidation(this);validateOldPassword(this);" oninvalid="validateOldPassword(this);"/></td>
                 </tr>
                 <tr>
                     <td><label for="username">Nytt Lösenord: </label></td>
-                    <td><input id="password" name="newPwd" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>
+                    <td><input id="password" name="password" type="password" required="required" onchange="clearValidation(this);validatePassword(this);" oninvalid="validatePassword(this);"/></td>
                 </tr>
                 <tr>
                     <td><label for="username">Nya lösenordet igen: </label></td>
-                    <td><input id="password" name="newPwdAgain" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>
+                    <td><input id="repeat" name="repeat" type="password" required="required" onchange="clearValidation(this);validateRepeat(this);" oninvalid="validateRepeat(this);"/></td>
                 </tr>
             </table>
+            <div style="color: red">#{error}</div>
+            <div style="color: blue">#{message}</div>
             <input type="submit" value="Spara ändringar"/> <a class="close" href="main.xhtml">Avbryt</a>
         </form>
-    </ui:define>
-    <ui:define name="pagefooter">
-        This is the footer.
     </ui:define>
 </ui:composition>
 

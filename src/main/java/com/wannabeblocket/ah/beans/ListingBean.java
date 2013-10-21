@@ -23,6 +23,7 @@ import javax.validation.constraints.Min;
 public class ListingBean extends BeanBase {
     private Listing _listing;
 
+    @Min(value = 1, message = "Du måste buda minst 1 kr")
     private int _bid;
     private Long _id;
     

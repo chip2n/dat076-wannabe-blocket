@@ -29,7 +29,7 @@
                 <td align="center">#{listing.listing.bids.size()} st</td>
             </tr>
         </table>
-        <h:form>
+        <h:form acceptcharset="ISO-8859-1">
                 <h:inputText id="bid" size="10" value="#{listing.bid}"/>
                 <h:inputHidden value="#{listing.listingId}" />
                 <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
@@ -44,13 +44,11 @@
         <hr />
         #{listing.listing.description}
         <br />
+        <br />
         <b>Säljaren #{listing.listing.seller.userName} ansvarar för att beskrivningen av objektet är korrekt.</b>
         <br />
 
         <div id="newcountdown"></div>
-    </ui:define>
-    <ui:define name="pagefooter">
-        This is the footer.
     </ui:define>
 </ui:composition>
 

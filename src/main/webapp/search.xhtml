@@ -7,6 +7,8 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="additionalpageheaders">
+        <h:outputStylesheet library="css" name="ui-lightness/jquery-ui-1.10.3.custom.css"/>
+        <h:outputScript library="js" name="jquery-ui-1.10.3.custom.js"/>
         <h:outputScript library="js" name="search.js"/>
         <h:outputScript library="js" name="auctionhouse.js"/>
         <h:outputScript library="js" name="ah.js"/>
@@ -21,7 +23,6 @@
                 <tr class="ui-widget-header ">
                     <th>Titel</th>
                     <th>Säljare</th>
-                    <th>Beskrivning</th>
                     <th>Avslutas</th>
                 </tr>
             </thead>
@@ -31,9 +32,6 @@
         
         <button id="prev-button">Föregående</button>
         <button id="next-button">Nästa</button>
-    </ui:define>
-    <ui:define name="pagefooter">
-        This is the footer.
     </ui:define>
 </ui:composition>
 

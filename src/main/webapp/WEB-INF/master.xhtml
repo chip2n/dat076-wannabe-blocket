@@ -34,7 +34,7 @@
 
                 
                 
-                <form id="search_box" method="get" action="search.xhtml">
+                <form id="search_box" method="get" action="search.xhtml" accept-charset="ISO-8859-1">
                     <input type="text" size="60" id="searchfield" name="query"/>
                     <label for="categories">inom</label>
                     <select id="categoryMenu" name="category">
@@ -52,7 +52,7 @@
         <article>
             <aside>
                 <ui:insert name="sidemenuheader">
-                    Side Menu Header
+                    <b>Kategorier</b>
                 </ui:insert>
                 <ui:insert name="sidemenu">
                     <h:outputText value="#{sidemenu}" escape="false"/>
@@ -63,7 +63,9 @@
             </section>
         </article>
         <footer>
-            <ui:insert name="pagefooter"/>
+            <ui:insert name="pagefooter">
+                Generated with "Web Application DAT076 Generator v1.2 BETA"
+            </ui:insert>
         </footer>
     </h:body>
 </html>

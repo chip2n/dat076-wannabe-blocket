@@ -117,3 +117,9 @@ footer {
 
 a.close {
 }
+
+.mainbanner { position: relative; overflow: auto; width: 500px; height: 300px; padding: 0px; margin: 0px; min-height: 300px; min-width: 500px;}
+    .mainbanner li { list-style: none; }
+        .mainbanner ul li { float: left; }
+        
+li.imgitem { margin: 0px; padding-left:0px;}

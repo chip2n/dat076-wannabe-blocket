@@ -9,8 +9,6 @@ import com.wannabeblocket.model.Listing;
 @Named("search")
 @RequestScoped
 public class SearchBean {
-
-    @NotNull(message = "Vad söker du?")
     private String _searchQuery;
     
     private String _categoryValue;

@@ -18,6 +18,8 @@ $(function() {
         createTable(listings);
     });
     
+    $(document).tooltip();
+    
     var nav = new Navigator(ah.getAuctionHouse());
 
     $("#prev-button").click(function() {
@@ -31,7 +33,9 @@ $(function() {
         var html = "";
         
         listings.forEach(function(entry) {
+            /*
             html += 
+                    "<a href=\"#\" title=\"hej\">" +
                 "<tr>" +
                     "<td>" + 
                         "<a href=\"showListing.xhtml?id=" + entry.id + "\">" +
@@ -41,9 +45,22 @@ $(function() {
                     "<td>" + entry.seller + "</td>" + 
                     "<td>" + entry.description + "</td>" + 
                     "<td>" + entry["end-time"] + "</td>" + 
-                "</tr>";
-        });
+                "</tr>" + 
+                "</a>";
         
+        */
+            html +=
+               "<tr>" +
+                   "<td width=400>" +
+                        "<a href=\"showListing.xhtml?id=" + entry.id + "\" title=\"" + entry.description + "\">" +
+                           entry.title +
+                        "</a>" +
+                    "</td>" +
+                    "<td width=100>" + entry.seller + "</td>" + 
+                    "<td>" + entry["end-time"] + "</td>" + 
+                "</tr>" +
+               "<br />";
+        });
         $("table#products tbody").html(html);
     }
     
