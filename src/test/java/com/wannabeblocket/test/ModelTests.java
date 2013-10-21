@@ -171,5 +171,15 @@ public class ModelTests {
             new Listing(tmpAcc, "Volvo", "Modell okänd.", new Date(), c)
         };
     }
+    @Test
+    public void bidTest()
+    {
+        Listing testListing = new Listing(accs_arr[0], "test titel", "test description", new Date(), cats_arr[1]);
+        ah.add(testListing);
+        assert(testListing.equals(ah.find(testListing.getId())));
+        
+        ah.find(testListing.getId()).placeBid(accs_arr[0], 99);
+        assert(bhist.getBidsByListing(testListing).size() == 1);
+    }
     
 }

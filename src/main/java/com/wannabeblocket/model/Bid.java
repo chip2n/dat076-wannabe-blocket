@@ -4,13 +4,14 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 @Entity
 public class Bid extends AbstractEntity {
 
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(fetch=FetchType.LAZY)
     private Listing listing;
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Account bidder;
