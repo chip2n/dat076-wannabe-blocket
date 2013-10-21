@@ -162,7 +162,7 @@ public class ModelTest {
     
     
     @Test
-    public void test()
+    public void cascadeTest()
     {   
         // get accounts
         Account tmpAcc = accs.get("bengt");
@@ -170,6 +170,9 @@ public class ModelTest {
         
         Account tmpAcc2 = accs.get("lisa");
         assert(tmpAcc2 != null);
+        
+        Account tmpAcc3 = accs.get("greger");
+        assert(tmpAcc3 != null);
         
         // get category
         Category c = cats.get("Gammal skit");
@@ -185,6 +188,10 @@ public class ModelTest {
             ah.add(l);
         
         assert(ah.getListingsByCategory(c).size() == lList.length);
+        
+        /*
+            *** Test Comments ***
+        */
         
         // get first Listing
         Listing ltmp = ah.getListingsByCategory(c).get(0);
@@ -220,6 +227,37 @@ public class ModelTest {
         // check that all comments now are removed from the persistence unit
         for(Long id : idCommentList)
             assert(csec.find(id) == null);
+        
+        /*
+            *** Test Bids ***
+        */
+        
+        // get first Listing
+        Listing ltmp2 = ah.getListingsByCategory(c).get(0);
+        assert(ltmp2 != null);
+        
+        // place some bids
+        for(int i=0; i<8; ++i)
+            ltmp2.placeBid( i%2==0 ? tmpAcc2 : tmpAcc3, (int)Math.pow(2, i) );
+        
+        // save all bid IDs
+        List<Bid> bidlst = ltmp2.getBids();
+        Long[] bidsIDs = new Long[bidlst.size()];
+        
+        for(int i = 0; i<bidlst.size(); ++i)
+            bidsIDs[i] = bidlst.get(i).getId();
+        
+        // check that all bids are added to the persistence unit
+        for(Long bidID : bidsIDs)
+            assert(bhist.exists(bidID));
+        
+        // remove listing
+        ah.remove(ltmp2.getId());
+        assert(ah.getListingsByCategory(c).size() == lList.length -2);
+        
+        // check that all bids are removed from the persistence unit
+        for(Long bidID : bidsIDs)
+            assert(!bhist.exists(bidID));
     }
 
     @Test
