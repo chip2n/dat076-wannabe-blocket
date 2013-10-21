@@ -30,6 +30,7 @@ public class ChangePasswordServlet extends ServletBase {
             
             if(account.getPassword().equals(this.getParameter(Parameter.OLD_PASSWORD))) {
                 account.setPassword(this.getParameter(Parameter.PASSWORD));
+                this.getShop().getUserRegistry().update(account);
                 this.getRequest().setAttribute(RequestAttribute.MESSAGE, "Lösenordet är uppdaterat!");
             } 
             else {
