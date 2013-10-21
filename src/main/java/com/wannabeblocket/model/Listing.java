@@ -111,6 +111,7 @@ public class Listing extends AbstractEntity {
         Bid newBid = new Bid(this, account, amount, new Date());
         this.bids.add(newBid);
         shop.getBiddingHistory().add(newBid);
+        shop.getAuctionHouse().update(this);
         return true;
     }
 
