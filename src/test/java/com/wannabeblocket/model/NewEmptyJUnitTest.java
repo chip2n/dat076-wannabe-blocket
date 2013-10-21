@@ -41,10 +41,10 @@ public class NewEmptyJUnitTest {
     @Test
     public void hello() {
         Shop shop = Shop.getInstance(Shop.Mode.Debug);
-        UserRegistry ur = shop.getUserRegistry();
-        AuctionHouse ah = shop.getAuctionHouse();
-        CommentSection cs = shop.getCommentSection();
-        BiddingHistory bh = shop.getBiddingHistory();
+        IUserRegistry ur = shop.getUserRegistry();
+        IAuctionHouse ah = shop.getAuctionHouse();
+        ICommentSection cs = shop.getCommentSection();
+        IBiddingHistory bh = shop.getBiddingHistory();
         
         Account account0 = new Account("Joppe", "qwerty", "a@b.c");
         

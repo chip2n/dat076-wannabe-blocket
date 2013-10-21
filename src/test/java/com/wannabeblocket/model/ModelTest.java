@@ -19,10 +19,10 @@ import org.junit.Test;
 public class ModelTest {
     
     private static Shop shop;
-    private static UserRegistry usrreg;
-    private static AuctionHouse ah;
-    private static CommentSection csec;
-    private static BiddingHistory bhist;
+    private static IUserRegistry usrreg;
+    private static IAuctionHouse ah;
+    private static ICommentSection csec;
+    private static IBiddingHistory bhist;
     private static CategoryList clist;
     
     private static final Account[] accs_arr = {

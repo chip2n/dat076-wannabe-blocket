@@ -1,7 +1,7 @@
 package com.wannabeblocket.ah;
 
-import com.wannabeblocket.model.AuctionHouse;
 import com.wannabeblocket.model.Category;
+import com.wannabeblocket.model.IAuctionHouse;
 import com.wannabeblocket.model.Listing;
 import com.wannabeblocket.model.Shop;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
  */
 @Path("/auctions")
 public class AuctionHouseResource {
-    private AuctionHouse _auctionHouse;
+    private IAuctionHouse _auctionHouse;
     
     public AuctionHouseResource() {
         _auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
