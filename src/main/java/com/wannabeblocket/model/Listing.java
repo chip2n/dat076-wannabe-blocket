@@ -24,7 +24,7 @@ public class Listing extends AbstractEntity {
     @ManyToOne(cascade = {CascadeType.REFRESH})
     private Category category;
     @OneToMany(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "LISTING")
+    @JoinColumn(name = "LISTING_ID")
     private List<Bid> bids;
     @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Comment> comments;
@@ -110,5 +110,8 @@ public class Listing extends AbstractEntity {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+    public void postComment(Account account, String text) {
+        this.comments.add(new Comment(this, account, text, new Date()));
     }
 }

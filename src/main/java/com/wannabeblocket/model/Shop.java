@@ -9,16 +9,16 @@ package com.wannabeblocket.model;
  * @author Joppe
  */
 public class Shop {
-    private final UserRegistry userRegistry;
-    private final AuctionHouse auctionHouse;
-    private final CommentSection commentSection;
-    private final BiddingHistory biddingHistory;
+    private final IUserRegistry userRegistry;
+    private final IAuctionHouse auctionHouse;
+    private final ICommentSection commentSection;
+    private final IBiddingHistory biddingHistory;
     private final CategoryList categoryList;
     
     private static Shop _shop;
 
     private Shop(String puName) {
-        userRegistry = new UserRegistry(puName);
+        userRegistry = UserRegistry.newInstance(puName);
         auctionHouse = new AuctionHouse(puName);
         commentSection = new CommentSection(puName);
         biddingHistory = new BiddingHistory(puName);
@@ -54,19 +54,19 @@ public class Shop {
             return getInstance(Mode.Release);
     }
 
-    public UserRegistry getUserRegistry() {
+    public IUserRegistry getUserRegistry() {
         return userRegistry;
     }
 
-    public AuctionHouse getAuctionHouse() {
+    public IAuctionHouse getAuctionHouse() {
         return auctionHouse;
     }
 
-    public CommentSection getCommentSection() {
+    public ICommentSection getCommentSection() {
         return commentSection;
     }
 
-    public BiddingHistory getBiddingHistory() {
+    public IBiddingHistory getBiddingHistory() {
         return biddingHistory;
     }
 

@@ -4,16 +4,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-public class BiddingHistory extends AbstractDAO<Bid, Long> {
+public class BiddingHistory extends AbstractDAO<Bid, Long> implements IBiddingHistory {
 
     public BiddingHistory(String puName) {
         super(Bid.class, puName);
     }
+    
+    public static IBiddingHistory newInstance(String puName) {
+        return new BiddingHistory(puName);
+    }
 
+    @Override
     public List<Listing> getBidsByListing(Listing listing) {
         return getBidsByListing(listing, -1, -1);
     }
     
+    @Override
     public List<Listing> getBidsByListing(Listing listing, int first, int nItems) {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("SELECT c FROM Bid c WHERE c.listing = :id").setParameter("id", listing);

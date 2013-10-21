@@ -6,16 +6,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-public class AuctionHouse extends AbstractDAO<Listing, Long> {
+public class AuctionHouse extends AbstractDAO<Listing, Long> implements IAuctionHouse {
 
     public AuctionHouse(String puName) {
         super(Listing.class, puName);
     }
+    
+    public static IAuctionHouse newInstance(String puName) {
+        return new AuctionHouse(puName);
+    }
 
+    @Override
     public List<Listing> getListingsBySeller(Account seller) {
         return getListingsBySeller(seller, -1, -1);
     }
 
+    @Override
     public List<Listing> getListingsBySeller(Account seller, int first, int nItems) {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("SELECT c FROM Listing c WHERE c.seller = :id").setParameter("id", seller);
@@ -26,10 +32,12 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
         return q.getResultList();
     }
 
+    @Override
     public List<Listing> getListingsByCategory(Category category) {
         return getListingsByCategory(category, -1, -1);
     }
 
+    @Override
     public List<Listing> getListingsByCategory(Category category, int first, int nItems) {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("SELECT c FROM Listing c WHERE c.category = :id").setParameter("id", category);
@@ -40,14 +48,17 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
         return q.getResultList();
     }
 
+    @Override
     public List<Listing> searchDescription(String query) {
         return searchDescription(query, null);
     }
 
+    @Override
     public List<Listing> searchDescription(String query, int first, int nItems) {
         return searchDescription(query, null, first, nItems);
     }
 
+    @Override
     public List<Listing> searchDescription(String query, Category category) {
         EntityManager em = emf.createEntityManager();
         List<Listing> all;
@@ -59,13 +70,14 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> {
             all = em.createQuery("SELECT c FROM Listing c WHERE c.category = :id").setParameter("id", category).getResultList();
         }
         for (Listing l : all) {
-            if (l.getDescription().contains(query) || l.getName().contains(query)) {
+            if (l.getDescription().toLowerCase().contains(query.toLowerCase()) || l.getName().toLowerCase().contains(query.toLowerCase())) {
                 found.add(l);
             }
         }
         return found;
     }
 
+    @Override
     public List<Listing> searchDescription(String query, Category category, int first, int nItems) {
         List<Listing> found = searchDescription(query, category);
 

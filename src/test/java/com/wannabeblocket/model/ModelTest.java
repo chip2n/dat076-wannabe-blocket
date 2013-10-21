@@ -19,10 +19,10 @@ import org.junit.Test;
 public class ModelTest {
     
     private static Shop shop;
-    private static UserRegistry usrreg;
-    private static AuctionHouse ah;
-    private static CommentSection csec;
-    private static BiddingHistory bhist;
+    private static IUserRegistry usrreg;
+    private static IAuctionHouse ah;
+    private static ICommentSection csec;
+    private static IBiddingHistory bhist;
     private static CategoryList clist;
     
     private static final Account[] accs_arr = {
@@ -176,5 +176,15 @@ public class ModelTest {
         };
     }
     */
+    @Test
+    public void bidTest()
+    {
+        Listing testListing = new Listing(accs_arr[0], "test titel", "test description", new Date(), cats_arr[1]);
+        ah.add(testListing);
+        assert(testListing.equals(ah.find(testListing.getId())));
+        
+        ah.find(testListing.getId()).placeBid(accs_arr[0], 99);
+        assert(bhist.getBidsByListing(testListing).size() == 1);
+    }
     
 }
