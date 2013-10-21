@@ -200,45 +200,6 @@ public class ModelTest {
         assert(ah.getListingsByCategory(c).size() == lList.length);
         
         /*
-            *** Test Comments ***
-        */
-        /* missing support
-        // get first Listing
-        Listing ltmp = ah.getListingsByCategory(c).get(0);
-        assert(ltmp != null);
-        
-        // define some comments
-        Comment[] comments = {
-            new Comment(lList[0], tmpAcc2, "msg1", new Date()),
-            new Comment(lList[0], tmpAcc, "msg2", new Date()),
-            new Comment(lList[0], tmpAcc2, "msg3", new Date())
-        };
-        
-        // get first Listing
-        List<Comment> comlst = ltmp.getComments();
-        
-        // add all comments
-        comlst.addAll(Arrays.asList(comments));
-        assert(ltmp.getComments().size() == comments.length);
-        
-        // save comment ids
-        Long[] idCommentList = new Long[comments.length];
-        for(int i=0; i<comlst.size(); ++i)
-            idCommentList[i] = comlst.get(i).getId();
-        
-        // check that all added comments are added to the persistence unit
-        for(Long id : idCommentList)
-            assert(csec.find(id) != null);
-        
-        // remove listing
-        ah.remove(ltmp.getId());
-        assert(ah.getListingsByCategory(c).size() == lList.length -1);
-        
-        // check that all comments now are removed from the persistence unit
-        for(Long id : idCommentList)
-            assert(csec.find(id) == null);
-        */
-        /*
             *** Test Bids ***
         */
         
