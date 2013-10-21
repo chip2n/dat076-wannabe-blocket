@@ -12,8 +12,8 @@ import java.util.List;
  */
 public interface IBiddingHistory extends IDAO<Bid, Long> {
 
-    List<Listing> getBidsByListing(Listing listing);
+    List<Bid> getBidsByListing(Listing listing);
 
-    List<Listing> getBidsByListing(Listing listing, int first, int nItems);
+    List<Bid> getBidsByListing(Listing listing, int first, int nItems);
     
 }
