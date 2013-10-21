@@ -15,12 +15,12 @@ public class BiddingHistory extends AbstractDAO<Bid, Long> implements IBiddingHi
     }
 
     @Override
-    public List<Listing> getBidsByListing(Listing listing) {
+    public List<Bid> getBidsByListing(Listing listing) {
         return getBidsByListing(listing, -1, -1);
     }
     
     @Override
-    public List<Listing> getBidsByListing(Listing listing, int first, int nItems) {
+    public List<Bid> getBidsByListing(Listing listing, int first, int nItems) {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("SELECT c FROM Bid c WHERE c.listing = :id").setParameter("id", listing);
         if (first != -1 && nItems != -1) {

@@ -15,7 +15,7 @@ public class CommentSection extends AbstractDAO<Comment, Long> implements IComme
     }
     
     @Override
-    public List<Listing> getCommentsByListing(Listing listing, int first, int nItems) {
+    public List<Comment> getCommentsByListing(Listing listing, int first, int nItems) {
        EntityManager em = emf.createEntityManager();
        Query q = em.createQuery("SELECT c FROM Comment c WHERE c.category = :id").setParameter("id", listing);
         if (first != -1 && nItems != -1) {

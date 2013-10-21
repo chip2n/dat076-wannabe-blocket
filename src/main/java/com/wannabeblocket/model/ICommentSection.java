@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface ICommentSection extends IDAO<Comment, Long> {
 
-    List<Listing> getCommentsByListing(Listing listing, int first, int nItems);
+    List<Comment> getCommentsByListing(Listing listing, int first, int nItems);
     
 }
