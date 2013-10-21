@@ -51,12 +51,12 @@ $(function() {
         */
             html +=
                "<tr>" +
-                   "<td width=300>" +
+                   "<td width=400>" +
                         "<a href=\"showListing.xhtml?id=" + entry.id + "\" title=\"" + entry.description + "\">" +
                            entry.title +
                         "</a>" +
                     "</td>" +
-                    "<td>" + entry.seller + "</td>" + 
+                    "<td width=100>" + entry.seller + "</td>" + 
                     "<td>" + entry["end-time"] + "</td>" + 
                 "</tr>" +
                "<br />";
