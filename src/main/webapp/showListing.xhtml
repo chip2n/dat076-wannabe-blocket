@@ -16,6 +16,7 @@
         <h1>#{listing.listing.name}</h1>
         <h:form>
                 <h:inputText id="bid" size="30" value="#{listing.bid}"/>
+                <h:inputHidden value="#{listing.listingId}" />
             <p>
                 <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
             </p>

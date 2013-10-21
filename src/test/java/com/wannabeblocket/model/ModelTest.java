@@ -127,7 +127,7 @@ public class ModelTest {
     }
     
     @Test
-    public void dublicateAccountTest()
+    public void duplicateAccountTest()
     {
         // get temp account
         Account tmpAcc = accs.get("lisa");
@@ -145,6 +145,19 @@ public class ModelTest {
         // check that no account got added
         assert(usrreg.getCount() == accs.size());
     }
+    
+    @Test
+    public void testBids()
+    {
+        Listing listing = new Listing(usrreg.find("olle"), "TestListing", "TestDescription", new Date(), cats.get("Barn"));
+        ah.add(listing);
+        assert(ah.find(listing.id) != null);
+        
+        listing.placeBid(usrreg.find("olle"), 123);
+        ah.update(listing);
+        assert(ah.find(listing.id).getBids().size() == 1);
+    }
+    
     /*
     @Test
     public void test()
