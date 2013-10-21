@@ -13,8 +13,14 @@
     </ui:define>
     
     <ui:define name="maincontent">
-        <h1>Min sida<b>yo!</b></h1>
-        <p>Bla bla bla...</p>
+        <p>Välkommen till din sida!</p>
+        <p>TODO: Get username and write it here.</p>
+        <p>Byta lösenord?</p>
+        <label for="username">Lösenord: </label>
+        <input id="password" name="password1" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/>
+        <label for="username">Samma lösenord igen: </label>
+        <input id="password" name="password2" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/>
+        <input type="submit" value="Logga in"/> eller <a class="close" href="main.xhtml">Avbryt</a>
     </ui:define>
     <ui:define name="pagefooter">
         This is the footer.
