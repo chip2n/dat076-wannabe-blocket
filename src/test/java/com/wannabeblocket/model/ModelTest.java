@@ -2,17 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wannabeblocket.test;
+package com.wannabeblocket.model;
 
-import com.wannabeblocket.model.Account;
-import com.wannabeblocket.model.AuctionHouse;
-import com.wannabeblocket.model.BiddingHistory;
-import com.wannabeblocket.model.Category;
-import com.wannabeblocket.model.CategoryList;
-import com.wannabeblocket.model.CommentSection;
-import com.wannabeblocket.model.Listing;
-import com.wannabeblocket.model.Shop;
-import com.wannabeblocket.model.UserRegistry;
 import java.util.Date;
 import java.util.HashMap;
 import org.junit.After;
@@ -25,7 +16,7 @@ import org.junit.Test;
  *
  * @author stoffe
  */
-public class ModelTests {
+public class ModelTest {
     
     private static Shop shop;
     private static UserRegistry usrreg;
@@ -51,7 +42,7 @@ public class ModelTests {
     private final static HashMap<String, Account> accs = new HashMap<>();
     private final static HashMap<String, Category> cats = new HashMap<>();
             
-    public ModelTests() {
+    public ModelTest() {
     }
     
     @BeforeClass
@@ -136,7 +127,7 @@ public class ModelTests {
     }
     
     @Test
-    public void dublicateAccountTest()
+    public void duplicateAccountTest()
     {
         // get temp account
         Account tmpAcc = accs.get("lisa");
@@ -156,6 +147,19 @@ public class ModelTests {
     }
     
     @Test
+    public void testBids()
+    {
+        Listing listing = new Listing(usrreg.find("olle"), "TestListing", "TestDescription", new Date(), cats.get("Barn"));
+        ah.add(listing);
+        assert(ah.find(listing.id) != null);
+        
+        listing.placeBid(usrreg.find("olle"), 123);
+        ah.update(listing);
+        assert(ah.find(listing.id).getBids().size() == 1);
+    }
+    
+    /*
+    @Test
     public void test()
     {   
         // get account
@@ -171,6 +175,7 @@ public class ModelTests {
             new Listing(tmpAcc, "Volvo", "Modell okänd.", new Date(), c)
         };
     }
+    */
     @Test
     public void bidTest()
     {

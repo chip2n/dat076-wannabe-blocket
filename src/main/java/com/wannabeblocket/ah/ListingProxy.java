@@ -29,6 +29,11 @@ public class ListingProxy {
         return _listing.getId();
     }
     
+    @XmlElement(name = "title")
+    public String getTitle() {
+        return _listing.getName();
+    }
+    
     @XmlElement(name = "seller")
     public String getSeller() {
         return _listing.getSeller().getUserName();

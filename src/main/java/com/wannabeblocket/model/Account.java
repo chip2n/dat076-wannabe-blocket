@@ -19,7 +19,7 @@ public class Account implements Serializable /*extends AbstractEntity */ {
     private String email;
     
     public Account(String userName, String password, String email) {
-        this.userName = userName.toLowerCase();
+        this.userName = userName;
         this.password = password;
         this.email = email;
     }

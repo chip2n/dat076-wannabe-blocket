@@ -12,8 +12,7 @@ import com.wannabeblocket.model.Category;
 @ManagedBean
 @RequestScoped
 public class CategoryBean extends BeanBase {
-    List<Category> _categories;
-    
+  
     public List<Category> getCategories() {
         return this.getShop().getCategoryList().getAll();
     }
