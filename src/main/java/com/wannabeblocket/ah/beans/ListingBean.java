@@ -11,6 +11,7 @@ import com.wannabeblocket.model.Bid;
 import com.wannabeblocket.model.Shop;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -82,6 +83,11 @@ public class ListingBean extends BeanBase {
     
     public String getDateString() {
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:m a");
+        return format.format(_listing.getEndingTime());
+    }
+    
+    public String getNiceDateString() {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return format.format(_listing.getEndingTime());
     }
 }
