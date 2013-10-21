@@ -16,17 +16,19 @@
         <p>Välkommen till din sida!</p>
         <p>TODO: Get username and write it here.</p>
         <p>Byta lösenord?</p>
-        <table>
-            <tr>
-                <td><label for="username">Lösenord: </label></td>
-                <td><input id="password" name="password1" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>
-            </tr>
-            <tr>
-                <td><label for="username">Samma lösenord igen: </label></td>
-                <td><input id="password" name="password2" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>
-            </tr>
-        </table>
-        <input type="submit" value="Spara ändringar"/> <a class="close" href="main.xhtml">Avbryt</a>
+        <form>
+            <table id="mypage" action="mypage" method="post">
+                <tr>
+                    <td><label for="username">Lösenord: </label></td>
+                    <td><input id="password" name="password1" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>
+                </tr>
+                <tr>
+                    <td><label for="username">Samma lösenord igen: </label></td>
+                    <td><input id="password" name="password2" type="password" required="required" onfocus="this.setCustomValidity('');" oninvalid="this.setCustomValidity('Ange ett lösenord.');"/></td>
+                </tr>
+            </table>
+            <input type="submit" value="Spara ändringar"/> <a class="close" href="main.xhtml">Avbryt</a>
+        </form>
     </ui:define>
     <ui:define name="pagefooter">
         This is the footer.
