@@ -1,5 +1,6 @@
-package com.wannabeblocket.ah;
+package com.wannabeblocket.ah.services;
 
+import com.wannabeblocket.ah.ListingProxy;
 import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.IAuctionHouse;
 import com.wannabeblocket.model.Listing;
@@ -19,10 +20,10 @@ import javax.ws.rs.core.Response;
  * @author Andreas Arvidsson
  */
 @Path("/auctions")
-public class AuctionHouseResource {
+public class AuctionHouseService {
     private IAuctionHouse _auctionHouse;
     
-    public AuctionHouseResource() {
+    public AuctionHouseService() {
         _auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
     }
     
