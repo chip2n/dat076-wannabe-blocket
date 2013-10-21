@@ -10,15 +10,17 @@ import com.wannabeblocket.exception.ListingNotFoundException;
 import com.wannabeblocket.model.Bid;
 import com.wannabeblocket.model.Shop;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.validation.constraints.Min;
 
 @Named("listing")
-@ManagedBean
 @RequestScoped
 public class ListingBean extends BeanBase {
     private Listing _listing;
+
     private int _bid;
     private Long _id;
     
@@ -60,14 +62,26 @@ public class ListingBean extends BeanBase {
     
     public String placeBid() {
         try {
+            // User must be logged in to place a bid
+            if(this.getUser() == null) {
+                return "not-logged-in";
+            }
             _listing = this.getShop().getAuctionHouse().find(_id);
-            _listing.placeBid(getUser(), _bid);
-            this.getShop().getAuctionHouse().update(_listing); // TODO: another way?
+            boolean bidSuccessful = _listing.placeBid(getUser(), _bid);
             
-            return "success";
+            if(bidSuccessful) {
+                this.getShop().getAuctionHouse().update(_listing); // TODO: another way?
+                return "success";
+            }
         } catch (ServletException | IOException ex) {
             Logger.getLogger(ListingBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return "failure";
+    }
+    
+    public String getDateString() {
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:m a");
+        return format.format(_listing.getEndingTime());
     }
 }
