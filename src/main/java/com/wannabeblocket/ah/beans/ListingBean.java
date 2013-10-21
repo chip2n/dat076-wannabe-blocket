@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.validation.constraints.Min;
 
@@ -22,6 +23,7 @@ import javax.validation.constraints.Min;
 public class ListingBean extends BeanBase {
     private Listing _listing;
 
+    @Min(value = 1, message = "Du måste buda minst 1 kr")
     private int _bid;
     private Long _id;
     
@@ -65,6 +67,7 @@ public class ListingBean extends BeanBase {
         try {
             // User must be logged in to place a bid
             if(this.getUser() == null) {
+                this.redirect("/ah/login");
                 return "not-logged-in";
             }
             _listing = this.getShop().getAuctionHouse().find(_id);

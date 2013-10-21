@@ -100,7 +100,10 @@ public class Listing extends AbstractEntity {
                 return false;
             }
         }
-        this.bids.add(new Bid(this, account, amount, new Date()));
+        Shop shop = Shop.getInstance();
+        Bid newBid = new Bid(this, account, amount, new Date());
+        this.bids.add(newBid);
+        shop.getBiddingHistory().add(newBid);
         return true;
     }
 

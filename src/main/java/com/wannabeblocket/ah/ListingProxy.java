@@ -48,7 +48,7 @@ public class ListingProxy {
     
     @XmlElement(name = "end-time")
     public String getEndTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd:HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
         return dateFormat.format(_listing.getEndingTime());
     }
 }

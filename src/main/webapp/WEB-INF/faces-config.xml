@@ -4,33 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-action>#{user.login}</from-action>
-            <from-outcome>failure</from-outcome>
-            <to-view-id>/login.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{user.login}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/main.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
+        <from-view-id>showListing.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{listing.placeBid}</from-action>
             <from-outcome>success</from-outcome>
-            <to-view-id>/showListing.xhtml?id=#{listing.listingId}</to-view-id>
+            <to-view-id>/showListing.xhtml</to-view-id>
+            <redirect include-view-params="true" />
         </navigation-case>
         <navigation-case>
             <from-action>#{listing.placeBid}</from-action>
             <from-outcome>failure</from-outcome>
-            <to-view-id>/showListing.xhtml?id=#{listing.listingId}</to-view-id>
+            <to-view-id>/showListing.xhtml</to-view-id>
+            <redirect include-view-params="true" />
         </navigation-case>
         <navigation-case>
             <from-action>#{listing.placeBid}</from-action>
             <from-outcome>not-logged-in</from-outcome>
-            <to-view-id>/showListing.xhtml?id=#{listing.listingId}</to-view-id>
+            <to-view-id>/login</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

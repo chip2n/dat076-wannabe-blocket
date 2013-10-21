@@ -16,18 +16,15 @@ import com.wannabeblocket.model.Shop;
  * Bean base class.
  */
 public class BeanBase implements Serializable{
-    private HttpServletRequest _request = null;
-    private HttpServletResponse _response = null; 
+    private ExternalContext _context;
     private final Shop _shop;  
        
     /**
      * Initializes a new instance of the BeanBase class.
      */
     public BeanBase(){
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        
-        _request = (HttpServletRequest) context.getRequest();
-        _response = (HttpServletResponse) context.getResponse();
+        _context = FacesContext.getCurrentInstance().getExternalContext();
+
         _shop = Shop.getInstance();
     }
     
@@ -35,49 +32,45 @@ public class BeanBase implements Serializable{
      * Returns the shop.
      * @return the shop.
      */
-    protected Shop getShop(){ return this._shop; }       
+    protected Shop getShop(){ return this._shop; } 
+    
+    /**
+     * Returns the external context.
+     * @return the external context.
+     */
+    protected ExternalContext getContext() { return FacesContext.getCurrentInstance().getExternalContext(); }
     
     /**
      * Returns the servlet request.
      * @return the servlet request.
      */
-    protected HttpServletRequest getRequest() { return this._request; }
+    protected HttpServletRequest getRequest() { return (HttpServletRequest) this.getContext().getRequest(); }
     
     /**
      * Returns the servlet response.
      * @return the servlet response.
      */
-    protected HttpServletResponse getResponse() { return this._response; }
+    protected HttpServletResponse getResponse() { return (HttpServletResponse) this.getContext().getResponse(); }
     
     /**
      * Returns the current session.
      * @return the current session.
      */
-    protected HttpSession getSession() { return this._request.getSession(); }
+    protected HttpSession getSession() { return this.getRequest().getSession(); }
     
     /**
      * Returns the context path of the servlet.
      * @return the context path of the servlet.
      */
-    protected String getContextPath(){ return _request.getServletContext().getContextPath(); }  
+    protected String getContextPath(){ return getRequest().getServletContext().getContextPath(); }  
     
     /**
-     * Forwards the request to the specified path.
-     * @param path the path to forward the request too.
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
-     */
-    protected void forward(String path) throws ServletException, IOException{ 
-        this._request.getRequestDispatcher(path).forward(this.getRequest(), this.getResponse()); 
-    } 
-    
-        /**
      * Redirects to the specified path.
      * @param path the path to redirect too.
      * @throws java.io.IOException
      */
     protected void redirect(String path) throws IOException{ 
-        this._response.sendRedirect(path); 
+        getContext().redirect(path);
     }     
     
     /**
@@ -86,7 +79,7 @@ public class BeanBase implements Serializable{
      * @return the value of the parameter with the specified name.
      */
     protected String getParameter(String name){ 
-        return this._request.getParameter(name); 
+        return this.getRequest().getParameter(name); 
     }
     
     /**
@@ -97,7 +90,7 @@ public class BeanBase implements Serializable{
     protected Long getParameterAsLong(String name){ 
         try
         {
-            return Long.parseLong(this._request.getParameter(name)); 
+            return Long.parseLong(this.getParameter(name)); 
         }
         catch(NumberFormatException e){
             return null;
