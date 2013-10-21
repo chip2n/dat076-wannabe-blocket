@@ -8,6 +8,9 @@
     xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="additionalpageheaders">
+        <h:outputStylesheet library="css" name="ui-lightness/jquery-ui-1.10.3.custom.css"/>
+        <h:outputScript library="js" name="jquery-ui-1.10.3.custom.js"/>
+        <h:outputScript library="js" name="createListing.js"/>
     </ui:define>
     <ui:define name="pagetitle">
         Skapa annons
@@ -35,6 +38,10 @@
                     <label style="display:block;" for="description">Beskrivning</label>
                     <textarea style="display:block;" cols="70" rows="20" name="description" id="description"></textarea>
                 </div>
+                <br />
+                Slutdatum: <input type="text" name="date" id="date" />
+                <input type="text" name="clock" />
+                <br />
                 <br style="clear:both;" />
                 <input type="submit" value="Posta" name="commit" id="message_submit"/> eller <a class="close" href="#">Avbryt</a>
             </section>

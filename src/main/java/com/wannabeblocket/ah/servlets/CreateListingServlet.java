@@ -10,6 +10,10 @@ import com.wannabeblocket.core.constants.Parameter;
 import com.wannabeblocket.core.constants.Servlet;
 import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.Listing;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet(urlPatterns = {"/" + Servlet.CREATE_LISTING})
 public class CreateListingServlet extends ServletBase {
@@ -29,8 +33,21 @@ public class CreateListingServlet extends ServletBase {
             String title = this.getParameter(Parameter.TITLE);
             Long categoryId = this.getParameterAsLong(Parameter.CATEGORY);
             String description = this.getParameter(Parameter.DESCRIPTION);       
+            String dateString = this.getParameter(Parameter.DATE);
+            String clockString = this.getParameter(Parameter.CLOCK);
+            
+            // Create a date object
+            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+            Date date = null;
+            try {
+                date = format.parse(dateString + " " + clockString);
+            } catch (ParseException ex) {
+                Logger.getLogger(CreateListingServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             Category category = this.getShop().getCategoryList().find(categoryId);
-            Listing listing = new Listing(this.getUser(), title, description, new Date(), category);
+            Listing listing = new Listing(this.getUser(), title, description, date, category);
+            
             
             this.getShop().getAuctionHouse().add(listing);
             this.redirect(Page.MAIN);
