@@ -4,8 +4,10 @@
  */
 package com.wannabeblocket.model;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,7 +52,7 @@ public class ModelTest {
         shop = Shop.getInstance(Shop.Mode.Debug);
         usrreg = shop.getUserRegistry();
         ah = shop.getAuctionHouse();
-        csec = shop.getCommentSection();
+        //csec = shop.getCommentSection();
         bhist = shop.getBiddingHistory();
         clist = shop.getCategoryList();
         
@@ -158,24 +160,56 @@ public class ModelTest {
         assert(ah.find(listing.id).getBids().size() == 1);
     }
     
-    /*
+    
     @Test
     public void test()
     {   
-        // get account
+        // get accounts
         Account tmpAcc = accs.get("bengt");
         assert(tmpAcc != null);
+        
+        Account tmpAcc2 = accs.get("lisa");
+        assert(tmpAcc2 != null);
         
         // get category
         Category c = cats.get("Gammal skit");
         assert(c != null);
         
+        // add some listings
         Listing[] lList = {
             new Listing(tmpAcc, "Trasig stol", "Kommer i bitar.", new Date(), c),
             new Listing(tmpAcc, "Volvo", "Modell okänd.", new Date(), c)
         };
+        
+        for(Listing l : lList)
+            ah.add(l);
+        
+        assert(ah.getListingsByCategory(c).size() == lList.length);
+        
+        // add some comments
+        Comment[] comments = {
+            new Comment(lList[0], tmpAcc2, "msg1", new Date()),
+            new Comment(lList[0], tmpAcc, "msg2", new Date()),
+            new Comment(lList[0], tmpAcc2, "msg3", new Date())
+        };
+        
+        Listing ltmp = ah.getListingsByCategory(c).get(0);
+        assert(ltmp != null);
+        
+        List<Comment> comlst = ltmp.getComments();
+        comlst.addAll(Arrays.asList(comments));
+        assert(ltmp.getComments().size() == comments.length);
+        
+        
+        Long[] idCommentList = new Long[comments.length];
+        for(int i=0; i<comlst.size(); ++i)
+            idCommentList[i] = comlst.get(i).getId();
+        
+        /*for(Long id : idCommentList)
+            assert(csec.find(id) != null);
+        */
     }
-    */
+
     @Test
     public void bidTest()
     {
@@ -186,5 +220,4 @@ public class ModelTest {
         ah.find(testListing.getId()).placeBid(accs_arr[0], 99);
         assert(bhist.getBidsByListing(testListing).size() == 1);
     }
-    
 }
