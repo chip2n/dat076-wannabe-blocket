@@ -51,7 +51,7 @@ $(function() {
         */
             html +=
                "<tr>" +
-                   "<td>" +
+                   "<td width=300>" +
                         "<a href=\"showListing.xhtml?id=" + entry.id + "\" title=\"" + entry.description + "\">" +
                            entry.title +
                         "</a>" +

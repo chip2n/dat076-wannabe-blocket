@@ -94,12 +94,19 @@ public class Listing extends AbstractEntity {
     }
     
     public boolean placeBid(Account account, int amount) {
+        // If listing has ended, return false
+        if(new Date().after(endingTime)) {
+            return false;
+        }
+        
         // Make sure its not possible to place a bid if there's a higher bid
         for(Bid bid : bids) {
             if(bid.getAmount() >= amount) {
                 return false;
             }
         }
+        
+        // Place the bid
         Shop shop = Shop.getInstance();
         Bid newBid = new Bid(this, account, amount, new Date());
         this.bids.add(newBid);
