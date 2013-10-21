@@ -17,7 +17,7 @@ public class Listing extends AbstractEntity {
     private Account seller;
     @Column
     private String name;
-    @Column
+    @Column(length = 1023)
     private String description;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date endingTime;
@@ -111,6 +111,7 @@ public class Listing extends AbstractEntity {
         Bid newBid = new Bid(this, account, amount, new Date());
         this.bids.add(newBid);
         shop.getBiddingHistory().add(newBid);
+        shop.getAuctionHouse().update(this);
         return true;
     }
 
