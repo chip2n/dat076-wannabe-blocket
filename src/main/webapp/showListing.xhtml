@@ -4,9 +4,11 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="additionalpageheaders">
+        <h:outputScript library="js" name="showListing.js"/>
     </ui:define>
     <ui:define name="pagetitle">
         Skapa annons
@@ -21,12 +23,21 @@
                 <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
             </p>
         </h:form> 
-        Sluttid: #{listing.listing.endingTime.toString()}
+        <br />
+        <c:forEach items="#{listing.listing.bids}" var="bid">
+            #{bid.bidder.userName} - #{bid.amount}
+            <br />
+        </c:forEach>
+        <br />
+        Sluttid: <div id="endingDate">#{listing.dateString}</div>
         Beskrivning av objektet:
         <hr />
         #{listing.listing.description}
         <br />
         <b>Säljaren #{listing.listing.seller.userName} ansvarar för att beskrivningen av objektet är korrekt.</b>
+        <br />
+        <div id="countdown"></div>
+        <div id="newcountdown"></div>
     </ui:define>
     <ui:define name="pagefooter">
         This is the footer.

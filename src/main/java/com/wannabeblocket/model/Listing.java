@@ -93,8 +93,15 @@ public class Listing extends AbstractEntity {
         this.bids = bids;
     }
     
-    public void placeBid(Account account, int amount) {
+    public boolean placeBid(Account account, int amount) {
+        // Make sure its not possible to place a bid if there's a higher bid
+        for(Bid bid : bids) {
+            if(bid.getAmount() >= amount) {
+                return false;
+            }
+        }
         this.bids.add(new Bid(this, account, amount, new Date()));
+        return true;
     }
 
     public List<Comment> getComments() {
