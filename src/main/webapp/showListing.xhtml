@@ -29,7 +29,7 @@
                 <td align="center">#{listing.listing.bids.size()} st</td>
             </tr>
         </table>
-        <h:form>
+        <h:form acceptcharset="ISO-8859-1">
                 <h:inputText id="bid" size="10" value="#{listing.bid}"/>
                 <h:inputHidden value="#{listing.listingId}" />
                 <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
