@@ -33,7 +33,6 @@ $(function() {
         listings.forEach(function(entry) {
             html += 
                 "<tr>" +
-                    "<td>" + entry.id + "</td>" +
                     "<td>" + 
                         "<a href=\"showListing.xhtml?id=" + entry.id + "\">" +
                             entry.title + 
