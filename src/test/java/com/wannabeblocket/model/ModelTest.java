@@ -164,6 +164,10 @@ public class ModelTest {
     @Test
     public void cascadeTest()
     {   
+        /*
+            *** Init some test data ***
+        */
+        
         // get accounts
         Account tmpAcc = accs.get("bengt");
         assert(tmpAcc != null);
