@@ -20,9 +20,9 @@ public class MyPageServlet extends ServletBase {
     @Override
     protected void doPost() throws ServletException, IOException {
         this.forward();
-        Account account = this.getUser();
         
-        if(isUserLoggedIn()) {
+        if(this.isUserLoggedIn()) {
+            Account account = this.getUser();
             String oldPassword = account.getPassword();
             
         }
