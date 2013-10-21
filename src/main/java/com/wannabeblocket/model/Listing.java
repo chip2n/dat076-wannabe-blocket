@@ -19,7 +19,7 @@ public class Listing extends AbstractEntity {
     private String name;
     @Column
     private String description;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date endingTime;
     @ManyToOne(cascade = {CascadeType.REFRESH})
     private Category category;

@@ -16,6 +16,16 @@
     
     <ui:define name="maincontent">
         <h1>#{listing.listing.name}</h1>
+        <table>
+            <tr>
+                <td><b>Slutar</b> #{listing.niceDateString}</td>
+                <td><b>Bud</b></td>
+            </tr>
+            <tr>
+                <td><font size="4"><div id="countdown"></div></font></td>
+                <td>#{listing.listing.bids.size()} st</td>
+            </tr>
+        </table>
         <h:form>
                 <h:inputText id="bid" size="30" value="#{listing.bid}"/>
                 <h:inputHidden value="#{listing.listingId}" />
@@ -28,14 +38,14 @@
             #{bid.bidder.userName} - #{bid.amount}
             <br />
         </c:forEach>
-        Sluttid: <div id="endingDate">#{listing.dateString}</div>
+        <div id="endingDate" style="display: none;">#{listing.dateString}</div>
         Beskrivning av objektet:
         <hr />
         #{listing.listing.description}
         <br />
         <b>Säljaren #{listing.listing.seller.userName} ansvarar för att beskrivningen av objektet är korrekt.</b>
         <br />
-        <div id="countdown"></div>
+
         <div id="newcountdown"></div>
     </ui:define>
     <ui:define name="pagefooter">

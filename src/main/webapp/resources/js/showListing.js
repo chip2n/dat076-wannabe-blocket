@@ -19,7 +19,7 @@ function CountDownTimer(dt, id)
         if (distance < 0) {
 
             clearInterval(timer);
-            document.getElementById(id).innerHTML = 'EXPIRED!';
+            document.getElementById(id).innerHTML = '<font color="red">Avslutad!</font>';
 
             return;
         }
@@ -28,10 +28,17 @@ function CountDownTimer(dt, id)
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        document.getElementById(id).innerHTML = days + 'days ';
-        document.getElementById(id).innerHTML += hours + 'hrs ';
-        document.getElementById(id).innerHTML += minutes + 'mins ';
-        document.getElementById(id).innerHTML += seconds + 'secs';
+        if(days > 0) {
+            document.getElementById(id).innerHTML = days + ' dagar ';
+        } else if(hours > 0) {
+            document.getElementById(id).innerHTML = hours + ' tim ';
+            document.getElementById(id).innerHTML += minutes + ' min ';
+        } else if(minutes > 0) {
+            document.getElementById(id).innerHTML = minutes + ' min ';
+            document.getElementById(id).innerHTML += seconds + ' s';
+        } else {
+            document.getElementById(id).innerHTML = seconds + ' s';
+        }
     }
 
     timer = setInterval(showRemaining, 1000);
