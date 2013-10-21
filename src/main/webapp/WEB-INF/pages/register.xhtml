@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <td><label for="email">Email: </label></td>
-                    <td><input type="email" size="30" name="email" id="email" value="#{email}" required="required" onchange="clearValidation(this);validateEmail(this);" oninvalid="validateEmail(this);"/></td>
+                    <td><input type="email" size="30" name="email" id="email" value="#{email}" placeholder="ex. me@arebart.se" required="required" onchange="clearValidation(this);validateEmail(this);" oninvalid="validateEmail(this);"/></td>
                 </tr>
             </table>
             <div style="color: red">#{error}</div>
