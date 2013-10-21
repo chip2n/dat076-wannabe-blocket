@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import com.wannabeblocket.core.ServletBase;
 import com.wannabeblocket.core.constants.Page;
 import com.wannabeblocket.core.constants.Parameter;
+import com.wannabeblocket.core.constants.RequestAttribute;
 import com.wannabeblocket.core.constants.Servlet;
 import com.wannabeblocket.model.Category;
 import com.wannabeblocket.model.Listing;
@@ -36,13 +37,26 @@ public class CreateListingServlet extends ServletBase {
             String dateString = this.getParameter(Parameter.DATE);
             String clockString = this.getParameter(Parameter.CLOCK);
             
+            this.getRequest().setAttribute(RequestAttribute.TITLE, title);
+            this.getRequest().setAttribute(RequestAttribute.DESCRIPTION, description); 
+            
+            if(title.isEmpty()) {
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Titel är obligatoriskt.");
+                this.forward(Page.CREATE_LISTING);  
+                return;
+            }
+            
             // Create a date object
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Date date = null;
             try {
                 date = format.parse(dateString + " " + clockString);
             } catch (ParseException ex) {
                 Logger.getLogger(CreateListingServlet.class.getName()).log(Level.SEVERE, null, ex);
+                       
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Du måste fylla i datumet och tiden korrekt.");
+                this.forward(Page.CREATE_LISTING);  
+                return;
             }
             
             Category category = this.getShop().getCategoryList().find(categoryId);

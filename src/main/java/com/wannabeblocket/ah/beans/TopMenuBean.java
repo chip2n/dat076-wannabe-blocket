@@ -15,7 +15,7 @@ public class TopMenuBean extends NavigationBeanBase {
         if(this.isUserLoggedIn()){
             this.getChildren().add(new NavigationNode("Skapa annons", Servlet.CREATE_LISTING));  
             this.getChildren().add(new NavigationNode("Min sida", Servlet.MY_PAGE));                
-            this.getChildren().add(new NavigationNode("Logga out (" + this.getUser().getUserName() + ")", Servlet.LOGOUT));
+            this.getChildren().add(new NavigationNode("Logga ut (" + this.getUser().getUserName() + ")", Servlet.LOGOUT));
         }
         else{
             this.getChildren().add(new NavigationNode("Logga in", Servlet.LOGIN));

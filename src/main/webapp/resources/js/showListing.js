@@ -41,5 +41,6 @@ function CountDownTimer(dt, id)
         }
     }
 
+    showRemaining();
     timer = setInterval(showRemaining, 1000);
 }
