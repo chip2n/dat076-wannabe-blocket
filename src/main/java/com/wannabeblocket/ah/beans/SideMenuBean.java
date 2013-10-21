@@ -17,7 +17,7 @@ public class SideMenuBean extends NavigationBeanBase {
         
         if(categories != null) {
             for(Category category : categories){
-                NavigationNode node = new NavigationNode(category.getName(), null);
+                NavigationNode node = new NavigationNode(category.getName(), "search.xhtml?query=&category="+category.getId());
                     //node.getChildren().add(new NavigationNode("Sublink " + i, null));
 
                 this.getChildren().add(node);
