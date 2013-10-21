@@ -15,23 +15,21 @@
     </ui:define>
     
     <ui:define name="maincontent">
-        <h1>#{listing.listing.name}</h1>
+        <h2>#{listing.listing.name}</h2>
         <table>
             <tr>
-                <td><b>Slutar</b> #{listing.niceDateString}</td>
+                <td style="padding-left: 10px;padding-right: 10px;"><b>Slutar</b> #{listing.niceDateString}</td>
                 <td><b>Bud</b></td>
             </tr>
             <tr>
-                <td><font size="4"><div id="countdown"></div></font></td>
-                <td>#{listing.listing.bids.size()} st</td>
+                <td align="center"><font size="4"><div id="countdown"></div></font></td>
+                <td align="center">#{listing.listing.bids.size()} st</td>
             </tr>
         </table>
         <h:form>
-                <h:inputText id="bid" size="30" value="#{listing.bid}"/>
+                <h:inputText id="bid" size="10" value="#{listing.bid}"/>
                 <h:inputHidden value="#{listing.listingId}" />
-            <p>
                 <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
-            </p>
         </h:form> 
         <br />
         <c:forEach items="#{listing.listing.bids}" var="bid">
@@ -39,7 +37,7 @@
             <br />
         </c:forEach>
         <div id="endingDate" style="display: none;">#{listing.dateString}</div>
-        Beskrivning av objektet:
+        <h1>Beskrivning av objektet</h1>
         <hr />
         #{listing.listing.description}
         <br />

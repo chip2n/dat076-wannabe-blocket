@@ -30,7 +30,7 @@ public class Shop {
         Release("ah_pu"), 
         Debug("ah_pu_test");
         
-        private String puName;
+        private final String puName;
         
         private Mode(String puName)
         {

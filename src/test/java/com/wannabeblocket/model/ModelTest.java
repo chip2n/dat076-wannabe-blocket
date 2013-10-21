@@ -4,8 +4,10 @@
  */
 package com.wannabeblocket.model;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -158,24 +160,106 @@ public class ModelTest {
         assert(ah.find(listing.id).getBids().size() == 1);
     }
     
-    /*
+    
     @Test
-    public void test()
+    public void cascadeTest()
     {   
-        // get account
+        // get accounts
         Account tmpAcc = accs.get("bengt");
         assert(tmpAcc != null);
+        
+        Account tmpAcc2 = accs.get("lisa");
+        assert(tmpAcc2 != null);
+        
+        Account tmpAcc3 = accs.get("greger");
+        assert(tmpAcc3 != null);
         
         // get category
         Category c = cats.get("Gammal skit");
         assert(c != null);
         
+        // add some listings
         Listing[] lList = {
             new Listing(tmpAcc, "Trasig stol", "Kommer i bitar.", new Date(), c),
             new Listing(tmpAcc, "Volvo", "Modell okänd.", new Date(), c)
         };
+        
+        for(Listing l : lList)
+            ah.add(l);
+        
+        assert(ah.getListingsByCategory(c).size() == lList.length);
+        
+        /*
+            *** Test Comments ***
+        */
+        
+        // get first Listing
+        Listing ltmp = ah.getListingsByCategory(c).get(0);
+        assert(ltmp != null);
+        
+        // define some comments
+        Comment[] comments = {
+            new Comment(lList[0], tmpAcc2, "msg1", new Date()),
+            new Comment(lList[0], tmpAcc, "msg2", new Date()),
+            new Comment(lList[0], tmpAcc2, "msg3", new Date())
+        };
+        
+        // get first Listing
+        List<Comment> comlst = ltmp.getComments();
+        
+        // add all comments
+        comlst.addAll(Arrays.asList(comments));
+        assert(ltmp.getComments().size() == comments.length);
+        
+        // save comment ids
+        Long[] idCommentList = new Long[comments.length];
+        for(int i=0; i<comlst.size(); ++i)
+            idCommentList[i] = comlst.get(i).getId();
+        
+        // check that all added comments are added to the persistence unit
+        for(Long id : idCommentList)
+            assert(csec.find(id) != null);
+        
+        // remove listing
+        ah.remove(ltmp.getId());
+        assert(ah.getListingsByCategory(c).size() == lList.length -1);
+        
+        // check that all comments now are removed from the persistence unit
+        for(Long id : idCommentList)
+            assert(csec.find(id) == null);
+        
+        /*
+            *** Test Bids ***
+        */
+        
+        // get first Listing
+        Listing ltmp2 = ah.getListingsByCategory(c).get(0);
+        assert(ltmp2 != null);
+        
+        // place some bids
+        for(int i=0; i<8; ++i)
+            ltmp2.placeBid( i%2==0 ? tmpAcc2 : tmpAcc3, (int)Math.pow(2, i) );
+        
+        // save all bid IDs
+        List<Bid> bidlst = ltmp2.getBids();
+        Long[] bidsIDs = new Long[bidlst.size()];
+        
+        for(int i = 0; i<bidlst.size(); ++i)
+            bidsIDs[i] = bidlst.get(i).getId();
+        
+        // check that all bids are added to the persistence unit
+        for(Long bidID : bidsIDs)
+            assert(bhist.exists(bidID));
+        
+        // remove listing
+        ah.remove(ltmp2.getId());
+        assert(ah.getListingsByCategory(c).size() == lList.length -2);
+        
+        // check that all bids are removed from the persistence unit
+        for(Long bidID : bidsIDs)
+            assert(!bhist.exists(bidID));
     }
-    */
+
     @Test
     public void bidTest()
     {
@@ -186,5 +270,4 @@ public class ModelTest {
         ah.find(testListing.getId()).placeBid(accs_arr[0], 99);
         assert(bhist.getBidsByListing(testListing).size() == 1);
     }
-    
 }
