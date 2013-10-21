@@ -7,14 +7,26 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="additionalpageheaders">
+        <script src="//unslider.com/unslider.min.js"></script>
+        <script>
+            $(function() {
+                $('.mainbanner').unslider();
+            });
+        </script>
     </ui:define>
     <ui:define name="pagetitle">
         aredarT
     </ui:define>
     
     <ui:define name="maincontent">
-        <h1>Main content</h1>
-        <p>Bla bla bla...</p>
+        <h1>Välkommen till Arebart</h1>
+        <div class="mainbanner">
+            <ul>
+                <li class="imgitem"><h:graphicImage library="img" name="happy_people.jpg"/></li>
+                <li class="imgitem"><h:graphicImage library="img" name="happy_man.jpg"/></li>
+                <li class="imgitem"><h:graphicImage library="img" name="asian_guy.jpg"/></li>
+            </ul>
+        </div>
     </ui:define>
 </ui:composition>
 
