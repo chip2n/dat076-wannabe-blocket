@@ -6,6 +6,9 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:metadata>
+        <f:viewParam name="id" value="#{listing.listingId}" />
+    </f:metadata>
 
     <ui:define name="additionalpageheaders">
         <h:outputScript library="js" name="showListing.js"/>
