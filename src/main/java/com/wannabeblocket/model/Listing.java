@@ -23,7 +23,7 @@ public class Listing extends AbstractEntity {
     private Date endingTime;
     @ManyToOne(cascade = {CascadeType.REFRESH})
     private Category category;
-    @OneToMany(cascade = {CascadeType.PERSIST})
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "LISTING_ID")
     private List<Bid> bids;
     @OneToMany(mappedBy = "listing", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
