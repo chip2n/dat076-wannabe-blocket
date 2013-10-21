@@ -11,4 +11,5 @@ public final class Parameter {
     public static final String DESCRIPTION = "description";
     public static final String DATE = "date";
     public static final String CLOCK = "clock";
+    public static final String OLD_PASSWORD = "oldpassword";
 }
