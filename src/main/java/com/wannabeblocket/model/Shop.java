@@ -4,10 +4,13 @@
  */
 package com.wannabeblocket.model;
 
+import javax.inject.Singleton;
+
 /**
  *
  * @author Joppe
  */
+@Singleton
 public class Shop {
     private final IUserRegistry userRegistry;
     private final IAuctionHouse auctionHouse;

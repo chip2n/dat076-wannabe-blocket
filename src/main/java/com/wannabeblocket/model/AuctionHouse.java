@@ -85,7 +85,7 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> implements IAuction
     public List<Listing> searchDescription(String query, boolean showCompletedListings, int first, int nItems) {
         EntityManager em = emf.createEntityManager();
         List<Listing> all;
-        if (showCompletedListings) {
+        if (!showCompletedListings) {
             all = em.createQuery("SELECT c FROM Listing c WHERE c.endingTime >= :now").setParameter("now", new Date()).getResultList();
         } else {
             all = getAll();
@@ -112,7 +112,7 @@ public class AuctionHouse extends AbstractDAO<Listing, Long> implements IAuction
     public List<Listing> searchDescription(String query, Category category, boolean showCompletedListings, int first, int nItems) {
         EntityManager em = emf.createEntityManager();
         List<Listing> all = new ArrayList();
-        if (showCompletedListings) {
+        if (!showCompletedListings) {
             all = em.createQuery("SELECT c FROM Listing c WHERE c.category = :id AND c.endingTime >= :now").setParameter("id", category).setParameter("id", category).getResultList();
         } else {
             all = em.createQuery("SELECT c FROM Listing c WHERE c.category = :id").setParameter("id", category).getResultList();
