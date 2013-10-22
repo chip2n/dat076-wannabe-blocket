@@ -85,7 +85,7 @@ public class ListingBean extends BeanBase {
     }
     
     public String getDateString() {
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:m a");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:m a", Locale.ENGLISH);
         return format.format(_listing.getEndingTime());
     }
     

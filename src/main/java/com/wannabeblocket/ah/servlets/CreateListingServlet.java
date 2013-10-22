@@ -59,6 +59,13 @@ public class CreateListingServlet extends ServletBase {
                 return;
             }
             
+            // The date must be some time in the future
+            if(new Date().after(date)) {
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Angivet datum är redan passerat.");
+                this.forward(Page.CREATE_LISTING);  
+                return;
+            }
+            
             Category category = this.getShop().getCategoryList().find(categoryId);
             Listing listing = new Listing(this.getUser(), title, description, date, category);
             
