@@ -1,1 +1,9 @@
+derby.log
+pictures/
 target/
+tmp/
+*.un~
+*.swp
+*.swo
+ah_db/
+derby.properties

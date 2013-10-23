@@ -1,25 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wannabeblocket.core;
 
-import com.wannabeblocket.core.navigation.Navigation;
 import java.io.IOException;
-import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.wannabeblocket.model.Account;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.core.constants.SessionAttribute;
 
-/**
- *
- * @author Aram Timofeitchik
- */
-public class ServletBase extends HttpServlet {
+public abstract class ServletBase extends HttpServlet {
     private HttpServletRequest _request;
     private HttpServletResponse _response;
-    private Navigation _sideMenu;
-    private Navigation _topMenu;
+    private Shop _shop;
+    
+    /**
+     * Returns the shop.
+     * @return the shop.
+     */
+    protected Shop getShop(){ return this._shop; } 
     
     /**
      * Returns the servlet request.
@@ -34,16 +34,59 @@ public class ServletBase extends HttpServlet {
     protected HttpServletResponse getResponse(){ return this._response; }
     
     /**
-     * Returns the side menu nodes.
-     * @return the side menu nodes.
+     * Returns the current session.
+     * @return the current session.
      */
-    protected Navigation getSideMenu(){ return this._sideMenu; }    
+    protected HttpSession getSession() { return this._request.getSession(); }
     
     /**
-     * Returns the top menu nodes.
-     * @return the top menu nodes.
+     * Returns the context path of the servlet.
+     * @return the context path of the servlet.
      */
-    protected Navigation getTopMenu(){ return this._topMenu; }
+    protected String getContextPath(){ return this._request.getServletContext().getContextPath(); }  
+    
+    /**
+     * Forwards the request to the specified path.
+     * @param path the path to forward the request too.
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     */
+    protected void forward(String path) throws ServletException, IOException{ 
+        this._request.getRequestDispatcher(path).forward(this.getRequest(), this.getResponse()); 
+    } 
+    
+    /**
+     * Redirects to the specified path.
+     * @param path the path to redirect too.
+     * @throws java.io.IOException
+     */
+    protected void redirect(String path) throws IOException{ 
+        this._response.sendRedirect(path); 
+    }     
+    
+    /**
+     * Gets the value of the parameter with the specified name.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name.
+     */
+    protected String getParameter(String name){ 
+        return this._request.getParameter(name); 
+    }
+    
+    /**
+     * Gets the parameter with the specified name as a Long.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name as a Long.
+     */
+    protected Long getParameterAsLong(String name){ 
+        try
+        {
+            return Long.parseLong(this._request.getParameter(name)); 
+        }
+        catch(NumberFormatException e){
+            return null;
+        }
+    } 
     
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -99,8 +142,38 @@ public class ServletBase extends HttpServlet {
     private void init(HttpServletRequest request, HttpServletResponse response){
         this._request = request;
         this._response = response;
-        
-        this._request.setAttribute("sideMenu", _sideMenu = new Navigation());
-        this._request.setAttribute("topMenu", _topMenu = new Navigation());
+        this._shop = Shop.getInstance();
+    }
+    
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo(){
+        return "";
+    }
+    
+    /**
+     * Gets the currently logged on user.
+     * 
+     * @return the currently logged on user.
+     * @throws ServletException
+     * @throws IOException 
+     */
+    protected Account getUser() throws ServletException, IOException{
+        return (Account) this.getSession().getAttribute(SessionAttribute.USER);    
+    }
+    
+    /**
+     * Checks whether a user is logged in.
+     * 
+     * @return true if a user is logged in; otherwise, false.
+     * @throws ServletException
+     * @throws IOException 
+     */
+    protected boolean isUserLoggedIn() throws ServletException, IOException{
+        return this.getUser() != null;    
     }
 }

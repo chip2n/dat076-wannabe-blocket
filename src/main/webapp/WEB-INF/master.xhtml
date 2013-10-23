@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><ui:insert name="pagetitle"/></title>
+        <h:outputStylesheet library="css" name="layout.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputScript library="js" name="jquery-1.10.2.js"/>
+        <h:outputScript library="js" name="common.js"/>
+        <ui:insert name="additionalpageheaders"/>
+    </h:head>   
+    <h:body>
+        <header>
+            <hgroup>
+                <a href="main.xhtml">
+                    <h:graphicImage library="img" name="logo.png" style="float: left;"/>
+                </a>
+                <nav>
+                    <ui:insert name="topmenu">
+                        <h:outputText value="#{topmenu}" escape="false"/>
+                    </ui:insert><br/>
+                </nav>
+            </hgroup>
+        </header> 
+        <div class="searchbar">
+            <div class="searchbar-left"></div>
+            <div class="searchbar-right">    
+                <form id="search_box" method="get" action="search.xhtml" accept-charset="ISO-8859-1">
+                    <input type="text" size="60" id="searchfield" name="query"/>
+                    <label for="categories">inom</label>
+                    <select id="categoryMenu" name="category">
+                        <option value="-1">Alla kategorier</option>
+                        <c:forEach items="#{category.categories}" var="cat">
+                            <option value="#{cat.id}">#{cat.name}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="submit" id="message_submit" value="Sök" />
+                </form>     
+            </div>
+        </div>
+        <article>
+            <aside>
+                <ui:insert name="sidemenuheader">
+                    <b>Kategorier</b>
+                </ui:insert>
+                <ui:insert name="sidemenu">
+                    <h:outputText value="#{sidemenu}" escape="false"/>
+                </ui:insert>    
+            </aside>
+            <section id="maincontent" style="display: inline-block;">
+                <ui:insert name="maincontent"/>
+            </section>
+        </article>
+        <footer>
+            <ui:insert name="pagefooter">
+                Generated with "Web Application DAT076 Generator v1.2 BETA"
+            </ui:insert>
+        </footer>
+    </h:body>
+</html>
