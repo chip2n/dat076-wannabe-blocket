@@ -27,9 +27,18 @@ public class ChangePasswordServlet extends ServletBase {
     protected void doPost() throws ServletException, IOException {
         if(this.isUserLoggedIn()) {
             Account account = this.getUser();
+            String oldPassword = this.getParameter(Parameter.OLD_PASSWORD);
+            String password = this.getParameter(Parameter.PASSWORD);
+            String repeat = this.getParameter(Parameter.REPEAT);
             
-            if(account.getPassword().equals(this.getParameter(Parameter.OLD_PASSWORD))) {
-                account.setPassword(this.getParameter(Parameter.PASSWORD));
+            if(password.length() < 4 || password.length() > 16){
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Lösenordet måste vara mellan 4 och 16 tecken långt.");
+            }
+            else if(!password.equals(repeat)){
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Lösenorden måste matcha.");         
+            }
+            else if(account.getPassword().equals(oldPassword)) {
+                account.setPassword(password);
                 this.getShop().getUserRegistry().update(account);
                 this.getRequest().setAttribute(RequestAttribute.MESSAGE, "Lösenordet är uppdaterat!");
             } 
@@ -41,12 +50,6 @@ public class ChangePasswordServlet extends ServletBase {
         }
         else {
             this.forward(Page.MAIN);
-        }
-        
-        if(this.isUserLoggedIn()) {
-            Account account = this.getUser();
-            String oldPassword = account.getPassword();
-            
         }
     } 
 }
