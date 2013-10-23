@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="additionalpageheaders">
+        <h:outputStylesheet library="css" name="ui-lightness/jquery-ui-1.10.3.custom.css"/>
+        <h:outputScript library="js" name="jquery-ui-1.10.3.custom.js"/>
+        <h:outputScript library="js" name="search.js"/>
+        <h:outputScript library="js" name="auctionhouse.js"/>
+        <h:outputScript library="js" name="ah.js"/>
+        <h:outputScript library="js" name="navigator.js"/>
+    </ui:define>
+    <ui:define name="pagetitle">
+        Search
+    </ui:define>
+    <ui:define name="maincontent">
+        <table id="products" class="ui-widget ui-widget-content">
+            <thead>
+                <tr class="ui-widget-header ">
+                    <th>Titel</th>
+                    <th>Säljare</th>
+                    <th>Avslutas</th>
+                </tr>
+            </thead>
+            <tbody/>
+            <tfoot></tfoot>
+        </table>
+        
+        <button id="prev-button">Föregående</button>
+        <button id="next-button">Nästa</button>
+    </ui:define>
+</ui:composition>
+

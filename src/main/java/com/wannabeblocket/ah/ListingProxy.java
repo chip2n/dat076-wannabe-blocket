@@ -1,7 +1,9 @@
 package com.wannabeblocket.ah;
 
+import com.wannabeblocket.model.Bid;
 import com.wannabeblocket.model.Listing;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -29,6 +31,11 @@ public class ListingProxy {
         return _listing.getId();
     }
     
+    @XmlElement(name = "title")
+    public String getTitle() {
+        return _listing.getName();
+    }
+    
     @XmlElement(name = "seller")
     public String getSeller() {
         return _listing.getSeller().getUserName();
@@ -41,7 +48,7 @@ public class ListingProxy {
     
     @XmlElement(name = "end-time")
     public String getEndTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd:HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
         return dateFormat.format(_listing.getEndingTime());
     }
 }

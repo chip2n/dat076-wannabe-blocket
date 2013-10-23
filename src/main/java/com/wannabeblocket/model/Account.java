@@ -1,28 +1,27 @@
 package com.wannabeblocket.model;
 
-import java.util.List;
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.Id;
 
 @Entity
-public class Account extends AbstractEntity {
+public class Account implements Serializable /*extends AbstractEntity */ {
 
-    private String userName;
-    /*
-    @OneToMany(mappedBy = "bidder", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Bid> bids;
-    @OneToMany(mappedBy = "poseter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Comment> comments;
-    */
-
-    public Account(Long id, String userName) {
-        super(id);
+    @Id
+    String userName;
+    
+    @Column
+    private String password;
+    
+    @Column(unique = true)
+    private String email;
+    
+    public Account(String userName, String password, String email) {
         this.userName = userName;
-    }
-
-    public Account(String userName) {
-        this.userName = userName;
+        this.password = password;
+        this.email = email;
     }
 
     public Account() {
@@ -32,11 +31,37 @@ public class Account extends AbstractEntity {
         return this.userName;
     }
 
-    /**
-     *
-     * @param userName
-     */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.userName);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if(!(obj instanceof Account)) return false;
+        return userName.equals(((Account)obj).userName);
     }
 }

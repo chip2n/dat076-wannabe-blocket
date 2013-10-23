@@ -1,7 +1,9 @@
+derby.log
+pictures/
 target/
-pictures/Thumbs.db
+tmp/
 *.un~
 *.swp
 *.swo
-derby.log
-tmp/
+ah_db/
+derby.properties

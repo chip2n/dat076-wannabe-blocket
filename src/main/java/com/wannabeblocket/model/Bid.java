@@ -2,17 +2,20 @@ package com.wannabeblocket.model;
 
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 @Entity
 public class Bid extends AbstractEntity {
 
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne(fetch=FetchType.LAZY)
     private Listing listing;
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Account bidder;
+    @Column
     private int amount;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date timePlaced;
@@ -39,10 +42,6 @@ public class Bid extends AbstractEntity {
         return this.bidder;
     }
 
-    /**
-     *
-     * @param bidder
-     */
     public void setBidder(Account bidder) {
         this.bidder = bidder;
     }
@@ -51,10 +50,6 @@ public class Bid extends AbstractEntity {
         return listing;
     }
 
-    /**
-     *
-     * @param listing
-     */
     public void setListing(Listing listing) {
         this.listing = listing;
     }
@@ -63,10 +58,6 @@ public class Bid extends AbstractEntity {
         return this.amount;
     }
 
-    /**
-     *
-     * @param amount
-     */
     public void setAmount(int amount) {
         this.amount = amount;
     }
@@ -75,10 +66,6 @@ public class Bid extends AbstractEntity {
         return this.timePlaced;
     }
 
-    /**
-     *
-     * @param timePlaced
-     */
     public void setTimePlaced(Date timePlaced) {
         this.timePlaced = timePlaced;
     }

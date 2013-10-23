@@ -4,58 +4,76 @@
  */
 package com.wannabeblocket.model;
 
+import javax.inject.Singleton;
+
 /**
  *
  * @author Joppe
  */
+@Singleton
 public class Shop {
-    private final UserRegistry _userRegistry;
-    private final AuctionHouse _auctionHouse;
-    private final CommentSection _commentSection;
-    private final BiddingHistory _biddingHistory;
-    private final CategoryList _categoryList;
+    private final IUserRegistry userRegistry;
+    private final IAuctionHouse auctionHouse;
+    private final ICommentSection commentSection;
+    private final IBiddingHistory biddingHistory;
+    private final CategoryList categoryList;
     
     private static Shop _shop;
 
     private Shop(String puName) {
-        _userRegistry = new UserRegistry(puName);
-        _auctionHouse = new AuctionHouse(puName);
-        _commentSection = new CommentSection(puName);
-        _biddingHistory = new BiddingHistory(puName);
-        _categoryList = new CategoryList(puName);
+        userRegistry = UserRegistry.newInstance(puName);
+        auctionHouse = new AuctionHouse(puName);
+        commentSection = new CommentSection(puName);
+        biddingHistory = new BiddingHistory(puName);
+        categoryList = new CategoryList(puName);
     }
     
-    public static enum Mode {Release, Debug}
-    private static String s_puDebug = "shop_test_embedded_pu";
-    private static String s_puRelease = "ah_pu";
-    
-    public static Shop getInstance() {
-        return getInstance(Mode.Release);
+    public static enum Mode 
+    {
+        Release("ah_pu"), 
+        Debug("ah_pu_test");
+        
+        private final String puName;
+        
+        private Mode(String puName)
+        {
+            this.puName = puName;
+        }
+        
+        @Override
+        public String toString()
+        {
+            return puName;
+        }
     }
     
     public static Shop getInstance(Mode mode) {
         if(_shop == null)
-            _shop = new Shop(mode == Mode.Debug ? s_puDebug : s_puRelease);
+            _shop = new Shop(mode.toString());
         return _shop;
     }
-
-    public UserRegistry getUserRegistry() {
-        return _userRegistry;
+    
+    public static Shop getInstance() {
+            return getInstance(Mode.Release);
     }
 
-    public AuctionHouse getAuctionHouse() {
-        return _auctionHouse;
+    public IUserRegistry getUserRegistry() {
+        return userRegistry;
     }
 
-    public CommentSection getCommentSection() {
-        return _commentSection;
+    public IAuctionHouse getAuctionHouse() {
+        return auctionHouse;
     }
 
-    public BiddingHistory getBiddingHistory() {
-        return _biddingHistory;
+    public ICommentSection getCommentSection() {
+        return commentSection;
+    }
+
+    public IBiddingHistory getBiddingHistory() {
+        return biddingHistory;
     }
 
     public CategoryList getCategoryList() {
-        return _categoryList;
+        return categoryList;
     }
 }

@@ -4,6 +4,7 @@
  */
 package com.wannabeblocket.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -12,6 +13,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Category extends AbstractEntity {
+    @Column
     private String name;
 
     public Category() {

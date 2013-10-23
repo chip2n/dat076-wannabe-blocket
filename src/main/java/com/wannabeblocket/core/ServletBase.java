@@ -1,29 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wannabeblocket.core;
 
-import com.wannabeblocket.ah.UserBean;
-import com.wannabeblocket.core.navigation.Navigation;
-import com.wannabeblocket.core.navigation.NavigationNode;
 import java.io.IOException;
-import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import com.wannabeblocket.model.Account;
+import com.wannabeblocket.model.Shop;
+import com.wannabeblocket.core.constants.SessionAttribute;
 
-/**
- *
- * @author Aram Timofeitchik
- */
 public abstract class ServletBase extends HttpServlet {
     private HttpServletRequest _request;
     private HttpServletResponse _response;
-    private Navigation _sideMenu;
-    private Navigation _topMenu;
-    private UserBean _currentUser;
+    private Shop _shop;
+    
+    /**
+     * Returns the shop.
+     * @return the shop.
+     */
+    protected Shop getShop(){ return this._shop; } 
     
     /**
      * Returns the servlet request.
@@ -38,16 +34,59 @@ public abstract class ServletBase extends HttpServlet {
     protected HttpServletResponse getResponse(){ return this._response; }
     
     /**
-     * Returns the side menu nodes.
-     * @return the side menu nodes.
+     * Returns the current session.
+     * @return the current session.
      */
-    protected Navigation getSideMenu(){ return this._sideMenu; }    
+    protected HttpSession getSession() { return this._request.getSession(); }
     
     /**
-     * Returns the top menu nodes.
-     * @return the top menu nodes.
+     * Returns the context path of the servlet.
+     * @return the context path of the servlet.
      */
-    protected Navigation getTopMenu(){ return this._topMenu; }
+    protected String getContextPath(){ return this._request.getServletContext().getContextPath(); }  
+    
+    /**
+     * Forwards the request to the specified path.
+     * @param path the path to forward the request too.
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     */
+    protected void forward(String path) throws ServletException, IOException{ 
+        this._request.getRequestDispatcher(path).forward(this.getRequest(), this.getResponse()); 
+    } 
+    
+    /**
+     * Redirects to the specified path.
+     * @param path the path to redirect too.
+     * @throws java.io.IOException
+     */
+    protected void redirect(String path) throws IOException{ 
+        this._response.sendRedirect(path); 
+    }     
+    
+    /**
+     * Gets the value of the parameter with the specified name.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name.
+     */
+    protected String getParameter(String name){ 
+        return this._request.getParameter(name); 
+    }
+    
+    /**
+     * Gets the parameter with the specified name as a Long.
+     * @param name the name of the parameter.
+     * @return the value of the parameter with the specified name as a Long.
+     */
+    protected Long getParameterAsLong(String name){ 
+        try
+        {
+            return Long.parseLong(this._request.getParameter(name)); 
+        }
+        catch(NumberFormatException e){
+            return null;
+        }
+    } 
     
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -76,8 +115,6 @@ public abstract class ServletBase extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.init(request, response);
-        this.setupSideMenu();
-        this.setupTopMenu();
         this.doGet();
     }
 
@@ -105,42 +142,7 @@ public abstract class ServletBase extends HttpServlet {
     private void init(HttpServletRequest request, HttpServletResponse response){
         this._request = request;
         this._response = response;
-        this.resolveUser();
-        this._request.setAttribute("sideMenu", _sideMenu = new Navigation());
-        this._request.setAttribute("topMenu", _topMenu = new Navigation());
-    }
-    
-        
-    // TODO: Consider if the user is logged in or logged out.
-    protected void setupTopMenu(){
-        if(_currentUser == null) {
-            this.getTopMenu().getChildren().add(new NavigationNode("Logga in", "javascript:login();"));
-        }
-        else {
-            this.getTopMenu().getChildren().add(new NavigationNode("Logga out", null));
-        }
-        this.getTopMenu().getChildren().add(new NavigationNode("Min sida", "mypage"));
-        this.getTopMenu().getChildren().add(new NavigationNode("Skapa annons", "createlisting"));
-        
-        
-    }
-        
-    protected void setupSideMenu(){
-        //Detta ska egentligen kopplas mot produkt kategorier i databasen.
-        
-        for(int i = 1; i < 6; ++i){
-            NavigationNode node = new NavigationNode("Link " + i, null);
-                node.getChildren().add(new NavigationNode("Sublink " + i, null));
-                
-            this.getSideMenu().getChildren().add(node);
-        }
-    }
-    
-    private void resolveUser() {
-        HttpSession session = this._request.getSession();
-        if(session != null) {
-            _currentUser = (UserBean) session.getAttribute("USER");
-        }
+        this._shop = Shop.getInstance();
     }
     
     /**
@@ -149,5 +151,29 @@ public abstract class ServletBase extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public abstract String getServletInfo();  
+    public String getServletInfo(){
+        return "";
+    }
+    
+    /**
+     * Gets the currently logged on user.
+     * 
+     * @return the currently logged on user.
+     * @throws ServletException
+     * @throws IOException 
+     */
+    protected Account getUser() throws ServletException, IOException{
+        return (Account) this.getSession().getAttribute(SessionAttribute.USER);    
+    }
+    
+    /**
+     * Checks whether a user is logged in.
+     * 
+     * @return true if a user is logged in; otherwise, false.
+     * @throws ServletException
+     * @throws IOException 
+     */
+    protected boolean isUserLoggedIn() throws ServletException, IOException{
+        return this.getUser() != null;    
+    }
 }

@@ -2,12 +2,10 @@ package com.wannabeblocket.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -28,63 +26,58 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
     private final Class<T> clazz;
 
     public AbstractDAO(Class<T> clazz, String puName) {
-        //emf = Persistence.createEntityManagerFactory("com.wannabeblocket_ah_war_1.0-SNAPSHOTPU");
-        try {
         emf = Persistence.createEntityManagerFactory(puName);
-        } catch(Exception e) {
-            Logger.getAnonymousLogger().log(Level.INFO, e.getMessage());
-        }
+
         this.clazz = clazz;
     }
 
     @Override
     public void add(T t) {
-        EntityManager em = null;
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         try {
-            em = emf.createEntityManager();
-            em.getTransaction().begin();
+            tx.begin();
             em.persist(t);
-            em.getTransaction().commit();
+            tx.commit();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            if(tx.isActive())
+                tx.rollback();
         } finally {
-            if (em != null) {
                 em.close();
-            }
         }
     }
 
     @Override
     public void remove(K id) {
-        EntityManager em = null;
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
         try {
-            em = emf.createEntityManager();
-            em.getTransaction().begin();
+            tx.begin();
             em.remove(em.getReference(clazz, id));
-            em.getTransaction().commit();
+            tx.commit();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            if(tx.isActive())
+                tx.rollback();
         } finally {
-            if (em != null) {
                 em.close();
-            }
         }
     }
 
     @Override
     public void update(T t) {
-        EntityManager em = null;
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
         try {
-            em = emf.createEntityManager();
-            em.getTransaction().begin();
+            tx.begin();
             em.merge(t);
-            em.getTransaction().commit();
+            tx.commit();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            if(tx.isActive())
+                tx.rollback();
         } finally {
-            if (em != null) {
                 em.close();
-            }
         }
     }
 
@@ -93,6 +86,13 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
         EntityManager em = emf.createEntityManager();
         T t = em.find(clazz, id);
         return t;
+    }
+    
+    @Override
+    public boolean exists(K id) {
+        T t = find(id);
+        
+        return t != null;
     }
 
     @Override
@@ -115,21 +115,21 @@ public abstract class AbstractDAO<T, K> implements IDAO<T, K> {
         return ts;
     }
     
+    @Override
     public List<T> getAll() {
-        try {
         EntityManager em = emf.createEntityManager();
-        
-        List<T> found = new ArrayList();
-        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(clazz));
-        Query q = em.createQuery(cq);
+        try {
+            List<T> found = new ArrayList();
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(clazz));
+            Query q = em.createQuery(cq);
 
             found.addAll(q.getResultList());
-             return found;
+            return found;
         } catch(Exception e) {
-            Logger.getAnonymousLogger().log(Level.INFO, "Hej");
+            e.printStackTrace();
         }
-
+        
         return null;
     }
 

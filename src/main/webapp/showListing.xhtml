@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:metadata>
+        <f:viewParam name="id" value="#{listing.listingId}" />
+    </f:metadata>
+
+    <ui:define name="additionalpageheaders">
+        <h:outputScript library="js" name="showListing.js"/>
+    </ui:define>
+    <ui:define name="pagetitle">
+        Skapa annons
+    </ui:define>
+    
+    <ui:define name="maincontent">
+        <h2>#{listing.listing.name}</h2>
+        <table>
+            <tr>
+                <td style="padding-left: 10px;padding-right: 10px;"><b>Slutar</b> #{listing.niceDateString}</td>
+                <td><b>Bud</b></td>
+            </tr>
+            <tr>
+                <td align="center"><font size="4"><div id="countdown"></div></font></td>
+                <td align="center">#{listing.listing.bids.size()} st</td>
+            </tr>
+        </table>
+        <h:form acceptcharset="ISO-8859-1">
+                <h:inputText id="bid" size="10" value="#{listing.bid}"/>
+                <h:inputHidden value="#{listing.listingId}" />
+                <h:commandButton id="bid_submit" action="#{listing.placeBid}" value="Lägg bud"/>
+        </h:form> 
+        <br />
+        <c:forEach items="#{listing.listing.bids}" var="bid">
+            #{bid.bidder.userName} - #{bid.amount}
+            <br />
+        </c:forEach>
+        <div id="endingDate" style="display: none;">#{listing.dateString}</div>
+        <h1>Beskrivning av objektet</h1>
+        <hr />
+        #{listing.listing.description}
+        <br />
+        <br />
+        <b>Säljaren #{listing.listing.seller.userName} ansvarar för att beskrivningen av objektet är korrekt.</b>
+        <br />
+
+        <div id="newcountdown"></div>
+    </ui:define>
+</ui:composition>
+

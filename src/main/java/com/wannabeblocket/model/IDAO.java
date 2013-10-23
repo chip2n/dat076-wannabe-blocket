@@ -15,6 +15,8 @@ public interface IDAO<T, K> {
     public void add(T t);
 
     public T find(K id);
+    
+    public boolean exists(K id);
 
     public List<T> getAll();
 
