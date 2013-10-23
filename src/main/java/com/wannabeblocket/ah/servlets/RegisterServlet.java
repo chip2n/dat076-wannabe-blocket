@@ -35,27 +35,39 @@ public class RegisterServlet extends ServletBase {
             String repeat = this.getParameter(Parameter.REPEAT);
             String email = this.getParameter(Parameter.EMAIL);
                     
-            if(this.getShop().getUserRegistry().exists(username)){
+            //Make sure to validate on server
+            if(username.length() == 0){
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Ange ett användarnamn.");
+            }
+            else if(password.length() < 4 || password.length() > 16){
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Lösenordet måste vara mellan 4 och 16 tecken långt.");
+            }
+            else if(!password.equals(repeat)){
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Lösenorden måste matcha.");         
+            }       
+            else if(email.length() == 0){
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Ange en email adress.");
+            }
+            else if(!email.matches("^([a-zA-Z0-9_]+)?@(([a-zA-Z]+\\.)+)?([a-zA-Z]+)?$")){
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "Ange en giltig email adress.");
+            }
+            else if(this.getShop().getUserRegistry().exists(username)){
                 this.getRequest().setAttribute(RequestAttribute.USERNAME, username);
-                this.getRequest().setAttribute(RequestAttribute.PASSWORD, password);
-                this.getRequest().setAttribute(RequestAttribute.REPEAT, repeat);
-                this.getRequest().setAttribute(RequestAttribute.EMAIL, email);          
                 this.getRequest().setAttribute(RequestAttribute.ERROR, "En användare med det angivna användarnamnet finns redan.");
-                this.forward(Page.REGISTER);
             }
             else if(this.getShop().getUserRegistry().findEmail(email) != null){
                 this.getRequest().setAttribute(RequestAttribute.USERNAME, username);
                 this.getRequest().setAttribute(RequestAttribute.PASSWORD, password);
                 this.getRequest().setAttribute(RequestAttribute.REPEAT, repeat);
                 this.getRequest().setAttribute(RequestAttribute.EMAIL, email);          
-                this.getRequest().setAttribute(RequestAttribute.ERROR, "En användare med den angivna epost adressen finns redan.");
-                this.forward(Page.REGISTER);                
+                this.getRequest().setAttribute(RequestAttribute.ERROR, "En användare med den angivna epost adressen finns redan.");              
             }
             else {
                 this.getShop().getUserRegistry().add(new Account(username, password, email));
-                this.getRequest().setAttribute(RequestAttribute.MESSAGE, "Användaren registrerad.");
-                this.forward(Page.REGISTER);
+                this.getRequest().setAttribute(RequestAttribute.MESSAGE, "Användaren registrerad.");              
             }
+            
+            this.forward(Page.REGISTER);
         }
     }
 }
