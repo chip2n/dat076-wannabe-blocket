@@ -17,7 +17,7 @@ public class UserRegistryTest {
     
     @Before
     public void setUp() {
-        _shop = Shop.getInstance(Shop.Mode.Release);
+        _shop = Shop.getInstance(Shop.Mode.Debug);
     }
 
     @Test

@@ -7,13 +7,12 @@ package com.wannabeblocket.ah;
 import com.wannabeblocket.core.ServletBase;
 import com.wannabeblocket.model.Shop;
 import com.wannabeblocket.model.AuctionHouse;
+import com.wannabeblocket.model.Listing;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 
 /**
  *
@@ -68,11 +67,15 @@ public class SearchServlet extends ServletBase {
     @Override
     protected void doPost() throws ServletException, IOException {
         String searchQuery = this.getRequest().getParameter("searchfield");
-        AuctionHouse auctionHouse = Shop.getInstance(Shop.Mode.Release).getAuctionHouse();
+        long searchCatagory = Long.parseLong(this.getRequest().getParameter("categories"));
+        AuctionHouse auctionHouse = Shop.getInstance().getAuctionHouse();
+        
+        List<Listing> found = auctionHouse.searchDescription(searchQuery);
+        this.getRequest().setAttribute("PRODUCT_LIST", found);
+        
         //AuctionHouse.searchDescription(searchQuery);
         // TODO : Limit the database output to the searchQuery.
         
-        //String searchCatagory = this.getRequest().getParameter("catagories");
         //nt searchCatagory = Integer.parseInt(this.getRequest().getParameter("catagories"));
         //this.getRequest().getRequestDispatcher("/search.jsp").forward(this.getRequest(), this.getResponse());
         getResponse().sendRedirect("/ah/search");
